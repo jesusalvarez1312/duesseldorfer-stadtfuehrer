@@ -1,0 +1,755 @@
+/* ==================================================================
+   Düsseldorfer Stadtführer e.V.
+   ------------------------------------------------------------------
+   MOBILE FIRST
+   Alles ohne @media gilt zuerst und immer – also für das hochkant
+   gehaltene Smartphone. Erweiterungen für größere Bildschirme
+   stehen gesammelt in Abschnitt 12 und 13.
+   ------------------------------------------------------------------
+    1. Farben, Schriften, Grundwerte
+    2. Grundgerüst
+    3. Icons
+    4. Kopfbereich und Menü
+    5. Knöpfe
+    6. Titelbereich
+    7. Themen
+    8. Verein
+    9. Sprachen
+   10. Buchung
+   11. Kontakt und Fußbereich
+   12. Ab Tablet   (720 px)
+   13. Ab Laptop   (1024 px)
+================================================================== */
+
+
+/* ---- 1. Farben, Schriften, Grundwerte -------------------------- */
+:root {
+  --rot:        #B4131C;   /* aus dem Vereinslogo */
+  --rot-dunkel: #8E0F16;
+  --nacht:      #10263C;   /* dunkelblau für den Vereinsblock */
+  --nacht-2:    #1B3A57;
+  --text:       #16191D;
+  --text-leise: #5B6773;
+  --creme:      #F7F5F1;
+  --beige:      #EFE8DD;
+  --linie:      #E4DFD7;
+  --weiss:      #FFFFFF;
+
+  --titelschrift: "Playfair Display", Georgia, serif;
+  --textschrift:  "Inter", system-ui, sans-serif;
+
+  --luft: 1.25rem;         /* seitlicher Rand auf dem Handy */
+  --rund: 12px;
+}
+
+
+/* ---- 2. Grundgerüst -------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--weiss);
+  color: var(--text);
+  font-family: var(--textschrift);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3 {
+  font-family: var(--titelschrift);
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p { margin: 0 0 1rem; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--rot);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Zentrierter Inhalt */
+.huelle {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: var(--luft);
+}
+
+/* Abstände der großen Abschnitte */
+.band { padding-block: 3.25rem; }
+.band--creme  { background: var(--creme); }
+.band--beige  { background: var(--beige); }
+.band--dunkel { background: var(--nacht); color: #DCE5EC; }
+
+.band h2 { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 1rem; }
+.band--dunkel h2 { color: var(--weiss); }
+
+/* Kleine rote Linie unter einer Überschrift */
+.titel-strich::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 3px;
+  background: var(--rot);
+  margin-top: 0.85rem;
+  margin-bottom: 1.4rem;
+}
+
+.augenbraue {
+  font-family: var(--textschrift);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rot);
+  margin-bottom: 0.9rem;
+}
+
+.klein { font-size: 0.9rem; color: #93A6B5; }
+
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus {
+  left: 1rem; top: 1rem; z-index: 30;
+  background: var(--nacht); color: #fff;
+  padding: 0.7rem 1.1rem; border-radius: 8px;
+}
+
+.nur-fuer-screenreader {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%);
+}
+
+
+/* ---- 3. Icons --------------------------------------------------- */
+
+/* Die Sammelgrafik ganz oben im HTML soll man nicht sehen */
+.icon-lager { display: none; }
+
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+.icon--gross { width: 30px; height: 30px; stroke-width: 1.4; }
+
+
+/* ---- 4. Kopfbereich und Menü ------------------------------------ */
+
+.kopf {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--weiss);
+  border-bottom: 1px solid var(--linie);
+}
+
+.kopf__zeile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+.logo img { height: 40px; width: auto; }
+
+/* Menü ist auf dem Handy zunächst geschlossen */
+.navi {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  flex-direction: column;
+  background: var(--weiss);
+  border-bottom: 1px solid var(--linie);
+  padding: 0.25rem var(--luft) 1rem;
+  box-shadow: 0 18px 30px rgba(16, 38, 60, 0.08);
+}
+
+.navi.offen { display: flex; }
+
+.navi a {
+  text-decoration: none;
+  font-size: 1.02rem;
+  font-weight: 500;
+  padding: 0.85rem 0;                 /* große Tippfläche */
+  border-bottom: 1px solid var(--linie);
+}
+
+.navi a:last-child { border-bottom: none; }
+
+.navi__trenner { display: none; }
+
+.burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.burger__striche,
+.burger__striche::before,
+.burger__striche::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+.burger__striche { position: relative; }
+.burger__striche::before,
+.burger__striche::after { content: ""; position: absolute; left: 0; }
+.burger__striche::before { top: -6px; }
+.burger__striche::after  { top:  6px; }
+
+
+/* ---- 5. Knöpfe -------------------------------------------------- */
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding-inline: 1.6rem;
+  border-radius: 999px;
+  background: var(--rot);
+  color: var(--weiss);
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.knopf:hover { background: var(--rot-dunkel); transform: translateY(-2px); }
+
+.knopf--rand {
+  background: var(--weiss);
+  color: var(--text);
+  border: 1.5px solid var(--linie);
+}
+
+.knopf--rand:hover {
+  background: var(--weiss);
+  border-color: var(--rot);
+  color: var(--rot);
+}
+
+.knopf--klein { min-height: 46px; font-size: 0.92rem; }
+
+.knopfreihe {
+  display: flex;
+  flex-direction: column;              /* auf dem Handy untereinander */
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+
+/* ---- 6. Titelbereich -------------------------------------------- */
+
+.held { padding-bottom: 2.5rem; }
+
+.held__bild { margin: 0 0 1.75rem; }
+
+.held__bild img {
+  width: 100%;
+  aspect-ratio: 4 / 5;                 /* hochkant auf dem Handy */
+  object-fit: cover;
+  border-radius: 0 0 var(--rund) var(--rund);
+}
+
+.held__text { padding-inline: var(--luft); }
+
+.held h1 {
+  font-size: clamp(2.1rem, 9.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Das rot hervorgehobene Wort in der Überschrift */
+.held h1 em {
+  font-style: normal;
+  color: var(--rot);
+}
+
+.lead {
+  margin-top: 1.2rem;
+  font-size: 1.08rem;
+  color: var(--text-leise);
+  max-width: 42ch;
+}
+
+
+/* ---- 7. Themen -------------------------------------------------- */
+
+.themen__intro { margin-bottom: 2rem; }
+.themen__intro h2 { margin-bottom: 0.8rem; }
+.themen__intro p { color: var(--text-leise); max-width: 40ch; }
+
+.kacheln {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* zwei Spalten schon am Handy */
+  gap: 0.7rem;
+}
+
+.kacheln a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 108px;
+  padding: 1rem 0.5rem;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--rund);
+  color: var(--rot);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+/* Nur das Icon bleibt rot, die Beschriftung wird dunkel */
+.kacheln a { color: var(--text); }
+.kacheln .icon--gross { color: var(--rot); }
+
+.kacheln a:hover {
+  border-color: var(--rot);
+  box-shadow: 0 10px 22px rgba(16, 38, 60, 0.07);
+  transform: translateY(-2px);
+}
+
+.fussnote {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 1.75rem 0 0;
+  font-size: 0.88rem;
+  color: var(--text-leise);
+}
+
+.fussnote__punkt {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+  background: var(--rot);
+}
+
+
+/* ---- 8. Verein -------------------------------------------------- */
+
+.verein { display: grid; gap: 2.5rem; }
+
+.verein p { color: #C3D2DE; }
+
+.hakenliste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.hakenliste li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #E4EBF1;
+}
+
+.hakenliste .icon {
+  color: var(--rot);
+  width: 1.35em;
+  height: 1.35em;
+  margin-top: 0.18em;
+}
+
+/* Die Skyline ist reine Dekoration und auf dem Handy ausgeblendet */
+.skyline { display: none; }
+
+
+/* ---- 9. Sprachen ------------------------------------------------ */
+
+.sprachen__intro { margin-bottom: 1.75rem; }
+.sprachen__intro p { color: var(--text-leise); max-width: 40ch; }
+
+.sprachliste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.sprachliste li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem 0.45rem 0.45rem;
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  background: var(--weiss);
+}
+
+.flagge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+  background: var(--creme);
+  flex: none;
+}
+
+.flagge svg { width: 100%; height: 100%; }
+
+
+/* ---- 10. Buchung ------------------------------------------------ */
+
+.schritte {
+  list-style: none;
+  counter-reset: schritt;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: 1.6rem;
+}
+
+.schritte li {
+  counter-increment: schritt;
+  position: relative;
+  padding-left: 3rem;
+}
+
+.schritte li::before {
+  content: counter(schritt);
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--rot);
+  color: var(--weiss);
+  font-family: var(--textschrift);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.schritte h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+.schritte p  { margin: 0; color: var(--text-leise); font-size: 0.95rem; }
+
+.buchung__bild { margin: 2rem 0 0; }
+
+.buchung__bild img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--rund);
+}
+
+
+/* ---- 11. Kontakt und Fußbereich --------------------------------- */
+
+.kontakt p { color: var(--text-leise); }
+
+.kontakt__karten { display: grid; gap: 0.9rem; margin-top: 1.75rem; }
+
+.karte {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--rund);
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.karte:hover {
+  border-color: var(--rot);
+  box-shadow: 0 10px 22px rgba(16, 38, 60, 0.07);
+}
+
+.karte__icon {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--rot);
+  border-radius: 10px;
+  color: var(--rot);
+}
+
+.karte__icon .icon { width: 22px; height: 22px; }
+
+.karte__label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-leise);
+}
+
+.karte__wert {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.fuss {
+  background: var(--nacht);
+  color: #A9BECF;
+  padding-block: 2.25rem;
+  font-size: 0.9rem;
+}
+
+.fuss__zeile { display: grid; gap: 1.5rem; justify-items: center; text-align: center; }
+
+.fuss__logo img { height: 38px; width: auto; }
+
+.fuss nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.fuss a { color: var(--weiss); text-decoration: none; font-weight: 500; }
+.fuss a:hover { text-decoration: underline; }
+
+.fuss p { margin: 0; font-size: 0.85rem; }
+
+.fuss__sozial { display: flex; gap: 0.75rem; }
+
+.fuss__sozial a {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--weiss);
+}
+
+.fuss__sozial svg { width: 20px; height: 20px; }
+.fuss__sozial a:hover { background: var(--rot); }
+
+
+/* ================================================================
+   12. AB TABLET – ab 720 px
+================================================================ */
+@media (min-width: 720px) {
+
+  :root { --luft: 2rem; }
+
+  body { font-size: 1.05rem; }
+
+  .band { padding-block: 4.5rem; }
+
+  .knopfreihe { flex-direction: row; }
+
+  .held__bild img { aspect-ratio: 16 / 10; }
+
+  .kacheln { grid-template-columns: repeat(3, 1fr); }
+
+  .verein { grid-template-columns: 1fr 1fr; gap: 3rem; }
+
+  .schritte { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+  .kontakt__karten { grid-template-columns: 1fr 1fr; }
+
+  .buchung__bild img { aspect-ratio: 21 / 9; }
+
+  .fuss__zeile {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    text-align: left;
+    justify-items: start;
+  }
+
+  .fuss__mitte { justify-self: center; text-align: center; }
+  .fuss__sozial { justify-self: end; }
+}
+
+
+/* ================================================================
+   13. AB LAPTOP – ab 1024 px
+================================================================ */
+@media (min-width: 1024px) {
+
+  /* --- Menü dauerhaft sichtbar, Burger weg --- */
+  .burger { display: none; }
+
+  .navi {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .navi a {
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .navi a:hover { border-bottom-color: var(--rot); }
+
+  .navi__trenner {
+    display: block;
+    width: 1px;
+    height: 20px;
+    background: var(--linie);
+  }
+
+  .kopf__zeile { min-height: 82px; }
+  .logo img { height: 52px; }
+
+  /* --- Titelbereich: Text links, Bild rechts bis an den Rand --- */
+  .held {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    align-items: center;
+    gap: 3.5rem;
+    padding-block: 3rem 4.5rem;
+    /* linker Abstand richtet sich am zentrierten Raster aus */
+    padding-left: max(var(--luft), calc((100vw - 1240px) / 2));
+  }
+
+  .held__text { padding-inline: 0; max-width: 33rem; }
+
+  .held__bild { order: 2; margin: 0; }
+
+  .held__bild img {
+    aspect-ratio: auto;
+    height: 600px;
+    border-radius: 150px 0 0 20px;   /* weiche Kante nach links */
+  }
+
+  .held h1 { font-size: 3.5rem; }
+
+  /* --- Themen: Text links, Kacheln rechts --- */
+  .themen {
+    display: grid;
+    grid-template-columns: 0.75fr 1.6fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .themen__intro { margin-bottom: 0; }
+
+  .kacheln { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+  .kacheln a { min-height: 122px; font-size: 0.9rem; }
+
+  .fussnote { grid-column: 2; margin-top: 1.5rem; }
+
+  /* --- Verein: Skyline als Hintergrundzeichnung --- */
+  .verein { grid-template-columns: 1fr 1.15fr; gap: 4.5rem; }
+
+  .verein__rechts { position: relative; }
+
+  /* Zum Einstellen: opacity steuert, wie kräftig die Skyline wirkt.
+     0.15 = nur angedeutet, 0.35 = dezent, 0.6 = deutlich sichtbar. */
+  .skyline {
+    display: block;
+    position: absolute;
+    right: -1rem;
+    bottom: -2rem;
+    width: 340px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* --- Sprachen: Text links, Pillen rechts --- */
+  .sprachen {
+    display: grid;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .sprachen__intro { margin-bottom: 0; }
+
+  /* --- Buchung: Bild rechts unten --- */
+  .buchung {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .buchung__bild { margin: 0; }
+
+  .buchung__bild img {
+    aspect-ratio: 4 / 3;
+    border-radius: 100px 20px 20px 20px;
+  }
+
+  /* --- Kontakt: zwei Spalten --- */
+  .kontakt {
+    display: grid;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .kontakt__karten { margin-top: 0; }
+}
+
+
+/* Weniger Bewegung, wenn im Betriebssystem so eingestellt */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
