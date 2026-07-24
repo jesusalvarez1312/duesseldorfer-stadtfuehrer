@@ -626,3 +626,206 @@
 @media (prefers-reduced-motion: reduce) {
   .gruppe, .gruppe__pfeil, .viertel, .knopf--umriss { transition: none; }
 }
+
+
+/* ================================================================
+   9. ANFRAGE-FORMULAR  (Seite anfrage.html)
+   ----------------------------------------------------------------
+   Eigenständiger Zusatz. Nutzt dieselben Farben und Bausteine wie
+   der Rest der Seite. Mobile First, Erweiterungen am Ende.
+================================================================ */
+
+/* Das Formular steht als ruhige, zentrierte Spalte */
+.anfrage {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+/* --- Ein Block (Schritt) des Formulars --- */
+.formblock {
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: 16px;
+  padding: 1.4rem 1.2rem 1.7rem;
+}
+
+.formblock__kopf {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.35rem;
+}
+
+/* Die runde Ziffer – gleiche Formensprache wie die Ablauf-Symbole */
+.formblock__nummer {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--creme);
+  color: var(--rot);
+  font-family: var(--titelschrift);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.formblock__titel {
+  font-family: var(--titelschrift);
+  font-size: clamp(1.25rem, 5vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.formblock__inhalt { display: grid; gap: 1.1rem; }
+
+
+/* --- Einzelnes Feld: Beschriftung über dem Eingabefeld --- */
+.feld { display: grid; gap: 0.4rem; }
+
+.feld label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Sternchen für Pflichtfelder */
+.pflicht { color: var(--rot); }
+
+.feld input,
+.feld select,
+.feld textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.72rem 0.9rem;
+  font-family: var(--textschrift);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--creme);
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.feld textarea {
+  min-height: 118px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.feld input:focus,
+.feld select:focus,
+.feld textarea:focus {
+  border-color: var(--rot);
+  background: var(--weiss);
+}
+
+.feld input::placeholder,
+.feld textarea::placeholder { color: #9aa6b0; }
+
+/* Eigener Pfeil für die Auswahlfelder statt des Systempfeils */
+.feld select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B4131C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 20px;
+}
+
+/* Kleiner Hilfstext unter einem Feld */
+.feld__hinweis {
+  font-size: 0.85rem;
+  color: var(--text-leise);
+}
+
+/* Der Verweis auf das Angebot – sitzt links unter dem Freitext */
+.form__tipp {
+  justify-self: start;
+  min-height: 46px;
+  font-size: 0.78rem;
+}
+
+
+/* --- Zustimmung Datenschutz --- */
+.zustimmung {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-leise);
+}
+
+.zustimmung input {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  min-height: auto;
+  margin-top: 0.15rem;
+  padding: 0;
+  accent-color: var(--rot);
+  cursor: pointer;
+}
+
+.zustimmung a { color: var(--rot); }
+
+
+/* --- Absenden + Zusage darunter --- */
+.anfrage__fuss {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-top: 0.3rem;
+}
+
+/* Der Absende-Knopf ist ein <button>, braucht daher etwas Extra */
+.anfrage button.knopf {
+  font-family: var(--textschrift);
+  border: 0;
+  cursor: pointer;
+}
+
+/* Rückmeldung nach dem Absenden (per JavaScript sichtbar gemacht) */
+.anfrage__status {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  border-radius: 10px;
+  background: var(--creme);
+  border: 1px solid var(--linie);
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.pflicht-hinweis {
+  font-size: 0.85rem;
+  color: var(--text-leise);
+  margin-top: -0.4rem;
+}
+
+
+/* ---- Ab Tablet (720 px) ---------------------------------------- */
+@media (min-width: 720px) {
+
+  .formblock { padding: 1.7rem 1.8rem 2rem; }
+
+  .formblock__inhalt { gap: 1.25rem; }
+
+  /* Zwei Felder nebeneinander */
+  .feld-reihe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .anfrage__fuss {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+}

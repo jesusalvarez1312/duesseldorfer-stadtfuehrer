@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Anfrage stellen – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Stellen Sie Ihre unverbindliche Anfrage für eine Führung in Düsseldorf – Tour, Termin und Wünsche in einem kurzen Formular.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-uhr"><circle cx="12" cy="12" r="8.8"/><path d="M12 6.8v5.4l3.4 2.1"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite zeigen die Menülinks auf index.html, sonst
+     suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#fuehrungen">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <span class="navi__trenner" aria-hidden="true"></span>
+      <a href="english.html" hreflang="en">English</a>
+      <a href="francais.html" hreflang="fr">Français</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF ===========================================
+       Bewusst schlank, ohne Bildcollage – das Formular steht im
+       Mittelpunkt.
+  ============================================================ -->
+  <section class="seitenkopf">
+    <div class="huelle">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#buchung">Anfrage</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Anfrage stellen</span>
+        </nav>
+
+        <p class="augenbraue">Einfach. Persönlich. Unkompliziert.</p>
+        <h1 class="titel-strich">Stellen Sie Ihre Anfrage</h1>
+        <p class="lead">
+          Sagen Sie uns, welche Tour Sie interessiert, wann Sie unterwegs sein
+          möchten und was Ihnen wichtig ist. Wir melden uns zeitnah persönlich
+          bei Ihnen – ganz unverbindlich.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== FORMULAR =============================================
+       Aufbau in drei Schritten – dieselbe Reihenfolge wie im
+       Abschnitt „Stellen Sie Ihre Anfrage" auf der Startseite.
+
+       VERSAND: data-versand="mailto" öffnet beim Absenden das
+       E-Mail-Programm des Besuchers (funktioniert ohne Server).
+       Später auf Formspree umstellen – siehe Hinweis in script.js.
+  ============================================================ -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <form class="anfrage"
+            id="anfrageFormular"
+            data-versand="mailto"
+            data-empfaenger="anfrage@duesseldorfer-stadtfuehrer.de">
+
+        <!-- ---- Schritt 1: Tour ---- -->
+        <div class="formblock">
+          <div class="formblock__kopf">
+            <span class="formblock__nummer" aria-hidden="true">1</span>
+            <h2 class="formblock__titel">Ihre Wunschtour</h2>
+          </div>
+
+          <div class="formblock__inhalt">
+            <div class="feld">
+              <label for="tour">Welche Tour oder welches Thema interessiert Sie?</label>
+              <textarea id="tour" name="tour" rows="3"
+                        placeholder="z. B. Altstadt-Rundgang, Architektur am MedienHafen, Führung für unsere Schulklasse …"></textarea>
+            </div>
+
+            <a class="knopf knopf--umriss form__tipp" href="index.html#fuehrungen">
+              Noch unsicher? Unser Angebot ansehen
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+            </a>
+
+            <div class="feld">
+              <label for="sprache">Gewünschte Sprache</label>
+              <select id="sprache" name="sprache">
+                <option value="" selected>Bitte wählen</option>
+                <option>Deutsch</option>
+                <option>English</option>
+                <option>Français</option>
+                <option>Nederlands</option>
+                <option>Español</option>
+                <option>Català</option>
+                <option>Italiano</option>
+                <option>Čeština</option>
+                <option>Polski</option>
+                <option>Andere Sprache</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- Schritt 2: Termin & Gruppe ---- -->
+        <div class="formblock">
+          <div class="formblock__kopf">
+            <span class="formblock__nummer" aria-hidden="true">2</span>
+            <h2 class="formblock__titel">Termin &amp; Gruppe</h2>
+          </div>
+
+          <div class="formblock__inhalt">
+            <div class="feld-reihe">
+              <div class="feld">
+                <label for="termin">Wunschtermin</label>
+                <input type="date" id="termin" name="termin">
+              </div>
+              <div class="feld">
+                <label for="uhrzeit">Uhrzeit</label>
+                <input type="time" id="uhrzeit" name="uhrzeit">
+              </div>
+            </div>
+
+            <div class="feld-reihe">
+              <div class="feld">
+                <label for="alternativtermin">Alternativtermin <span class="feld__hinweis">(optional)</span></label>
+                <input type="date" id="alternativtermin" name="alternativtermin">
+              </div>
+              <div class="feld">
+                <label for="dauer">Gewünschte Dauer</label>
+                <select id="dauer" name="dauer">
+                  <option value="" selected>Bitte wählen</option>
+                  <option>ca. 1 Stunde</option>
+                  <option>ca. 1,5 Stunden</option>
+                  <option>ca. 2 Stunden</option>
+                  <option>Halbtags</option>
+                  <option>Ganztags</option>
+                  <option>Noch offen / individuell</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="feld">
+              <label for="personen">Ungefähre Personenzahl</label>
+              <input type="number" id="personen" name="personen" min="1" inputmode="numeric"
+                     placeholder="z. B. 12">
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- Schritt 3: Kontakt & Wünsche ---- -->
+        <div class="formblock">
+          <div class="formblock__kopf">
+            <span class="formblock__nummer" aria-hidden="true">3</span>
+            <h2 class="formblock__titel">Ihre Kontaktdaten</h2>
+          </div>
+
+          <div class="formblock__inhalt">
+            <div class="feld-reihe">
+              <div class="feld">
+                <label for="name">Name <span class="pflicht" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+              </div>
+              <div class="feld">
+                <label for="email">E-Mail <span class="pflicht" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="feld-reihe">
+              <div class="feld">
+                <label for="telefon">Telefon <span class="feld__hinweis">(optional)</span></label>
+                <input type="tel" id="telefon" name="telefon" autocomplete="tel">
+              </div>
+              <div class="feld">
+                <label for="anlass">Organisation / Anlass <span class="feld__hinweis">(optional)</span></label>
+                <input type="text" id="anlass" name="anlass"
+                       placeholder="z. B. Firmenausflug, Geburtstag">
+              </div>
+            </div>
+
+            <div class="feld">
+              <label for="nachricht">Besondere Wünsche</label>
+              <textarea id="nachricht" name="nachricht" rows="4"
+                        placeholder="Barrierefrei, mit Kindern, Spielszenen im Kostüm, Treffpunkt … – erzählen Sie uns, was Ihnen wichtig ist."></textarea>
+            </div>
+
+            <label class="zustimmung">
+              <input type="checkbox" name="datenschutz" required>
+              <span>
+                Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung
+                der Anfrage gespeichert werden. Hinweise dazu in der
+                <a href="datenschutz.html">Datenschutzerklärung</a>.
+                <span class="pflicht" aria-hidden="true">*</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <p class="pflicht-hinweis"><span class="pflicht">*</span> Pflichtfeld</p>
+
+        <!-- ---- Absenden ---- -->
+        <div class="anfrage__fuss">
+          <button type="submit" class="knopf">
+            Anfrage senden
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+          </button>
+
+          <div class="zusage">
+            <span class="zusage__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-uhr"/></svg></span>
+            <div>
+              <p class="zusage__titel">Wir melden uns <em>zeitnah</em> bei Ihnen.</p>
+              <p class="zusage__text">Persönlich. Verlässlich. Für Ihre perfekte Führung.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rückmeldung nach dem Absenden -->
+        <p class="anfrage__status" id="anfrageStatus" role="status" hidden>
+          Ihr E-Mail-Programm sollte sich jetzt mit Ihrer Anfrage öffnen.
+          Bitte prüfen Sie die Angaben und senden Sie die E-Mail ab.
+          Öffnet sich nichts, schreiben Sie uns gern direkt an
+          <a href="mailto:anfrage@duesseldorfer-stadtfuehrer.de">anfrage@duesseldorfer-stadtfuehrer.de</a>.
+        </p>
+
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2>Lieber persönlich?</h2>
+          <p>Rufen Sie uns an oder schreiben Sie – wir beraten Sie gern direkt.</p>
+        </div>
+
+        <a class="knopf knopf--umriss" href="index.html#kontakt">
+          Zum Kontakt
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches und Service">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__sozial">
+      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

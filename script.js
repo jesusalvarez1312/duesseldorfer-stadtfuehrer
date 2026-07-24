@@ -68,3 +68,73 @@ document.querySelectorAll(".gruppe__zu").forEach((knopf) => {
     if (kopf) kopf.focus();
   });
 });
+
+
+/* ---- 3. Anfrageformular verschicken -----------------------------
+   Solange kein Formular-Dienst eingerichtet ist, öffnet das Formular
+   beim Absenden das E-Mail-Programm des Besuchers mit fertig
+   vorbereitetem Text (data-versand="mailto").
+
+   UMSTELLEN AUF FORMSPREE (o. ä.) SPÄTER:
+   In anfrage.html im <form> lediglich
+       action="https://formspree.io/f/DEINE-ID"  method="post"
+   ergänzen und  data-versand="mailto"  entfernen. Dann verschickt
+   der Browser das Formular normal und dieser Block hält sich raus.
+------------------------------------------------------------------ */
+
+const anfrageFormular = document.getElementById("anfrageFormular");
+
+if (anfrageFormular && anfrageFormular.dataset.versand === "mailto") {
+
+  // Beschriftungen für die spätere E-Mail, in gewünschter Reihenfolge
+  const felder = [
+    ["tour",            "Wunschtour / Thema"],
+    ["sprache",         "Sprache"],
+    ["termin",          "Wunschtermin"],
+    ["uhrzeit",         "Uhrzeit"],
+    ["alternativtermin","Alternativtermin"],
+    ["dauer",           "Dauer"],
+    ["personen",        "Personenzahl"],
+    ["name",            "Name"],
+    ["email",           "E-Mail"],
+    ["telefon",         "Telefon"],
+    ["anlass",          "Organisation / Anlass"],
+  ];
+
+  anfrageFormular.addEventListener("submit", (e) => {
+    // Der Browser prüft vorher selbst die Pflichtfelder. Kommt es bis
+    // hierher, sind alle Angaben gültig – wir bauen die E-Mail selbst.
+    e.preventDefault();
+
+    const daten     = new FormData(anfrageFormular);
+    const empfaenger = anfrageFormular.dataset.empfaenger || "";
+
+    // Textzeilen zusammensetzen, leere Felder überspringen
+    const zeilen = [];
+    felder.forEach(([schluessel, beschriftung]) => {
+      const wert = (daten.get(schluessel) || "").toString().trim();
+      if (wert) zeilen.push(beschriftung + ": " + wert);
+    });
+
+    const nachricht = (daten.get("nachricht") || "").toString().trim();
+    if (nachricht) zeilen.push("", "Besondere Wünsche / Nachricht:", nachricht);
+
+    const name    = (daten.get("name") || "").toString().trim();
+    const betreff = "Anfrage über die Website" + (name ? " – " + name : "");
+
+    const adresse =
+      "mailto:" + empfaenger +
+      "?subject=" + encodeURIComponent(betreff) +
+      "&body="    + encodeURIComponent(zeilen.join("\n"));
+
+    // E-Mail-Programm öffnen
+    window.location.href = adresse;
+
+    // Freundliche Rückmeldung einblenden
+    const status = document.getElementById("anfrageStatus");
+    if (status) {
+      status.hidden = false;
+      status.scrollIntoView({ block: "center" });
+    }
+  });
+}
