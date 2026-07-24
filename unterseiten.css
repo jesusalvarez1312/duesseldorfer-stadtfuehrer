@@ -1,0 +1,628 @@
+/* ==================================================================
+   Düsseldorfer Stadtführer e.V. – Zusätze für Unterseiten
+   ------------------------------------------------------------------
+   Wird ZUSÄTZLICH zu style.css geladen und enthält nur, was auf der
+   Startseite nicht vorkommt. style.css bleibt unangetastet.
+
+   Mobile First: alles ohne @media gilt für das hochkant gehaltene
+   Smartphone. Ab Abschnitt 7 kommen die Zusätze für größere Geräte.
+   ------------------------------------------------------------------
+   1. Seitenkopf mit Bildcollage
+   2. Rundes Siegel
+   3. Akkordeon
+   4. Kacheln der Viertel
+   5. Hinweis am Seitenende
+   6. Knopf mit Umriss
+   7. Ab Tablet  (720 px)
+   8. Ab Laptop  (1024 px)
+================================================================== */
+
+
+/* ---- 1. Seitenkopf mit Bildcollage ------------------------------ */
+
+.seitenkopf {
+  position: relative;
+  padding-block: 1.5rem 3rem;
+  overflow: hidden;
+}
+
+/* Gepunktetes Muster oben rechts – reine Dekoration aus CSS,
+   kostet keine Bilddatei. */
+.seitenkopf::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  right: -1rem;
+  width: 130px;
+  height: 120px;
+  background-image: radial-gradient(var(--linie) 1.6px, transparent 1.6px);
+  background-size: 13px 13px;
+  pointer-events: none;
+}
+
+.brotkrumen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--text-leise);
+  margin-bottom: 1.6rem;
+}
+
+.brotkrumen a {
+  color: var(--text-leise);
+  text-decoration: none;
+  padding-block: 0.3rem;
+}
+
+.brotkrumen a:hover {
+  color: var(--rot);
+  text-decoration: underline;
+}
+
+.brotkrumen [aria-current="page"] {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Der Textblock liegt über dem Punktmuster */
+.seitenkopf__text {
+  position: relative;
+  z-index: 1;
+}
+
+.seitenkopf h1 {
+  font-size: clamp(2.4rem, 11vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+.seitenkopf .lead {
+  max-width: 42ch;
+  color: var(--text-leise);
+}
+
+/* Die Skyline ist für dunklen Grund gezeichnet (weiße Linien).
+   invert dreht sie ins Dunkle, damit sie auf Weiß sichtbar wird. */
+.seitenkopf__skyline {
+  display: none;
+  width: 340px;
+  max-width: 100%;
+  margin-top: 2.5rem;
+  filter: invert(1);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* --- Die Collage --- */
+.collage {
+  position: relative;
+  margin-top: 2.25rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  grid-template-rows: 1.15fr 1fr;
+  gap: 0.6rem;
+}
+
+.collage__bild {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--creme);
+}
+
+.collage__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Das große Bild links füllt beide Zeilen */
+.collage__bild--gross {
+  grid-row: 1 / 3;
+}
+
+/* Platzhalter, solange kein Foto vorliegt */
+.collage__bild--leer {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  border: 1px dashed var(--linie);
+}
+
+.collage__bild--leer .icon {
+  width: 30px;
+  height: 30px;
+  color: var(--linie);
+  stroke-width: 1.3;
+}
+
+
+/* ---- 2. Rundes Siegel ------------------------------------------- */
+
+.siegel {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 88px;
+  height: 88px;
+  transform: translate(-50%, -50%);
+  color: var(--rot);
+  pointer-events: none;
+  filter: drop-shadow(0 6px 16px rgba(16, 38, 60, 0.22));
+}
+
+.siegel__text {
+  fill: #fff;
+  font-family: var(--textschrift);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+
+
+/* ---- 3. Akkordeon -----------------------------------------------
+   Gebaut mit details und summary. Der Browser kann das Auf- und
+   Zuklappen selbst, ebenso die Tastaturbedienung – ohne JavaScript.
+------------------------------------------------------------------ */
+
+.gruppe {
+  scroll-margin-top: 90px;      /* Platz für die feste Kopfleiste */
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.gruppe:hover {
+  border-color: rgba(180, 19, 28, 0.35);
+  box-shadow: 0 12px 28px rgba(16, 38, 60, 0.07);
+}
+
+.gruppe[open] {
+  border-color: rgba(180, 19, 28, 0.45);
+}
+
+/* Die anklickbare Kopfzeile */
+.gruppe__kopf {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  padding: 0 0 1.3rem;
+  cursor: pointer;
+  list-style: none;              /* eingebautes Dreieck ausblenden */
+}
+
+/* Safari braucht dafür eine eigene Regel */
+.gruppe__kopf::-webkit-details-marker { display: none; }
+
+/* --- Foto --- */
+.gruppe__bild {
+  grid-column: 1 / -1;
+  display: block;
+  background: var(--creme);
+}
+
+.gruppe__bild img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.gruppe__bild--leer {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid var(--linie);
+}
+
+.gruppe__bild--leer .icon {
+  width: 32px;
+  height: 32px;
+  color: var(--linie);
+  stroke-width: 1.3;
+}
+
+/* --- Rundes Symbol --- */
+.gruppe__symbol {
+  grid-column: 1;
+  width: 52px;
+  height: 52px;
+  margin-left: 1.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--creme);
+  color: var(--rot);
+}
+
+.gruppe__symbol .icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.5;
+}
+
+/* --- Überschrift mit Pfeil direkt dahinter --- */
+.gruppe__titel {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;                   /* Abstand zwischen Text und Pfeil */
+  margin: 0;
+  padding-right: 1.2rem;
+  font-family: var(--titelschrift);
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+  transition: color 0.2s;
+}
+
+.gruppe__pfeil {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--rot);
+  transition: transform 0.25s;
+}
+
+.gruppe[open] .gruppe__pfeil { transform: rotate(180deg); }
+
+.gruppe__kopf:hover .gruppe__titel { color: var(--rot); }
+
+/* --- Kurztext unter der Überschrift --- */
+.gruppe__untertitel {
+  grid-column: 1 / -1;
+  padding-inline: 1.2rem;
+  color: var(--text-leise);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+/* --- Hinweis "mehr anzeigen" unter dem Kurztext --- */
+.gruppe__mehr {
+  grid-column: 1 / -1;
+  padding-inline: 1.2rem;
+  margin-top: 0.7rem;
+  font-family: var(--textschrift);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--rot);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Ist der Bereich offen, ergibt der Hinweis keinen Sinn mehr */
+.gruppe[open] .gruppe__mehr { display: none; }
+
+
+/* --- Knopf "weniger anzeigen" am Ende des Inhalts --- */
+.gruppe__zu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 1.8rem;
+  padding-inline: 1.2rem;
+  background: none;
+  border: 1px solid var(--linie);
+  border-radius: 999px;
+  color: var(--rot);
+  font-family: var(--textschrift);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.gruppe__zu:hover {
+  border-color: var(--rot);
+  background: var(--creme);
+}
+
+.gruppe__zu-pfeil {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+
+/* --- Inhalt, der aufklappt --- */
+.gruppe__inhalt {
+  padding: 0 1.2rem 1.8rem;
+  border-top: 1px solid var(--linie);
+}
+
+.gruppe__text {
+  margin: 1.4rem 0 1.6rem;
+  color: var(--text-leise);
+  max-width: 62ch;
+}
+
+
+/* ---- 4. Kacheln der Viertel -------------------------------------
+   Aufbau: Foto oben, Name, Stichworte.
+------------------------------------------------------------------ */
+
+.viertel-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.viertel {
+  display: flex;
+  flex-direction: column;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--rund);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.viertel:hover {
+  border-color: var(--rot);
+  box-shadow: 0 14px 30px rgba(16, 38, 60, 0.09);
+  transform: translateY(-3px);
+}
+
+.viertel__bild {
+  margin: 0;
+  background: var(--creme);
+}
+
+.viertel__bild img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.viertel__bild--leer {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid var(--linie);
+}
+
+.viertel__bild--leer .icon {
+  width: 34px;
+  height: 34px;
+  color: var(--linie);
+  stroke-width: 1.3;
+}
+
+.viertel__text {
+  padding: 1.1rem 1.2rem 1.4rem;
+  flex: 1;
+}
+
+.viertel__titel {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  text-wrap: balance;
+}
+
+.viertel__stichworte {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
+/* ---- 5. Hinweis am Seitenende ----------------------------------- */
+
+.hinweis {
+  display: grid;
+  gap: 1.2rem;
+  padding: 1.8rem 1.4rem;
+  background: var(--weiss);
+  border-radius: 18px;
+}
+
+.hinweis__symbol {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--rot);
+  color: #fff;
+}
+
+.hinweis__symbol .icon {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.6;
+}
+
+/* verhindert, dass langer Text die Spalte sprengt */
+.hinweis__text { min-width: 0; }
+
+.hinweis h2 {
+  font-size: clamp(1.3rem, 5vw, 1.6rem);
+  color: var(--rot);
+  margin-bottom: 0.4rem;
+}
+
+.hinweis p {
+  margin: 0;
+  color: var(--text-leise);
+  max-width: 44ch;
+}
+
+
+/* ---- 6. Knopf mit Umriss ---------------------------------------- */
+
+.knopf--umriss {
+  background: var(--weiss);
+  color: var(--rot);
+  border: 1.5px solid var(--rot);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+
+/* Der Pfeil war zu klein und saß zu dicht am Text */
+.knopf--umriss .icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 0.35rem;
+  stroke-width: 2;
+}
+
+.knopf--umriss:hover {
+  background: var(--rot);
+  color: var(--weiss);
+  transform: none;
+}
+
+
+/* ================================================================
+   7. AB TABLET – ab 720 px
+================================================================ */
+@media (min-width: 720px) {
+
+  .seitenkopf { padding-block: 2.25rem 4rem; }
+
+  .collage { gap: 0.8rem; }
+
+  .siegel { width: 108px; height: 108px; }
+
+  .viertel-liste {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.3rem;
+  }
+
+  /* Akkordeon: Foto links, Symbol daneben, Text rechts */
+  .gruppe__kopf {
+    grid-template-columns: auto auto 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0 1.4rem;
+    padding: 0;
+    align-content: center;
+  }
+
+  .gruppe__bild  { grid-row: 1 / 4; }
+  .gruppe__symbol { grid-row: 1 / 4; }
+
+  .gruppe__bild {
+    grid-column: 1;
+    width: 220px;
+    align-self: stretch;
+  }
+
+  .gruppe__bild img { height: 100%; aspect-ratio: auto; }
+
+  .gruppe__bild--leer {
+    aspect-ratio: auto;
+    min-height: 150px;
+    border-bottom: none;
+    border-right: 1px solid var(--linie);
+  }
+
+  .gruppe__symbol {
+    grid-column: 2;
+    margin-left: 0;
+    width: 60px;
+    height: 60px;
+  }
+
+  .gruppe__titel {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: end;
+    padding-right: 1.6rem;
+  }
+
+  .gruppe__untertitel {
+    grid-column: 3;
+    grid-row: 2;
+    align-self: start;
+    padding: 0.45rem 1.6rem 0 0;
+  }
+
+  .gruppe__mehr {
+    grid-column: 3;
+    grid-row: 3;
+    padding-inline: 0 1.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .gruppe__kopf { padding-block: 0; }
+
+  .gruppe__inhalt { padding: 0 1.6rem 2.2rem; }
+
+  .gruppe__zu { width: auto; min-width: 240px; margin-inline: auto; }
+
+  /* Hinweis: Symbol, Text und Knopf nebeneinander */
+  .hinweis {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.8rem 2rem;
+  }
+}
+
+
+/* ================================================================
+   8. AB LAPTOP – ab 1024 px
+================================================================ */
+@media (min-width: 1024px) {
+
+  /* Seitenkopf: Text links, Collage rechts */
+  .seitenkopf__raster {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .seitenkopf { padding-block: 2.5rem 5rem; }
+
+  .seitenkopf__skyline { display: block; }
+
+  .collage {
+    margin-top: 0;
+    grid-template-rows: 1.2fr 1fr;
+    gap: 0.9rem;
+  }
+
+  .collage__bild--leer { min-height: 180px; }
+
+  .siegel { width: 128px; height: 128px; }
+
+  .viertel-liste { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .gruppe { margin-bottom: 1.2rem; }
+
+  .gruppe__bild { width: 290px; }
+
+  .gruppe__bild--leer { min-height: 175px; }
+
+  .viertel__text { padding: 1.3rem 1.4rem 1.5rem; }
+
+  .viertel__titel { font-size: 1.3rem; }
+}
+
+
+/* Weniger Bewegung, wenn im Betriebssystem so eingestellt */
+@media (prefers-reduced-motion: reduce) {
+  .gruppe, .gruppe__pfeil, .viertel, .knopf--umriss { transition: none; }
+}
