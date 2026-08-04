@@ -359,22 +359,185 @@ a { color: inherit; }
   transform: translateY(-2px);
 }
 
-.fussnote {
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  margin: 1.75rem 0 0;
-  font-size: 0.88rem;
-  color: var(--text-leise);
+/* Hinweiskasten unter den Themenkacheln
+   (früher die kleine graue Fußnote) */
+.zusatz {
+  margin-top: 2rem;
+  padding: 1.4rem;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--rund);
+  border-left: 4px solid var(--rot);
 }
 
-.fussnote__punkt {
+.zusatz__liste {
+  list-style: none;
+  margin: 0 0 1.2rem;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.zusatz__liste li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  font-size: 0.9rem;
+  color: var(--text-leise);
+  line-height: 1.55;
+}
+
+.zusatz__liste strong {
+  display: block;
+  font-family: var(--titelschrift);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+/* Roter Kreis mit Symbol */
+.zusatz__icon {
   flex: none;
-  width: 14px;
-  height: 14px;
-  margin-top: 0.35rem;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
   background: var(--rot);
+  color: var(--weiss);
+}
+
+.zusatz__icon .icon { width: 22px; height: 22px; }
+
+
+/* ---- 7b. Beliebteste Touren ------------------------------------ */
+
+.touren__kopf { margin-bottom: 2rem; }
+.touren__kopf h2 { margin-bottom: 0.9rem; }
+
+.touren__lead {
+  color: var(--text-leise);
+  max-width: 52ch;
+  margin: 0;
+}
+
+.touren {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.tour a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--rund);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.tour a:hover {
+  border-color: var(--rot);
+  box-shadow: 0 12px 26px rgba(16, 38, 60, 0.09);
+  transform: translateY(-3px);
+}
+
+.tour__bild {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background: var(--beige);
+  overflow: hidden;
+}
+
+.tour__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s;
+}
+
+.tour a:hover .tour__bild img { transform: scale(1.04); }
+
+/* Nummer oben links auf dem Bild */
+.tour__nr {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 2;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 0.45rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--rot);
+  color: var(--weiss);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Platzhalter, solange kein Foto vorhanden ist.
+   Er verschwindet automatisch, sobald die Bilddatei existiert. */
+.platzhalter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.8rem;
+  text-align: center;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #EFE8DE 0 10px,
+      #F4EFE7 10px 20px
+    );
+}
+
+.platzhalter__wort {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rot);
+}
+
+.platzhalter__datei {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  line-height: 1.4;
+  color: #7A6A57;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  word-break: break-all;
+}
+
+.tour__titel {
+  font-family: var(--titelschrift);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.85rem 0.9rem 0.3rem;
+}
+
+.tour__satz {
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--text-leise);
+  padding: 0 0.9rem 1rem;
 }
 
 
@@ -673,6 +836,19 @@ a { color: inherit; }
 
   .kacheln { grid-template-columns: repeat(3, 1fr); }
 
+  .touren { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .tour__titel { font-size: 1.08rem; }
+
+  .touren__kopf {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: end;
+  }
+
+  .zusatz { padding: 1.6rem 1.8rem; }
+  .zusatz__liste { grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+
   .verein { grid-template-columns: 1fr 1fr; gap: 3rem; }
 
   .kontakt__karten { grid-template-columns: 1fr 1fr; }
@@ -771,11 +947,14 @@ a { color: inherit; }
 
   .themen__intro { margin-bottom: 0; }
 
-  .kacheln { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .kacheln { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
   .kacheln a { min-height: 122px; font-size: 0.9rem; }
 
-  .fussnote { grid-column: 2; margin-top: 1.5rem; }
+  .zusatz { grid-column: 2; margin-top: 1.5rem; }
+
+  /* Zehn Karten ergeben genau zwei Reihen zu fünf */
+  .touren { grid-template-columns: repeat(5, 1fr); gap: 1.2rem; }
 
   /* --- Verein: Skyline als Hintergrundzeichnung --- */
   .verein { grid-template-columns: 1fr 1.15fr; gap: 4.5rem; }
