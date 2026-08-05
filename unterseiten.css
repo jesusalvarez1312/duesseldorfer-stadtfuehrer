@@ -343,6 +343,16 @@
   border-top: 1px solid var(--linie);
 }
 
+/* --- Variante ohne Klapp-Funktion: Kopfzeile bleibt sichtbar,
+       wirkt aber nicht mehr wie ein Knopf. --- */
+.gruppe--statisch .gruppe__kopf {
+  cursor: default;
+}
+
+.gruppe--statisch .gruppe__kopf:hover .gruppe__titel {
+  color: var(--text);
+}
+
 .gruppe__text {
   margin: 1.4rem 0 1.6rem;
   color: var(--text-leise);
@@ -809,8 +819,40 @@
 }
 
 
+/* ---- 9. Rechtstext (Impressum, Datenschutz) --------------------- */
+
+.rechtstext { max-width: 62ch; }
+
+.rechtstext h2 {
+  font-size: 1.18rem;
+  margin: 2.2rem 0 0.7rem;
+}
+
+.rechtstext h2:first-child { margin-top: 0; }
+
+.rechtstext p { margin: 0 0 1rem; }
+
+.rechtstext address {
+  font-style: normal;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.rechtstext a { color: var(--rot); }
+
+.rechtstext__stand {
+  font-size: 0.85rem;
+  color: var(--text-leise);
+  margin-top: 2.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--linie);
+}
+
+
 /* ---- Ab Tablet (720 px) ---------------------------------------- */
 @media (min-width: 720px) {
+
+  .rechtstext h2 { font-size: 1.3rem; }
 
   .formblock { padding: 1.7rem 1.8rem 2rem; }
 

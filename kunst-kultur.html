@@ -151,19 +151,13 @@
 
 
   <!-- ===== DIE GRUPPE ============================================
-       Aufklappbarer Bereich, gebaut mit details und summary.
-       Das ist eingebautes HTML: funktioniert ohne JavaScript,
-       lässt sich mit der Tastatur bedienen und wird von
-       Screenreadern richtig angesagt.
-
-       Startet zu. Soll sie offen starten, schreibt man in ihren
-       details-Tag das Wort open.
+       Der Inhalt ist immer sichtbar, kein Klick zum Aufklappen nötig.
   ============================================================ -->
   <section class="band">
     <div class="huelle">
 
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
+        <div class="gruppe gruppe--statisch">
+          <div class="gruppe__kopf">
 
             <span class="gruppe__bild">
               <!-- alt bleibt leer: Die Überschrift daneben sagt
@@ -178,17 +172,11 @@
 
             <h2 class="gruppe__titel">
               Kunst &amp; Kultur in Düsseldorf
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
             </h2>
 
             <span class="gruppe__untertitel">Von der Wehrhahnlinie bis zur Street-Art – zehn Wege, Düsseldorfs kreative Seite zu entdecken.</span>
 
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
+          </div>
 
           <div class="gruppe__inhalt">
             <p class="gruppe__text">Ob U-Bahnkunst, Skulpturen im Stadtraum oder große Namen wie Joseph Beuys und Heinrich Heine: Düsseldorf hat eine lebendige und vielseitige Kunst- und Kulturszene.</p>
@@ -251,7 +239,7 @@
 
               <div class="viertel__text">
                 <h3 class="viertel__titel">In Düsseldorf spielt die Musik</h3>
-                <p class="viertel__stichworte">Robert Schumann • Kraftwerk • Die Toten Hosen</p>
+                <p class="viertel__stichworte">Tonhalle • Live-Musik • Konzerte</p>
               </div>
             </li>
 
@@ -317,18 +305,8 @@
 
             </ul>
 
-            <!-- Schliesst den Bereich wieder. Das Attribut hidden nimmt
-                 script.js weg – ohne JavaScript erscheint der Knopf gar
-                 nicht erst, dann schliesst man oben ueber die Ueberschrift. -->
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
           </div>
-        </details>
+        </div>
 
     </div>
   </section>
