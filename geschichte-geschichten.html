@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Geschichte &amp; Geschichten in Düsseldorf – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Von der Landespolitik über starke Frauen bis zum Karneval: Führungen rund um Düsseldorfs Geschichte und Geschichten.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     beliebig oft eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-geschichte"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></g>
+    <g id="i-rathaus"><path d="M3 20h18M5 20V10l7-5 7 5v10M10 20v-5h4v5"/></g>
+    <g id="i-figuren"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></g>
+    <g id="i-kirche"><path d="M12 2.2v4M10.2 4.2h3.6M5 21V11l7-4.2 7 4.2v10M10 21v-5.2h4V21"/></g>
+    <g id="i-blatt"><path d="M4.5 19.5C3 14 6 6.5 19.5 4.5 21 15 14.5 20.5 4.5 19.5Z"/><path d="M4.5 19.5C7 15 11 11.5 16 9.5"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite müssen die Menülinks auf index.html zeigen,
+     sonst suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <span class="navi__trenner" aria-hidden="true"></span>
+      <a href="english.html" hreflang="en">English</a>
+      <a href="francais.html" hreflang="fr">Français</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF ===========================================
+       Links Text, rechts eine Bildcollage aus drei Fotos.
+       Auf dem Smartphone steht die Collage unter dem Text.
+  ============================================================ -->
+  <section class="seitenkopf">
+    <div class="huelle seitenkopf__raster">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#touren">Touren</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Geschichte &amp; Geschichten</span>
+        </nav>
+
+        <p class="augenbraue">Unsere Themen</p>
+        <h1 class="titel-strich">Geschichte &amp; Geschichten</h1>
+        <p class="lead">
+          Vom mittelalterlichen Dorf zur Landeshauptstadt, von starken Frauen
+          über Düsseldorfer Originale bis zum Karneval: Wir erzählen die
+          großen und die kleinen Geschichten hinter der Stadt.
+        </p>
+
+        <!-- Skyline als leise Dekoration. Dieselbe Datei wie auf der
+             Startseite, hier per CSS-Filter ins Dunkle gedreht. -->
+        <img class="seitenkopf__skyline" src="bilder/skyline-klar.png"
+             alt="" aria-hidden="true" loading="lazy" width="680" height="490">
+      </div>
+
+      <div class="collage">
+
+        <figure class="collage__bild collage__bild--gross">
+          <img src="bilder/kopfbild-geschichte-1.jpg"
+               alt="Historische Ansicht der Düsseldorfer Altstadt"
+               width="800" height="1100" loading="lazy">
+        </figure>
+
+        <figure class="collage__bild">
+          <img src="bilder/kopfbild-geschichte-2.jpg"
+               alt="Düsseldorfer Rathaus"
+               width="800" height="620" loading="lazy">
+        </figure>
+
+        <figure class="collage__bild">
+          <img src="bilder/kopfbild-geschichte-3.jpg"
+               alt="Karnevalszug in Düsseldorf"
+               width="800" height="560" loading="lazy">
+        </figure>
+
+        <!-- Rundes Siegel. Die Schrift läuft an einem unsichtbaren
+             Kreis entlang – dafür sorgt textPath. -->
+        <svg class="siegel" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs>
+            <path id="siegelkreis"
+                  d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
+          </defs>
+          <circle cx="60" cy="60" r="58" fill="currentColor"/>
+          <text class="siegel__text">
+            <textPath href="#siegelkreis" startOffset="0">
+              ENTDECKEN &#183; STAUNEN &#183; ERLEBEN &#183;
+            </textPath>
+          </text>
+          <g transform="translate(48,46) scale(1)" fill="none" stroke="#fff"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.5"/>
+            <path d="M12 7v5.2l3.2 2"/>
+          </g>
+        </svg>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== DIE GRUPPEN ==========================================
+       Aufklappbare Bereiche, gebaut mit details und summary.
+       Das ist eingebautes HTML: funktioniert ohne JavaScript,
+       lässt sich mit der Tastatur bedienen und wird von
+       Screenreadern richtig angesagt.
+
+       Alle fünf sind beim Laden zu. Soll eine offen starten,
+       schreibt man in ihren details-Tag das Wort open.
+  ============================================================ -->
+  <section class="band">
+    <div class="huelle">
+
+        <!-- ---- Gruppe 1: Von der Siedlung zur Metropole ---- -->
+        <details class="gruppe">
+          <summary class="gruppe__kopf">
+
+            <span class="gruppe__bild">
+              <img src="bilder/gruppe-siedlung.jpg" alt=""
+                   width="800" height="500" loading="lazy">
+            </span>
+
+            <span class="gruppe__symbol" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-geschichte"/></svg>
+            </span>
+
+            <h2 class="gruppe__titel">
+              Von der Siedlung zur Metropole
+              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </h2>
+
+            <span class="gruppe__untertitel">Wie aus einem Dorf am Rhein die Landeshauptstadt wurde.</span>
+
+            <span class="gruppe__mehr">mehr anzeigen</span>
+
+          </summary>
+
+          <div class="gruppe__inhalt">
+            <p class="gruppe__text">Von der ersten urkundlichen Erwähnung 1288 bis zur modernen Großstadt: Wie sich Düsseldorf über Jahrhunderte verändert hat – in Straßen, Fassaden und Erzählungen.</p>
+
+            <ul class="viertel-liste">
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-stadtentwicklung.jpg" alt="Historische Stadtentwicklung Düsseldorfs"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Vom Dorf zur Stadt – Düsseldorfs Stadtentwicklung</h3>
+                <p class="viertel__stichworte">Stadtgeschichte • Wachstum • Wandel</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-mittelalter-1288.jpg" alt="Mittelalterliches Düsseldorf um 1288"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Mittelalterliches Düsseldorf 1288: Wo man heute das Dorf findet</h3>
+                <p class="viertel__stichworte">Schlacht von Worringen • Stadtrechte • Mittelalter</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-architektur-innenstadt.jpg" alt="Architektur der Düsseldorfer Innenstadt"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Architektur der Innenstadt (nicht nur neue Mitte)</h3>
+                <p class="viertel__stichworte">Baustile • Fassaden • Stadtbild</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-sagen-legenden.jpg" alt="Illustration zu einer Düsseldorfer Sage"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Sagen und Legenden</h3>
+                <p class="viertel__stichworte">Mythen • Erzählungen • Volksglaube</p>
+              </div>
+            </li>
+
+            </ul>
+
+            <button class="gruppe__zu" type="button" hidden>
+              weniger anzeigen
+              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </details>
+
+        <!-- ---- Gruppe 2: Politik, Macht und Geld ---- -->
+        <details class="gruppe">
+          <summary class="gruppe__kopf">
+
+            <span class="gruppe__bild">
+              <img src="bilder/gruppe-politik.jpg" alt=""
+                   width="800" height="500" loading="lazy">
+            </span>
+
+            <span class="gruppe__symbol" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rathaus"/></svg>
+            </span>
+
+            <h2 class="gruppe__titel">
+              Politik, Macht und Geld
+              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </h2>
+
+            <span class="gruppe__untertitel">Landtag, Rathaus und Wirtschaft – wo in Düsseldorf entschieden wird.</span>
+
+            <span class="gruppe__mehr">mehr anzeigen</span>
+
+          </summary>
+
+          <div class="gruppe__inhalt">
+            <p class="gruppe__text">Düsseldorf ist Landeshauptstadt und Wirtschaftsstandort zugleich. Ein Blick hinter die Kulissen von Politik, Verwaltung und Geldgeschichte.</p>
+
+            <ul class="viertel-liste">
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-landespolitik.jpg" alt="Landtag Nordrhein-Westfalen in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Düsseldorf macht Landespolitik</h3>
+                <p class="viertel__stichworte">Landtag NRW • Politik • Macht</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-rathaus.jpg" alt="Rathaus am Marktplatz in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Lebendiges Rathaus</h3>
+                <p class="viertel__stichworte">Rathaus • Verwaltung • Stadtgeschichte</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-wirtschaft.jpg" alt="Historisches Bankgebäude in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Geldgeschichten und Wirtschaftsgeschichte</h3>
+                <p class="viertel__stichworte">Handel • Banken • Wirtschaft</p>
+              </div>
+            </li>
+
+            </ul>
+
+            <button class="gruppe__zu" type="button" hidden>
+              weniger anzeigen
+              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </details>
+
+        <!-- ---- Gruppe 3: Menschen, die Düsseldorf prägen ---- -->
+        <details class="gruppe">
+          <summary class="gruppe__kopf">
+
+            <span class="gruppe__bild">
+              <img src="bilder/gruppe-menschen.jpg" alt=""
+                   width="800" height="500" loading="lazy">
+            </span>
+
+            <span class="gruppe__symbol" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-figuren"/></svg>
+            </span>
+
+            <h2 class="gruppe__titel">
+              Menschen, die Düsseldorf prägen
+              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </h2>
+
+            <span class="gruppe__untertitel">Originale, starke Frauen und viele Kulturen – die Menschen hinter der Stadt.</span>
+
+            <span class="gruppe__mehr">mehr anzeigen</span>
+
+          </summary>
+
+          <div class="gruppe__inhalt">
+            <p class="gruppe__text">Städte werden von Menschen gemacht. Wir erzählen von Originalen, von starken Frauen, von Vielfalt – und von den dunklen Kapiteln der Verfolgung.</p>
+
+            <ul class="viertel-liste">
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-originale.jpg" alt="Düsseldorfer Original als Stadtfigur"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Düsseldorfer Originale</h3>
+                <p class="viertel__stichworte">Stadtgeschichten • Persönlichkeiten • Anekdoten</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-starke-frauen.jpg" alt="Denkmal einer bedeutenden Düsseldorferin"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Starke Frauen – Düsseldorfs weibliche Seite</h3>
+                <p class="viertel__stichworte">Frauengeschichte • Pionierinnen • Sichtbarkeit</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-diversity.jpg" alt="Gedenkort zur Vielfalt und Verfolgung in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Düsseldorf divers – Vielfalt und Verfolgung (Diversity-Führung)</h3>
+                <p class="viertel__stichworte">Vielfalt • Verfolgung • Erinnerungskultur</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-juedisches-duesseldorf.jpg" alt="Synagoge in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Jüdisches Düsseldorf</h3>
+                <p class="viertel__stichworte">Jüdisches Leben • Geschichte • Gedenken</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-international.jpg" alt="Partnerstadt-Wegweiser in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Düsseldorf und die Welt – Düsseldorf international</h3>
+                <p class="viertel__stichworte">Partnerstädte • Migration • Weltoffenheit</p>
+              </div>
+            </li>
+
+            </ul>
+
+            <button class="gruppe__zu" type="button" hidden>
+              weniger anzeigen
+              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </details>
+
+        <!-- ---- Gruppe 4: Glaube, Brauchtum und Feste ---- -->
+        <details class="gruppe">
+          <summary class="gruppe__kopf">
+
+            <span class="gruppe__bild">
+              <img src="bilder/gruppe-brauchtum.jpg" alt=""
+                   width="800" height="500" loading="lazy">
+            </span>
+
+            <span class="gruppe__symbol" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kirche"/></svg>
+            </span>
+
+            <h2 class="gruppe__titel">
+              Glaube, Brauchtum und Feste
+              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </h2>
+
+            <span class="gruppe__untertitel">Kirchen, Karneval und Weihnachtsmärkte – wie Düsseldorf feiert und glaubt.</span>
+
+            <span class="gruppe__mehr">mehr anzeigen</span>
+
+          </summary>
+
+          <div class="gruppe__inhalt">
+            <p class="gruppe__text">Zwischen Kirchenbänken, Karnevalszügen und Glühweinständen: Wie Glaube und Brauchtum das Jahr in Düsseldorf prägen.</p>
+
+            <ul class="viertel-liste">
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-kirchen-altstadt.jpg" alt="Kirche in der Düsseldorfer Altstadt"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Die Kirchen der Altstadt</h3>
+                <p class="viertel__stichworte">Sakralbauten • Altstadt • Geschichte</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-karneval.jpg" alt="Karnevalszug in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Karneval und Brauchtum</h3>
+                <p class="viertel__stichworte">Karneval • Tradition • Brauchtum</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-weihnachtsmaerkte.jpg" alt="Weihnachtsmarkt in der Düsseldorfer Altstadt"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Advent, Advent – ein Bummel über die Weihnachtsmärkte</h3>
+                <p class="viertel__stichworte">Weihnachtsmärkte • Adventszeit • Glühwein</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-koeln-vs-duesseldorf.jpg" alt="Altbier-Gläser als Symbol der Rivalität zu Köln"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Köln versus Düsseldorf – ein amüsanter Schlagabtausch</h3>
+                <p class="viertel__stichworte">Rivalität • Humor • Lokalpatriotismus</p>
+              </div>
+            </li>
+
+            </ul>
+
+            <button class="gruppe__zu" type="button" hidden>
+              weniger anzeigen
+              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </details>
+
+        <!-- ---- Gruppe 5: Natur, Fluss und dunkle Kapitel ---- -->
+        <details class="gruppe">
+          <summary class="gruppe__kopf">
+
+            <span class="gruppe__bild">
+              <img src="bilder/gruppe-natur-dunkel.jpg" alt=""
+                   width="800" height="500" loading="lazy">
+            </span>
+
+            <span class="gruppe__symbol" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-blatt"/></svg>
+            </span>
+
+            <h2 class="gruppe__titel">
+              Natur, Fluss und dunkle Kapitel
+              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </h2>
+
+            <span class="gruppe__untertitel">Grüne Seiten, der Fluss und Geschichten, die man nicht erwartet.</span>
+
+            <span class="gruppe__mehr">mehr anzeigen</span>
+
+          </summary>
+
+          <div class="gruppe__inhalt">
+            <p class="gruppe__text">Düsseldorf hat auch eine wilde und eine dunkle Seite: Natur mitten in der Stadt, der Fluss als Lebensader – und Geschichten aus der Unterwelt.</p>
+
+            <ul class="viertel-liste">
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-natur-stadt.jpg" alt="Grünfläche mitten in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Natur in der Stadt – Düsseldorfs grüne Seite</h3>
+                <p class="viertel__stichworte">Stadtnatur • Grünflächen • Erholung</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-fledermaeuse-voegel.jpg" alt="Fledermaus in einem Düsseldorfer Park"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Natur: Düsseldorfer Natur, Fledermäuse, Vogelstimmen</h3>
+                <p class="viertel__stichworte">Fledermäuse • Vogelstimmen • Naturkunde</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-duessel.jpg" alt="Der Fluss Düssel in der Stadt"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Links und rechts der Düssel</h3>
+                <p class="viertel__stichworte">Fluss • Stadtgeschichte • Spaziergang</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-klimawandel.jpg" alt="Begrüntes Gebäude als Antwort auf den Klimawandel in Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Heißes Pflaster: Wie sich Düsseldorf auf den Klimawandel einstellt</h3>
+                <p class="viertel__stichworte">Klimawandel • Stadtklima • Zukunft</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/geschichte-kriminell.jpg" alt="Gasse in der Düsseldorfer Altstadt bei Nacht"
+                     width="800" height="600" loading="lazy">
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Düsseldorf kriminell (Altstadt und Kaiserswerth)</h3>
+                <p class="viertel__stichworte">Kriminalgeschichte • Altstadt • Kaiserswerth</p>
+              </div>
+            </li>
+
+            </ul>
+
+            <button class="gruppe__zu" type="button" hidden>
+              weniger anzeigen
+              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
+                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </details>
+
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2>Nicht das Richtige gefunden?</h2>
+          <p>Gerne gestalten wir eine individuelle Führung nach Ihren Wünschen.</p>
+        </div>
+
+        <a class="knopf knopf--umriss" href="index.html#kontakt">
+          Individuelle Anfrage
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches und Service">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__sozial">
+      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
