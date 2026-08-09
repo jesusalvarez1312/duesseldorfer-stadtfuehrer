@@ -426,6 +426,9 @@
   text-wrap: balance;
 }
 
+.viertel__titel a { color: inherit; text-decoration: none; }
+.viertel:hover .viertel__titel a { color: var(--rot); }
+
 .viertel__stichworte {
   margin: 0;
   font-weight: 600;
