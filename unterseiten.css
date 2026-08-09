@@ -95,6 +95,39 @@
   pointer-events: none;
 }
 
+/* ---- 1b. Einzelbild mit Siegel (Detailseiten einzelner Touren) --
+   Wie die Collage, aber nur ein Foto. Das Siegel sitzt an der
+   unteren rechten Ecke des Fotos, statt mittig zu schweben.
+------------------------------------------------------------------ */
+
+.einzelbild {
+  position: relative;
+  margin-top: 2.25rem;
+}
+
+.einzelbild__foto {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--creme);
+}
+
+.einzelbild__foto img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.siegel--ecke {
+  left: auto;
+  top: auto;
+  right: 16px;
+  bottom: 16px;
+  transform: none;
+}
+
+
 /* --- Die Collage --- */
 .collage {
   position: relative;

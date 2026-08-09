@@ -32,9 +32,6 @@
   <defs>
     <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
     <g id="i-rathaus"><path d="M3 20h18M5 20V10l7-5 7 5v10M10 20v-5h4v5"/></g>
-    <g id="i-tor"><path d="M4 20V8l8-4 8 4v12"/><path d="M4 20h16M9 20v-7h6v7"/></g>
-    <g id="i-puls"><path d="M3 12h4l2 6 4-12 2 6h6"/></g>
-    <g id="i-lachen"><circle cx="12" cy="12" r="8.5"/><path d="M8 10v.01M16 10v.01M7.5 13.5c1 2.2 3 3.3 4.5 3.3s3.5-1.1 4.5-3.3"/></g>
     <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
   </defs>
 </svg>
@@ -74,8 +71,9 @@
 <main id="inhalt">
 
   <!-- ===== SEITENKOPF ===========================================
-       Links Text, rechts eine Bildcollage aus drei Fotos.
-       Auf dem Smartphone steht die Collage unter dem Text.
+       Links Text, rechts ein einzelnes Foto mit Siegel in der
+       unteren rechten Ecke. Auf dem Smartphone steht das Foto
+       unter dem Text.
   ============================================================ -->
   <section class="seitenkopf">
     <div class="huelle seitenkopf__raster">
@@ -105,29 +103,18 @@
              alt="" aria-hidden="true" loading="lazy" width="680" height="490">
       </div>
 
-      <div class="collage">
+      <div class="einzelbild">
 
-        <figure class="collage__bild collage__bild--gross">
-          <img src="bilder/kopfbild-rathaus-1.jpg"
+        <figure class="einzelbild__foto">
+          <img src="bilder/kopfbild-rathaus.jpg"
                alt="Rathaus am Marktplatz in der Düsseldorfer Altstadt"
-               width="800" height="1100" loading="lazy">
-        </figure>
-
-        <figure class="collage__bild">
-          <img src="bilder/kopfbild-rathaus-2.jpg"
-               alt="Historische Ansicht des Düsseldorfer Rathauses"
-               width="800" height="620" loading="lazy">
-        </figure>
-
-        <figure class="collage__bild">
-          <img src="bilder/kopfbild-rathaus-3.jpg"
-               alt="Reiterstandbild Jan Wellem vor dem Rathaus"
-               width="800" height="560" loading="lazy">
+               width="900" height="675" loading="lazy">
         </figure>
 
         <!-- Rundes Siegel. Die Schrift läuft an einem unsichtbaren
-             Kreis entlang – dafür sorgt textPath. -->
-        <svg class="siegel" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+             Kreis entlang – dafür sorgt textPath. Sitzt hier an der
+             unteren rechten Ecke des Fotos. -->
+        <svg class="siegel siegel--ecke" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
           <defs>
             <path id="siegelkreis"
                   d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
@@ -151,33 +138,23 @@
 
 
   <!-- ===== DAS ERWARTET SIE ======================================
-       Wiederverwendung der ".ablauf"-Struktur (sonst im Buchungs-
-       bereich der Startseite): drei Karten mit Icon, Titel und Text.
+       Fließtext statt Karten – kein farbiger Hintergrund, keine
+       nummerierten Absätze.
   ============================================================ -->
-  <section class="band band--beige">
-    <div class="huelle buchung">
+  <section class="band">
+    <div class="huelle">
+      <div class="rechtstext">
 
-      <p class="augenbraue">Auf dieser Tour</p>
-      <h2 class="buchung__titel">Das erwartet Sie auf unserer Tour</h2>
+        <p class="augenbraue">Auf dieser Tour</p>
+        <h2>Das erwartet Sie auf unserer Tour</h2>
 
-      <ol class="ablauf">
-        <li>
-          <span class="ablauf__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tor"/></svg></span>
-          <h3>Freiheit spüren</h3>
-          <p>Entdecken Sie, wie das einstige Bauerndorf den berühmten mittelalterlichen Grundsatz „Stadtluft macht frei“ im Jahr 1288 hautnah erlebte.</p>
-        </li>
-        <li>
-          <span class="ablauf__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-puls"/></svg></span>
-          <h3>Mitfiebern</h3>
-          <p>Staunen Sie über die dramatischsten Krisen, die die Stadt erlebt hat, wie den plötzlichen Verlust des Residenzstatus im Jahr 1815 oder das explosive Wachstum im Industriezeitalter. Und bewundern Sie die glanzvollsten Triumphe der Düsseldorfer Stadtväter, die diese Krisen gemeistert haben – von den Anfängen bis zu den Mammutaufgaben der Moderne.</p>
-        </li>
-        <li>
-          <span class="ablauf__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lachen"/></svg></span>
-          <h3>Herzhaft lachen</h3>
-          <p>Schmunzeln Sie über die kleinen Machtkämpfe, die Sprüche des Volksmunds und die herrlich saftigen Kommentare der historischen Lokalpresse.</p>
-        </li>
-      </ol>
+        <p><strong>Freiheit spüren:</strong> Entdecken Sie, wie das einstige Bauerndorf den berühmten mittelalterlichen Grundsatz „Stadtluft macht frei“ im Jahr 1288 hautnah erlebte.</p>
 
+        <p><strong>Mitfiebern:</strong> Staunen Sie über die dramatischsten Krisen, die die Stadt erlebt hat, wie den plötzlichen Verlust des Residenzstatus im Jahr 1815 oder das explosive Wachstum im Industriezeitalter. Und bewundern Sie die glanzvollsten Triumphe der Düsseldorfer Stadtväter, die diese Krisen gemeistert haben – von den Anfängen bis zu den Mammutaufgaben der Moderne.</p>
+
+        <p><strong>Herzhaft lachen:</strong> Schmunzeln Sie über die kleinen Machtkämpfe, die Sprüche des Volksmunds und die herrlich saftigen Kommentare der historischen Lokalpresse.</p>
+
+      </div>
     </div>
   </section>
 
