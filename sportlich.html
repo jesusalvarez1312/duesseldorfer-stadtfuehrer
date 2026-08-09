@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sportlich unterwegs in Düsseldorf – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Radtour, Sight Running und Sight Walking: Düsseldorf sportlich und aktiv entdecken.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     beliebig oft eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-rad"><circle cx="6" cy="17" r="3.4"/><circle cx="18" cy="17" r="3.4"/><path d="m6 17 4.2-8H15l3 8M9.4 9h4.2"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite müssen die Menülinks auf index.html zeigen,
+     sonst suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <span class="navi__trenner" aria-hidden="true"></span>
+      <a href="english.html" hreflang="en">English</a>
+      <a href="francais.html" hreflang="fr">Français</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF ===========================================
+       Links Text, rechts eine Bildcollage aus drei Fotos.
+       Auf dem Smartphone steht die Collage unter dem Text.
+  ============================================================ -->
+  <section class="seitenkopf">
+    <div class="huelle seitenkopf__raster">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#touren">Touren</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Sportlich</span>
+        </nav>
+
+        <p class="augenbraue">Unsere Themen</p>
+        <h1 class="titel-strich">Sportlich</h1>
+        <p class="lead">
+          Düsseldorf lässt sich auch in Bewegung entdecken: auf dem Rad,
+          im Lauftempo oder zu Fuß mit sportlichem Anspruch – für alle,
+          die Sightseeing und Sport verbinden möchten.
+        </p>
+
+        <!-- Skyline als leise Dekoration. Dieselbe Datei wie auf der
+             Startseite, hier per CSS-Filter ins Dunkle gedreht. -->
+        <img class="seitenkopf__skyline" src="bilder/skyline-klar.png"
+             alt="" aria-hidden="true" loading="lazy" width="680" height="490">
+      </div>
+
+      <div class="collage">
+
+        <figure class="collage__bild collage__bild--gross">
+          <img src="bilder/kopfbild-sportlich-1.jpg"
+               alt="Radfahrer am Düsseldorfer Rheinufer"
+               width="800" height="1100" loading="lazy">
+        </figure>
+
+        <figure class="collage__bild">
+          <img src="bilder/kopfbild-sportlich-2.jpg"
+               alt="Läufer in der Düsseldorfer Altstadt"
+               width="800" height="620" loading="lazy">
+        </figure>
+
+        <figure class="collage__bild">
+          <img src="bilder/kopfbild-sportlich-3.jpg"
+               alt="Gruppe beim Sight Walking in Düsseldorf"
+               width="800" height="560" loading="lazy">
+        </figure>
+
+        <!-- Rundes Siegel. Die Schrift läuft an einem unsichtbaren
+             Kreis entlang – dafür sorgt textPath. -->
+        <svg class="siegel" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs>
+            <path id="siegelkreis"
+                  d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/>
+          </defs>
+          <circle cx="60" cy="60" r="58" fill="currentColor"/>
+          <text class="siegel__text">
+            <textPath href="#siegelkreis" startOffset="0">
+              ENTDECKEN &#183; STAUNEN &#183; ERLEBEN &#183;
+            </textPath>
+          </text>
+          <g transform="translate(48,46) scale(1)" fill="none" stroke="#fff"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="16" r="3.2"/>
+            <circle cx="18" cy="16" r="3.2"/>
+            <path d="m6 16 4-7.5H15l2.8 7.5M9.4 8.5h4.2"/>
+          </g>
+        </svg>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== DIE GRUPPE ============================================
+       Der Inhalt ist immer sichtbar, kein Klick zum Aufklappen nötig.
+  ============================================================ -->
+  <section class="band">
+    <div class="huelle">
+
+        <div class="gruppe gruppe--statisch">
+          <div class="gruppe__kopf">
+
+            <span class="gruppe__bild">
+              <!-- alt bleibt leer: Die Überschrift daneben sagt
+                   bereits dasselbe, das Bild ist reine Illustration. -->
+              <img src="bilder/gruppe-sportlich.jpg" alt=""
+                   width="800" height="500" loading="lazy">
+            </span>
+
+            <span class="gruppe__symbol" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rad"/></svg>
+            </span>
+
+            <h2 class="gruppe__titel">
+              Sportlich unterwegs in Düsseldorf
+            </h2>
+
+            <span class="gruppe__untertitel">Auf dem Rad, im Lauftempo oder zu Fuß – Stadtführungen für Aktive.</span>
+
+          </div>
+
+          <div class="gruppe__inhalt">
+            <p class="gruppe__text">Wer Bewegung und Sightseeing verbinden möchte, ist hier richtig: unsere Touren zu Rad, im Lauf- und im Gehtempo zeigen Düsseldorf aus einer aktiven Perspektive.</p>
+
+            <ul class="viertel-liste">
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/sportlich-radtour.jpg" alt="Radtour durch Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Radtour</h3>
+                <p class="viertel__stichworte">Fahrrad • Rheinufer • Aktiv</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/sportlich-sight-running.jpg" alt="Sight Running durch die Düsseldorfer Innenstadt"
+                     width="800" height="600" loading="lazy">
+              </figure>
+
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Sight Running</h3>
+                <p class="viertel__stichworte">Laufen • Sightseeing • Fitness</p>
+              </div>
+            </li>
+
+            <li class="viertel">
+              <figure class="viertel__bild">
+                <img src="bilder/sportlich-sight-walking.jpg" alt="Sight Walking durch Düsseldorf"
+                     width="800" height="600" loading="lazy">
+              </figure>
+
+              <div class="viertel__text">
+                <h3 class="viertel__titel">Sight Walking</h3>
+                <p class="viertel__stichworte">Zügiges Gehen • Sightseeing • Bewegung</p>
+              </div>
+            </li>
+
+            </ul>
+
+          </div>
+        </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2>Nicht das Richtige gefunden?</h2>
+          <p>Gerne gestalten wir eine individuelle Führung nach Ihren Wünschen.</p>
+        </div>
+
+        <a class="knopf knopf--umriss" href="index.html#kontakt">
+          Individuelle Anfrage
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches und Service">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__sozial">
+      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
