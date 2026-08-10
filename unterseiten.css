@@ -471,6 +471,26 @@
 
 .viertel__knopf { margin-top: 1rem; }
 
+/* --- Link "Tour anfragen", unten in derselben Kartenbox
+       (gleiches Vorbild wie bei den Top-10-Karten auf der
+       Startseite: schlichter Link statt eigenem Knopf-Kasten) --- */
+.viertel__anfrage {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--linie);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--rot);
+  text-decoration: none;
+}
+
+.viertel__anfrage .icon { width: 16px; height: 16px; }
+
+.viertel__anfrage:hover { text-decoration: underline; }
+
 
 /* ---- 5. Hinweis am Seitenende ----------------------------------- */
 
