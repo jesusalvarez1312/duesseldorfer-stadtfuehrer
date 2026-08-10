@@ -435,28 +435,25 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 0.7rem;
-}
-
-.tour__knopf { align-self: stretch; }
-
-.tour a {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
   background: var(--weiss);
   border: 1px solid var(--linie);
   border-radius: var(--rund);
   overflow: hidden;
-  text-decoration: none;
-  color: var(--text);
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 
-.tour a:hover {
+.tour:hover {
   border-color: var(--rot);
   box-shadow: 0 12px 26px rgba(16, 38, 60, 0.09);
   transform: translateY(-3px);
+}
+
+.tour__link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+  color: var(--text);
 }
 
 .tour__bild {
@@ -474,7 +471,25 @@ a { color: inherit; }
   transition: transform 0.35s;
 }
 
-.tour a:hover .tour__bild img { transform: scale(1.04); }
+.tour:hover .tour__bild img { transform: scale(1.04); }
+
+/* --- Link "Tour anfragen", unten in derselben Kartenbox --- */
+.tour__anfrage {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0.9rem 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--linie);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--rot);
+  text-decoration: none;
+}
+
+.tour__anfrage .icon { width: 16px; height: 16px; }
+
+.tour__anfrage:hover { text-decoration: underline; }
 
 /* Nummer oben links auf dem Bild */
 .tour__nr {
