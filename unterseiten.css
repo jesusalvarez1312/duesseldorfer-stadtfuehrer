@@ -927,3 +927,10 @@
     gap: 2rem;
   }
 }
+
+
+/* ---- 10. Knapperer Seitenkopf (Detailseiten einzelner Touren) ---
+   Verringert den Abstand zwischen dem Kopfbereich und dem
+   nachfolgenden Fließtext, unabhängig von der Bildschirmgröße.
+------------------------------------------------------------------ */
+.seitenkopf--knapp { padding-bottom: 1.5rem; }
