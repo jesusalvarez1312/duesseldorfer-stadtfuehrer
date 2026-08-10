@@ -431,10 +431,19 @@ a { color: inherit; }
   gap: 1rem;
 }
 
-.tour a {
+.tour {
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 0.7rem;
+}
+
+.tour__knopf { align-self: stretch; }
+
+.tour a {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   background: var(--weiss);
   border: 1px solid var(--linie);
   border-radius: var(--rund);
