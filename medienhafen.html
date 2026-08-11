@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Medienhafen – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Stadtplanung, Architektur und Wirtschaftsgeschichte: eine Tour durch den Düsseldorfer Medienhafen vom alten Handelshafen bis zur modernen Architektur-Meile.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     beliebig oft eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite müssen die Menülinks auf index.html zeigen,
+     sonst suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <span class="navi__trenner" aria-hidden="true"></span>
+      <a href="english.html" hreflang="en">English</a>
+      <a href="francais.html" hreflang="fr">Français</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF ===========================================
+       Links Text, rechts ein einzelnes Foto. Auf dem Smartphone
+       steht das Foto unter dem Text.
+  ============================================================ -->
+  <section class="seitenkopf seitenkopf--knapp">
+    <div class="huelle seitenkopf__raster">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#touren">Touren</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Medienhafen</span>
+        </nav>
+
+        <p class="augenbraue">Unsere Top 10</p>
+        <h1 class="titel-strich">Medienhafen</h1>
+        <p class="lead">
+          Wir schlagen einen Bogen von der Entstehung des Handelshafens
+          um 1900 bis zum Eldorado der modernen Architektur und der
+          Meile der Kreativen.
+        </p>
+
+        <!-- Skyline als leise Dekoration. Dieselbe Datei wie auf der
+             Startseite, hier per CSS-Filter ins Dunkle gedreht. -->
+        <img class="seitenkopf__skyline" src="bilder/skyline-klar.png"
+             alt="" aria-hidden="true" loading="lazy" width="680" height="490">
+      </div>
+
+      <div class="einzelbild">
+
+        <figure class="einzelbild__foto">
+          <img src="bilder/kopfbild-medienhafen.jpg"
+               alt="Neuer Zollhof im Düsseldorfer Medienhafen"
+               width="900" height="675" loading="lazy">
+        </figure>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== DAS ERWARTET SIE ======================================
+       Fließtext statt Karten – kein farbiger Hintergrund, keine
+       nummerierten Absätze.
+  ============================================================ -->
+  <section class="band">
+    <div class="huelle">
+      <div class="rechtstext">
+
+        <h2>Medienhafen: Stadtplanung, Architektur und Wirtschaftsgeschichte</h2>
+
+        <p><strong>Der alte Hafen:</strong> Relikte mit Speichern, Kränen und Basaltmauern erinnern an die Zeit als Handelshafen.</p>
+
+        <p><strong>Neue Wahrzeichen:</strong> der Neue Zollhof von Frank Owen Gehry, das WDR Funkhaus von Christoph Parade, das Grand Bateau von Claude Vasconi, das Sign von Helmut Jahn, der Wolkenbügel von Norbert Wansleben und das Hyatt Hotel von JSK/SOP Architekten.</p>
+
+        <p><strong>Regierungsviertel:</strong> das Landtagsgebäude und die Staatskanzlei im Neuen Stadttor.</p>
+
+        <p><strong>Dauer:</strong> ca. 2 Stunden</p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2>Interesse an dieser Tour?</h2>
+          <p>Stellen Sie unverbindlich Ihre Anfrage für „Medienhafen".</p>
+        </div>
+
+        <a class="knopf knopf--umriss" href="anfrage.html">
+          Tour anfragen
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches und Service">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__sozial">
+      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
