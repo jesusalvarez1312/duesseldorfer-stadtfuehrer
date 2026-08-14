@@ -934,3 +934,90 @@
    nachfolgenden Fließtext, unabhängig von der Bildschirmgröße.
 ------------------------------------------------------------------ */
 .seitenkopf--knapp { padding-bottom: 1.5rem; }
+
+
+/* ---- 11. Verlinktes Kartenbild ----------------------------------
+   Führt eine Karte zu einer eigenen Detailseite, ist jetzt nicht
+   nur die Überschrift anklickbar, sondern auch das Foto.
+
+   Das a-Element hat im HTML tabindex="-1" und aria-hidden="true":
+   Für Tastatur und Screenreader bleibt es bei EINEM Link pro Karte,
+   nämlich der Überschrift. Sonst müsste man jede Karte zweimal
+   durchtabben, ohne etwas davon zu haben.
+------------------------------------------------------------------ */
+
+.viertel__bildlink {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.viertel__bildlink img {
+  transition: transform 0.35s ease;
+}
+
+/* Sanftes Heranzoomen, wenn die Maus über der Karte steht */
+.viertel:hover .viertel__bildlink img {
+  transform: scale(1.045);
+}
+
+/* Kleiner Hinweis, dass hier mehr wartet */
+.viertel__bildlink::after {
+  content: "Mehr erfahren";
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--rot);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.viertel:hover .viertel__bildlink::after,
+.viertel:focus-within .viertel__bildlink::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ---- 12. Hervorgehobene Karte -----------------------------------
+   Wer über die Suche auf eine einzelne Führung springt, soll sofort
+   sehen, welche Karte gemeint ist. script.js setzt diese Klasse für
+   knapp drei Sekunden.
+------------------------------------------------------------------ */
+
+.viertel--hervor {
+  border-color: var(--rot);
+  box-shadow: 0 0 0 3px rgba(180, 19, 28, 0.16);
+}
+
+/* Abstand nach oben, damit die feste Kopfleiste die angesprungene
+   Karte nicht verdeckt */
+.viertel[id] { scroll-margin-top: 96px; }
+
+
+/* ---- 13. Übernommener Tourname im Anfrageformular ---------------
+   Erscheint nur, wenn jemand über „Tour anfragen" auf das Formular
+   gekommen ist. Der Text im Feld darunter bleibt frei änderbar.
+------------------------------------------------------------------ */
+
+.feld__uebernommen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-left: 3px solid var(--rot);
+  border-radius: 6px;
+  background: rgba(180, 19, 28, 0.06);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.feld__uebernommen span { color: var(--text-leise); }

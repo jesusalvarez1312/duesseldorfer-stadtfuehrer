@@ -1055,3 +1055,179 @@ a { color: inherit; }
   * { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }
 }
+
+
+/* ================================================================
+   14. SUCHE IM KOPFBEREICH
+   ----------------------------------------------------------------
+   Der Knopf sitzt in der Kopfzeile neben dem Menü. Das Suchfeld
+   klappt darunter über die volle Breite auf.
+================================================================ */
+
+.suchknopf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  margin-left: auto;
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.suchknopf .icon { width: 20px; height: 20px; stroke-width: 1.9; }
+
+.suchknopf:hover,
+.suchknopf[aria-expanded="true"] {
+  border-color: var(--rot);
+  color: var(--rot);
+}
+
+/* Damit Suchknopf und Burger nicht aneinanderkleben */
+.suchknopf + .burger { margin-left: 0.55rem; }
+
+
+/* ---- Der aufklappbare Bereich ---------------------------------- */
+
+.suche {
+  background: var(--weiss);
+  border-bottom: 1px solid var(--linie);
+  box-shadow: 0 18px 30px rgba(16, 38, 60, 0.08);
+  padding: 1rem 0 1.25rem;
+}
+
+.suche[hidden] { display: none; }
+
+.suche__zeile {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  background: var(--creme);
+  padding: 0.15rem 0.65rem;
+}
+
+.suche__zeile:focus-within {
+  border-color: var(--rot);
+  background: var(--weiss);
+}
+
+.suche__lupe {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--text-leise);
+}
+
+.suche__feld {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  padding: 0.85rem 0;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.suche__feld:focus { outline: none; }
+
+/* Das graue Kreuz, das manche Browser selbst einbauen, brauchen wir nicht */
+.suche__feld::-webkit-search-cancel-button { display: none; }
+
+.suche__zu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-leise);
+  cursor: pointer;
+}
+
+.suche__zu:hover { color: var(--rot); }
+.suche__zu .icon { width: 18px; height: 18px; }
+
+.suche__hinweis {
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-leise);
+}
+
+.suche__hinweis a { color: var(--rot); font-weight: 600; }
+
+
+/* ---- Trefferliste ---------------------------------------------- */
+
+.suche__treffer {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  max-height: 58vh;
+  overflow-y: auto;
+}
+
+.suche__treffer:empty { margin: 0; }
+
+.suche__treffer li {
+  border-bottom: 1px solid var(--linie);
+}
+
+.treffer {
+  display: block;
+  padding: 0.75rem 0.7rem;
+  border-radius: 9px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.treffer:hover,
+.treffer:focus-visible {
+  background: var(--beige);
+  outline: none;
+}
+
+.treffer__titel {
+  display: block;
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.treffer:hover .treffer__titel { color: var(--rot); }
+
+.treffer__thema {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.83rem;
+  color: var(--text-leise);
+}
+
+
+/* ---- Ab Laptop ------------------------------------------------- */
+@media (min-width: 1024px) {
+
+  .suchknopf {
+    width: 40px;
+    height: 40px;
+    margin-left: 1.25rem;
+  }
+
+  /* Treffer zweispaltig – dann muss man weniger scrollen */
+  .suche__treffer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+    max-height: 62vh;
+  }
+}

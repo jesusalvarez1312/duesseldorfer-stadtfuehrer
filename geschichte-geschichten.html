@@ -63,12 +63,52 @@
       <a href="francais.html" hreflang="fr">Français</a>
     </nav>
 
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
     <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
       <span class="burger__striche" aria-hidden="true"></span>
       <span class="nur-fuer-screenreader">Menü öffnen</span>
     </button>
 
   </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
 </header>
 
 
@@ -195,7 +235,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-vom-dorf-zur-stadt-duesseldorfs">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-stadtentwicklung.jpg" alt="Historische Stadtentwicklung Düsseldorfs"
                      width="800" height="600" loading="lazy">
@@ -204,14 +244,14 @@
                 <h3 class="viertel__titel">Vom Dorf zur Stadt – Düsseldorfs Stadtentwicklung</h3>
                 <p class="viertel__stichworte">Stadtgeschichte • Wachstum • Wandel</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Vom Dorf zur Stadt – Düsseldorfs Stadtentwicklung">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-mittelalterliches-duesseldorf-1288-wo-man">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-mittelalter-1288.jpg" alt="Mittelalterliches Düsseldorf um 1288"
                      width="800" height="600" loading="lazy">
@@ -220,14 +260,14 @@
                 <h3 class="viertel__titel">Mittelalterliches Düsseldorf 1288: Wo man heute das Dorf findet</h3>
                 <p class="viertel__stichworte">Schlacht von Worringen • Stadtrechte • Mittelalter</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Mittelalterliches Düsseldorf 1288: Wo man heute das Dorf findet">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-architektur-der-innenstadt-nicht-nur-neue">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-architektur-innenstadt.jpg" alt="Architektur der Düsseldorfer Innenstadt"
                      width="800" height="600" loading="lazy">
@@ -236,14 +276,14 @@
                 <h3 class="viertel__titel">Architektur der Innenstadt (nicht nur neue Mitte)</h3>
                 <p class="viertel__stichworte">Baustile • Fassaden • Stadtbild</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Architektur der Innenstadt (nicht nur neue Mitte)">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-sagen-und-legenden">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-sagen-legenden.jpg" alt="Illustration zu einer Düsseldorfer Sage"
                      width="800" height="600" loading="lazy">
@@ -252,39 +292,43 @@
                 <h3 class="viertel__titel">Sagen und Legenden</h3>
                 <p class="viertel__stichworte">Mythen • Erzählungen • Volksglaube</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Sagen und Legenden">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-neue-mitte">
               <figure class="viertel__bild">
-                <img src="bilder/neue-mitte.jpg" alt="Kö-Bogen in Düsseldorfs neuer Mitte"
+                <a class="viertel__bildlink" href="neue-mitte.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/neue-mitte.jpg" alt="Kö-Bogen in Düsseldorfs neuer Mitte"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="neue-mitte.html">Neue Mitte</a></h3>
                 <p class="viertel__stichworte">Kö-Bogen • Architektur • Städtebau</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Neue Mitte">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-das-beste-von-duesseldorf">
               <figure class="viertel__bild">
-                <img src="bilder/highlights.jpg" alt="Rheinuferpromenade mit Blick auf den Rheinturm in Düsseldorf"
+                <a class="viertel__bildlink" href="highlights.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/highlights.jpg" alt="Rheinuferpromenade mit Blick auf den Rheinturm in Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="highlights.html">Das Beste von Düsseldorf</a></h3>
                 <p class="viertel__stichworte">Altstadt • Königsallee • Rheinturm</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Das Beste von Düsseldorf">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
@@ -335,7 +379,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-duesseldorf-macht-landespolitik">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-landespolitik.jpg" alt="Landtag Nordrhein-Westfalen in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -344,30 +388,32 @@
                 <h3 class="viertel__titel">Düsseldorf macht Landespolitik</h3>
                 <p class="viertel__stichworte">Landtag NRW • Politik • Macht</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Düsseldorf macht Landespolitik">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-lebendiges-rathaus">
               <figure class="viertel__bild">
-                <img src="bilder/geschichte-rathaus.jpg" alt="Rathaus am Marktplatz in Düsseldorf"
+                <a class="viertel__bildlink" href="lebendiges-rathaus.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/geschichte-rathaus.jpg" alt="Rathaus am Marktplatz in Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="lebendiges-rathaus.html">Lebendiges Rathaus</a></h3>
                 <p class="viertel__stichworte">Rathaus • Verwaltung • Stadtgeschichte</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Lebendiges Rathaus">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-geldgeschichten-und-wirtschaftsgeschichte">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-wirtschaft.jpg" alt="Historisches Bankgebäude in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -376,7 +422,7 @@
                 <h3 class="viertel__titel">Geldgeschichten und Wirtschaftsgeschichte</h3>
                 <p class="viertel__stichworte">Handel • Banken • Wirtschaft</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Geldgeschichten und Wirtschaftsgeschichte">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
@@ -427,23 +473,25 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-duesseldorfer-originale">
               <figure class="viertel__bild">
-                <img src="bilder/geschichte-originale.jpg" alt="Düsseldorfer Original als Stadtfigur"
+                <a class="viertel__bildlink" href="originale.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/geschichte-originale.jpg" alt="Düsseldorfer Original als Stadtfigur"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="originale.html">Düsseldorfer Originale</a></h3>
                 <p class="viertel__stichworte">Stadtgeschichten • Persönlichkeiten • Anekdoten</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Düsseldorfer Originale">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-starke-frauen-duesseldorfs-weibliche-seite">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-starke-frauen.jpg" alt="Denkmal einer bedeutenden Düsseldorferin"
                      width="800" height="600" loading="lazy">
@@ -452,14 +500,14 @@
                 <h3 class="viertel__titel">Starke Frauen – Düsseldorfs weibliche Seite</h3>
                 <p class="viertel__stichworte">Frauengeschichte • Pionierinnen • Sichtbarkeit</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Starke Frauen – Düsseldorfs weibliche Seite">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-duesseldorf-divers-vielfalt-und-verfolgung">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-diversity.jpg" alt="Gedenkort zur Vielfalt und Verfolgung in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -468,14 +516,14 @@
                 <h3 class="viertel__titel">Düsseldorf divers – Vielfalt und Verfolgung (Diversity-Führung)</h3>
                 <p class="viertel__stichworte">Vielfalt • Verfolgung • Erinnerungskultur</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Düsseldorf divers – Vielfalt und Verfolgung (Diversity-Führung)">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-juedisches-duesseldorf">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-juedisches-duesseldorf.jpg" alt="Synagoge in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -484,14 +532,14 @@
                 <h3 class="viertel__titel">Jüdisches Düsseldorf</h3>
                 <p class="viertel__stichworte">Jüdisches Leben • Geschichte • Gedenken</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Jüdisches Düsseldorf">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-duesseldorf-und-die-welt-duesseldorf">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-international.jpg" alt="Partnerstadt-Wegweiser in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -500,23 +548,25 @@
                 <h3 class="viertel__titel">Düsseldorf und die Welt – Düsseldorf international</h3>
                 <p class="viertel__stichworte">Partnerstädte • Migration • Weltoffenheit</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Düsseldorf und die Welt – Düsseldorf international">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-filmstadt-duesseldorf">
               <figure class="viertel__bild">
-                <img src="bilder/filmstadt.jpg" alt="Filmdreh in Düsseldorf"
+                <a class="viertel__bildlink" href="filmstadt.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/filmstadt.jpg" alt="Filmdreh in Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="filmstadt.html">Filmstadt Düsseldorf</a></h3>
                 <p class="viertel__stichworte">Hollywood • Drehorte • Oscar-Preisträger</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Filmstadt Düsseldorf">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
@@ -567,7 +617,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-die-kirchen-der-altstadt">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-kirchen-altstadt.jpg" alt="Kirche in der Düsseldorfer Altstadt"
                      width="800" height="600" loading="lazy">
@@ -576,14 +626,14 @@
                 <h3 class="viertel__titel">Die Kirchen der Altstadt</h3>
                 <p class="viertel__stichworte">Sakralbauten • Altstadt • Geschichte</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Die Kirchen der Altstadt">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-karneval-und-brauchtum">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-karneval.jpg" alt="Karnevalszug in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -592,14 +642,14 @@
                 <h3 class="viertel__titel">Karneval und Brauchtum</h3>
                 <p class="viertel__stichworte">Karneval • Tradition • Brauchtum</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Karneval und Brauchtum">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-advent-advent-ein-bummel-ueber-die">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-weihnachtsmaerkte.jpg" alt="Weihnachtsmarkt in der Düsseldorfer Altstadt"
                      width="800" height="600" loading="lazy">
@@ -608,14 +658,14 @@
                 <h3 class="viertel__titel">Advent, Advent – ein Bummel über die Weihnachtsmärkte</h3>
                 <p class="viertel__stichworte">Weihnachtsmärkte • Adventszeit • Glühwein</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Advent, Advent – ein Bummel über die Weihnachtsmärkte">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-koeln-versus-duesseldorf-ein-amuesanter">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-koeln-vs-duesseldorf.jpg" alt="Altbier-Gläser als Symbol der Rivalität zu Köln"
                      width="800" height="600" loading="lazy">
@@ -624,7 +674,7 @@
                 <h3 class="viertel__titel">Köln versus Düsseldorf – ein amüsanter Schlagabtausch</h3>
                 <p class="viertel__stichworte">Rivalität • Humor • Lokalpatriotismus</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Köln versus Düsseldorf – ein amüsanter Schlagabtausch">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
@@ -675,7 +725,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-natur-in-der-stadt-duesseldorfs-gruene-seite">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-natur-stadt.jpg" alt="Grünfläche mitten in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -684,14 +734,14 @@
                 <h3 class="viertel__titel">Natur in der Stadt – Düsseldorfs grüne Seite</h3>
                 <p class="viertel__stichworte">Stadtnatur • Grünflächen • Erholung</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Natur in der Stadt – Düsseldorfs grüne Seite">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-natur-duesseldorfer-natur-fledermaeuse">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-fledermaeuse-voegel.jpg" alt="Fledermaus in einem Düsseldorfer Park"
                      width="800" height="600" loading="lazy">
@@ -700,14 +750,14 @@
                 <h3 class="viertel__titel">Natur: Düsseldorfer Natur, Fledermäuse, Vogelstimmen</h3>
                 <p class="viertel__stichworte">Fledermäuse • Vogelstimmen • Naturkunde</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Natur: Düsseldorfer Natur, Fledermäuse, Vogelstimmen">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-links-und-rechts-der-duessel">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-duessel.jpg" alt="Der Fluss Düssel in der Stadt"
                      width="800" height="600" loading="lazy">
@@ -716,14 +766,14 @@
                 <h3 class="viertel__titel">Links und rechts der Düssel</h3>
                 <p class="viertel__stichworte">Fluss • Stadtgeschichte • Spaziergang</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Links und rechts der Düssel">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-heisses-pflaster-wie-sich-duesseldorf-auf-den">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-klimawandel.jpg" alt="Begrüntes Gebäude als Antwort auf den Klimawandel in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -732,14 +782,14 @@
                 <h3 class="viertel__titel">Heißes Pflaster: Wie sich Düsseldorf auf den Klimawandel einstellt</h3>
                 <p class="viertel__stichworte">Klimawandel • Stadtklima • Zukunft</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Heißes Pflaster: Wie sich Düsseldorf auf den Klimawandel einstellt">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-duesseldorf-kriminell-altstadt-und">
               <figure class="viertel__bild">
                 <img src="bilder/geschichte-kriminell.jpg" alt="Gasse in der Düsseldorfer Altstadt bei Nacht"
                      width="800" height="600" loading="lazy">
@@ -748,7 +798,7 @@
                 <h3 class="viertel__titel">Düsseldorf kriminell (Altstadt und Kaiserswerth)</h3>
                 <p class="viertel__stichworte">Kriminalgeschichte • Altstadt • Kaiserswerth</p>
 
-                <a class="viertel__anfrage" href="anfrage.html">
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Düsseldorf kriminell (Altstadt und Kaiserswerth)">
                   Tour anfragen
                   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
                 </a>
@@ -826,6 +876,7 @@
   </div>
 </footer>
 
+<script src="touren-daten.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

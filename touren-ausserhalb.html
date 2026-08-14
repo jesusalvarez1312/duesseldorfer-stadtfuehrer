@@ -61,12 +61,52 @@
       <a href="francais.html" hreflang="fr">Français</a>
     </nav>
 
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
     <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
       <span class="burger__striche" aria-hidden="true"></span>
       <span class="nur-fuer-screenreader">Menü öffnen</span>
     </button>
 
   </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
 </header>
 
 
@@ -193,7 +233,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-koeln">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-koeln.jpg" alt="Kölner Dom und Altstadt"
                      width="800" height="600" loading="lazy">
@@ -201,10 +241,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Köln</h3>
                 <p class="viertel__stichworte">Kölner Dom • Altstadt • Rheinmetropole</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Köln">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-koenigswinter-drachenfels">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-koenigswinter-drachenfels.jpg" alt="Drachenfels bei Königswinter im Siebengebirge"
                      width="800" height="600" loading="lazy">
@@ -212,6 +257,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Königswinter + Drachenfels</h3>
                 <p class="viertel__stichworte">Siebengebirge • Burgruine • Aussicht</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Königswinter + Drachenfels">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
@@ -259,7 +309,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-muelheim-a-d-ruhr">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-muelheim-ruhr.jpg" alt="Mülheim an der Ruhr"
                      width="800" height="600" loading="lazy">
@@ -267,10 +317,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Mülheim a. d. Ruhr</h3>
                 <p class="viertel__stichworte">Ruhrgebiet • Wasserbahnhof • Stadtgeschichte</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Mülheim a. d. Ruhr">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-essen">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-essen.jpg" alt="Zeche Zollverein in Essen"
                      width="800" height="600" loading="lazy">
@@ -278,10 +333,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Essen</h3>
                 <p class="viertel__stichworte">Zeche Zollverein • Industriekultur • Weltkulturerbe</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Essen">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-kloster-kamp">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-kloster-kamp.jpg" alt="Kloster Kamp mit Terrassengarten"
                      width="800" height="600" loading="lazy">
@@ -289,6 +349,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Kloster Kamp</h3>
                 <p class="viertel__stichworte">Zisterzienser • Klostergarten • Terrassenanlage</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Kloster Kamp">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
@@ -336,7 +401,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-neuss">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-neuss.jpg" alt="Quirinus-Münster in Neuss"
                      width="800" height="600" loading="lazy">
@@ -344,10 +409,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Neuss</h3>
                 <p class="viertel__stichworte">Römerstadt • Quirinus-Münster • Rheinmetropole</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Neuss">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-zons">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-zons.jpg" alt="Stadtmauer der mittelalterlichen Stadt Zons"
                      width="800" height="600" loading="lazy">
@@ -355,10 +425,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Zons</h3>
                 <p class="viertel__stichworte">Stadtmauer • Mittelalter • Rheinort</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Zons">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-museumsinsel-hombroich">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-museumsinsel-hombroich.jpg" alt="Museumspavillon auf der Museumsinsel Hombroich"
                      width="800" height="600" loading="lazy">
@@ -366,6 +441,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Museumsinsel Hombroich</h3>
                 <p class="viertel__stichworte">Kunst • Natur • Museumspavillons</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Museumsinsel Hombroich">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
@@ -413,7 +493,7 @@
 
             <ul class="viertel-liste">
 
-            <li class="viertel">
+            <li class="viertel" id="tour-schloss-dyck">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-schloss-dyck.jpg" alt="Wasserschloss Dyck mit Park"
                      width="800" height="600" loading="lazy">
@@ -421,10 +501,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Schloss Dyck</h3>
                 <p class="viertel__stichworte">Wasserschloss • Park • Landschaftsgarten</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Schloss Dyck">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-schloss-rheydt">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-schloss-rheydt.jpg" alt="Renaissanceschloss Rheydt in Mönchengladbach"
                      width="800" height="600" loading="lazy">
@@ -432,10 +517,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Schloss Rheydt</h3>
                 <p class="viertel__stichworte">Renaissance • Mönchengladbach • Museum</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Schloss Rheydt">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-britischer-soldatenfriedhof-rheinberg">
               <figure class="viertel__bild">
                 <img src="bilder/ausflug-soldatenfriedhof-rheinberg.jpg" alt="Britischer Soldatenfriedhof in Rheinberg"
                      width="800" height="600" loading="lazy">
@@ -443,6 +533,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Britischer Soldatenfriedhof Rheinberg</h3>
                 <p class="viertel__stichworte">Gedenkstätte • Kriegsgräber • Geschichte</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Britischer Soldatenfriedhof Rheinberg">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
@@ -517,6 +612,7 @@
   </div>
 </footer>
 
+<script src="touren-daten.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

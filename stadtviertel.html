@@ -51,7 +51,7 @@
     </a>
 
     <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
-      <a href="index.html#fuehrungen">Touren</a>
+      <a href="index.html#touren">Touren</a>
       <a href="index.html#verein">Wer wir sind</a>
       <a href="index.html#sprachen">Sprachen</a>
       <a href="index.html#buchung">Anfrage</a>
@@ -61,12 +61,52 @@
       <a href="francais.html" hreflang="fr">Français</a>
     </nav>
 
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
     <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
       <span class="burger__striche" aria-hidden="true"></span>
       <span class="nur-fuer-screenreader">Menü öffnen</span>
     </button>
 
   </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
 </header>
 
 
@@ -84,7 +124,7 @@
         <nav class="brotkrumen" aria-label="Sie sind hier">
           <a href="index.html">Start</a>
           <span aria-hidden="true">&rsaquo;</span>
-          <a href="index.html#fuehrungen">Touren</a>
+          <a href="index.html#touren">Touren</a>
           <span aria-hidden="true">&rsaquo;</span>
           <span aria-current="page">Stadtviertel</span>
         </nav>
@@ -193,31 +233,45 @@
             <p class="gruppe__text">Von japanischer Kultur über moderne Architektur bis zur historischen Altstadt – entdecke die Highlights Düsseldorfs in einer unvergesslichen Tour.</p>
 
             <ul class="viertel-liste">
-            <li class="viertel">
+            <li class="viertel" id="tour-altstadt">
               <figure class="viertel__bild">
-                <img src="bilder/altstadt.jpg" alt="Altstadt in Düsseldorf"
+                <a class="viertel__bildlink" href="altstadt.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/altstadt.jpg" alt="Altstadt in Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="altstadt.html">Altstadt</a></h3>
                 <p class="viertel__stichworte">Rathaus • Burgplatz • Längste Theke der Welt</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Altstadt">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-altbier-die-laengste-theke-der-welt">
               <figure class="viertel__bild">
-                <img src="bilder/altbier.jpg" alt="Altbiergläser in einer Düsseldorfer Hausbrauerei"
+                <a class="viertel__bildlink" href="altbier.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/altbier.jpg" alt="Altbiergläser in einer Düsseldorfer Hausbrauerei"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></h3>
                 <p class="viertel__stichworte">Hausbrauereien • Craft-Beer • Tradition</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Altbier &amp; die längste Theke der Welt">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-bahnhofsviertel">
               <figure class="viertel__bild">
                 <img src="bilder/bahnhofsviertel.jpg" alt="Bahnhofsviertel in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -226,10 +280,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Bahnhofsviertel</h3>
                 <p class="viertel__stichworte">Kunstwerke • Musik • Street-Art</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Bahnhofsviertel">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-benrath">
               <figure class="viertel__bild">
                 <img src="bilder/benrath.jpg" alt="Benrath in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -238,10 +297,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Benrath</h3>
                 <p class="viertel__stichworte">Schloss • Gärten • Barock</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Benrath">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-carlstadt">
               <figure class="viertel__bild">
                 <img src="bilder/carlstadt.jpg" alt="Carlstadt in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -250,46 +314,72 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Carlstadt</h3>
                 <p class="viertel__stichworte">Stadtpalais • Kultur • Markt</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Carlstadt">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-kulinarisches-duesseldorf">
               <figure class="viertel__bild">
-                <img src="bilder/kulinarisch.jpg" alt="Kulinarische Tour durch Düsseldorf"
+                <a class="viertel__bildlink" href="kulinarische-tour.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/kulinarisch.jpg" alt="Kulinarische Tour durch Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></h3>
                 <p class="viertel__stichworte">Altbier • Senf • Rheinische Küche</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Kulinarisches Düsseldorf">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-medienhafen">
               <figure class="viertel__bild">
-                <img src="bilder/medienhafen.jpg" alt="Neuer Zollhof im Düsseldorfer Medienhafen"
+                <a class="viertel__bildlink" href="medienhafen.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/medienhafen.jpg" alt="Neuer Zollhof im Düsseldorfer Medienhafen"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="medienhafen.html">Medienhafen</a></h3>
                 <p class="viertel__stichworte">Architektur • Wirtschaftsgeschichte • Wahrzeichen</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Medienhafen">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-kaiserswerth">
               <figure class="viertel__bild">
-                <img src="bilder/kaiserswerth.jpg" alt="Kaiserpfalz-Ruine in Kaiserswerth"
+                <a class="viertel__bildlink" href="kaiserswerth.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/kaiserswerth.jpg" alt="Kaiserpfalz-Ruine in Kaiserswerth"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="kaiserswerth.html">Kaiserswerth</a></h3>
                 <p class="viertel__stichworte">Kaiserpfalz • Stiftsplatz • Diakonie</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Kaiserswerth">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-flingern">
               <figure class="viertel__bild">
                 <img src="bilder/flingern.jpg" alt="Flingern in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -298,10 +388,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Flingern</h3>
                 <p class="viertel__stichworte">Kreativ • Urban • Authentisch</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Flingern">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-gerresheim">
               <figure class="viertel__bild">
                 <img src="bilder/gerresheim.jpg" alt="Gerresheim in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -310,10 +405,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Gerresheim</h3>
                 <p class="viertel__stichworte">Basilika • Industrie-Erbe • Tradition</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Gerresheim">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-golzheim">
               <figure class="viertel__bild">
                 <img src="bilder/golzheim.jpg" alt="Golzheim in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -322,10 +422,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Golzheim</h3>
                 <p class="viertel__stichworte">Künstler • Architektur</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Golzheim">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-grafenberg">
               <figure class="viertel__bild">
                 <img src="bilder/grafenberg.jpg" alt="Grafenberg in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -334,22 +439,34 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Grafenberg</h3>
                 <p class="viertel__stichworte">Industrie-Erbe • Eisenbahn • Wald</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Grafenberg">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-japanisches-viertel">
               <figure class="viertel__bild">
-                <img src="bilder/japanviertel.jpg" alt="Japanisches Viertel in Düsseldorf"
+                <a class="viertel__bildlink" href="japanviertel.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/japanviertel.jpg" alt="Japanisches Viertel in Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="japanviertel.html">Japanisches Viertel</a></h3>
                 <p class="viertel__stichworte">Klein Tokio • Sushi + Ramen • Manga</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Japanisches Viertel">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-oberbilk">
               <figure class="viertel__bild">
                 <img src="bilder/oberbilk.jpg" alt="Oberbilk in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -358,10 +475,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Oberbilk</h3>
                 <p class="viertel__stichworte">Multikulturell • Stahlindustrie • Arbeiter</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Oberbilk">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-oberkassel">
               <figure class="viertel__bild">
                 <img src="bilder/oberkassel.jpg" alt="Oberkassel in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -370,10 +492,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Oberkassel</h3>
                 <p class="viertel__stichworte">Jugendstil • Eleganz • Bohème</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Oberkassel">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-pempelfort">
               <figure class="viertel__bild">
                 <img src="bilder/pempelfort.jpg" alt="Pempelfort in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -382,10 +509,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Pempelfort</h3>
                 <p class="viertel__stichworte">Kultur • Hofgarten • Cafés</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Pempelfort">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-unterbilk">
               <figure class="viertel__bild">
                 <img src="bilder/unterbilk.jpg" alt="Unterbilk in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -394,6 +526,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Unterbilk</h3>
                 <p class="viertel__stichworte">Szene • Lifestyle • Ex-Arbeiterviertel</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Unterbilk">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
             </ul>
@@ -443,7 +580,7 @@
             <p class="gruppe__text">Zwei Wege, dieselbe Straße zu sehen – und zwei sehr verschiedene Geschichten.</p>
 
             <ul class="viertel-liste">
-            <li class="viertel">
+            <li class="viertel" id="tour-luxus-und-glamour-rund-um-die-koe">
               <figure class="viertel__bild">
                 <img src="bilder/koe-luxus.jpg" alt="Luxus und Glamour rund um die Kö in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -452,10 +589,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Luxus und Glamour rund um die Kö</h3>
                 <p class="viertel__stichworte">Mode • Boulevard • Wasserlauf</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Luxus und Glamour rund um die Kö">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-unterschaetzte-kunstmeile-koenigsallee">
               <figure class="viertel__bild">
                 <img src="bilder/koe-kunst.jpg" alt="Unterschätzte Kunstmeile Königsallee in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -464,6 +606,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Unterschätzte Kunstmeile Königsallee</h3>
                 <p class="viertel__stichworte">Skulpturen • Galerien • Architektur</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Unterschätzte Kunstmeile Königsallee">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
             </ul>
@@ -513,7 +660,7 @@
             <p class="gruppe__text">Grüne Führungen – und stille. Auch Friedhöfe erzählen Stadtgeschichte.</p>
 
             <ul class="viertel-liste">
-            <li class="viertel">
+            <li class="viertel" id="tour-ehrenhof-und-hofgarten">
               <figure class="viertel__bild">
                 <img src="bilder/ehrenhof-hofgarten.jpg" alt="Ehrenhof und Hofgarten in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -522,22 +669,34 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Ehrenhof und Hofgarten</h3>
                 <p class="viertel__stichworte">Museen • Tonhalle • Parkanlage</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Ehrenhof und Hofgarten">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-nordpark">
               <figure class="viertel__bild">
-                <img src="bilder/nordpark.jpg" alt="Nordpark in Düsseldorf"
+                <a class="viertel__bildlink" href="nordpark.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/nordpark.jpg" alt="Nordpark in Düsseldorf"
                      width="800" height="600" loading="lazy">
+                </a>
               </figure>
 
               <div class="viertel__text">
                 <h3 class="viertel__titel"><a href="nordpark.html">Nordpark</a></h3>
                 <p class="viertel__stichworte">Japanischer Garten • Aquazoo • Weite</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Nordpark">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-volksgarten">
               <figure class="viertel__bild">
                 <img src="bilder/volksgarten.jpg" alt="Volksgarten in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -546,10 +705,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Volksgarten</h3>
                 <p class="viertel__stichworte">Grün • Ruhe • Stadtgeschichte</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Volksgarten">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-nordfriedhof">
               <figure class="viertel__bild">
                 <img src="bilder/nordfriedhof.jpg" alt="Nordfriedhof in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -558,10 +722,15 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Nordfriedhof</h3>
                 <p class="viertel__stichworte">Grabmale • Stadtgeschichte • Stille</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Nordfriedhof">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
 
-            <li class="viertel">
+            <li class="viertel" id="tour-friedhof-golzheim">
               <figure class="viertel__bild">
                 <img src="bilder/friedhof-golzheim.jpg" alt="Friedhof Golzheim in Düsseldorf"
                      width="800" height="600" loading="lazy">
@@ -570,6 +739,11 @@
               <div class="viertel__text">
                 <h3 class="viertel__titel">Friedhof Golzheim</h3>
                 <p class="viertel__stichworte">Gartenkunst • Geschichte • Stille</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Friedhof Golzheim">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
               </div>
             </li>
             </ul>
@@ -647,6 +821,7 @@
   </div>
 </footer>
 
+<script src="touren-daten.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

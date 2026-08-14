@@ -58,12 +58,52 @@
       <a href="francais.html" hreflang="fr">Français</a>
     </nav>
 
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
     <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
       <span class="burger__striche" aria-hidden="true"></span>
       <span class="nur-fuer-screenreader">Menü öffnen</span>
     </button>
 
   </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
 </header>
 
 
@@ -151,7 +191,7 @@
           <p>Stellen Sie unverbindlich Ihre Anfrage für „Medienhafen".</p>
         </div>
 
-        <a class="knopf knopf--umriss" href="anfrage.html">
+        <a class="knopf knopf--umriss" href="anfrage.html" data-tour="Medienhafen">
           Tour anfragen
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
         </a>
@@ -192,6 +232,7 @@
   </div>
 </footer>
 
+<script src="touren-daten.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
