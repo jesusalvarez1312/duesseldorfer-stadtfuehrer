@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Alle Themen – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Alle Touren und Themen auf einen Blick: unsere Top 10 und alle Spezialführungen, gegliedert nach Kategorie.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+
+  <!-- Seiteneigene Zusätze nur für diese Übersichtsliste. Nutzt
+       ausschließlich die Farb- und Schriftvariablen aus style.css,
+       damit sich nichts von der übrigen Gestaltung entfernt. -->
+  <style>
+    .themenraster {
+      display: grid;
+      gap: 2.25rem;
+      grid-template-columns: 1fr;
+    }
+    .themenblock__kopf {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.9rem;
+    }
+    .themenblock__kopf .icon {
+      width: 22px;
+      height: 22px;
+      color: var(--rot);
+      flex-shrink: 0;
+    }
+    .themenblock__kopf h3 {
+      margin: 0;
+      font-family: var(--titelschrift);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .themenblock__kopf a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .themenblock__kopf a:hover {
+      color: var(--rot);
+    }
+    .themenblock ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .themenblock li {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+    .themenblock li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--linie);
+    }
+    .themenblock li a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .themenblock li a:hover {
+      color: var(--rot);
+      text-decoration: underline;
+    }
+    .themenblock li.ohne-seite {
+      color: var(--text-leise);
+    }
+    .top10-liste {
+      list-style: none;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .top10-liste li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      font-size: 1.02rem;
+      border-bottom: 1px solid var(--linie);
+      padding-bottom: 0.7rem;
+    }
+    .top10-liste .top10-liste__nr {
+      font-family: var(--titelschrift);
+      font-weight: 700;
+      color: var(--rot);
+      min-width: 1.6em;
+    }
+    .top10-liste a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top10-liste a:hover {
+      color: var(--rot);
+    }
+    .top10-liste span.ohne-seite {
+      color: var(--text-leise);
+      font-weight: 600;
+    }
+    @media (min-width: 720px) {
+      .themenraster { grid-template-columns: repeat(2, 1fr); }
+      .top10-liste { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .themenraster { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     beliebig oft eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+    <g id="i-geschichte"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></g>
+    <g id="i-kunst"><circle cx="12" cy="12" r="8.5"/><circle cx="9.2" cy="9.5" r="1.1"/><circle cx="14.6" cy="9.2" r="1.1"/><circle cx="10.2" cy="15" r="1.1"/></g>
+    <g id="i-viertel"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></g>
+    <g id="i-rad"><circle cx="6" cy="17" r="3.4"/><circle cx="18" cy="17" r="3.4"/><path d="m6 17 4.2-8H15l3 8M9.4 9h4.2"/></g>
+    <g id="i-kinder"><circle cx="12" cy="12" r="8.5"/><path d="M9.2 10.4v.01M14.8 10.4v.01M8.4 14.4a4.6 4.6 0 0 0 7.2 0"/></g>
+    <g id="i-karte"><path d="M9 4.5 3.5 6.8v12.7L9 17.2m0-12.7 6 2.4m-6-2.4v12.7m6-10.3 5.5-2.3v12.7L15 19.6m0-12.7v12.7m-6-2.4 6 2.4"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite müssen die Menülinks auf index.html zeigen,
+     sonst suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <span class="navi__trenner" aria-hidden="true"></span>
+      <a href="english.html" hreflang="en">English</a>
+      <a href="francais.html" hreflang="fr">Français</a>
+    </nav>
+
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF ===========================================
+       Schlank, ohne Bildcollage – wie bei impressum.html/anfrage.html.
+       Diese Seite ist eine reine Übersichtsliste, kein Bild nötig.
+  ============================================================ -->
+  <section class="seitenkopf">
+    <div class="huelle">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#touren">Touren</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Alle Themen</span>
+        </nav>
+
+        <p class="augenbraue">Der schnelle Überblick</p>
+        <h1 class="titel-strich">Alle Themen</h1>
+        <p class="lead">
+          Von unseren Top 10 bis zu allen Spezialführungen – hier finden Sie jedes Thema auf einen Blick.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== UNSERE TOP 10 ========================================= -->
+  <section class="band">
+    <div class="huelle">
+      <div class="rechtstext" style="max-width: none;">
+
+        <h2>Unsere Top 10</h2>
+
+        <ol class="top10-liste">
+          <li><span class="top10-liste__nr">01</span> <a href="altstadt.html">Altstadt</a></li>
+          <li><span class="top10-liste__nr">02</span> <a href="neue-mitte.html">Neue Mitte</a></li>
+          <li><span class="top10-liste__nr">03</span> <a href="medienhafen.html">MedienHafen</a></li>
+          <li><span class="top10-liste__nr">04</span> <a href="highlights.html">Das Beste von Düsseldorf</a></li>
+          <li><span class="top10-liste__nr">05</span> <a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></li>
+          <li><span class="top10-liste__nr">06</span> <a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></li>
+          <li><span class="top10-liste__nr">07</span> <a href="japanviertel.html">Klein-Tokio</a></li>
+          <li><span class="top10-liste__nr">08</span> <a href="kaiserswerth.html">Kaiserswerth</a></li>
+          <li><span class="top10-liste__nr">09</span> <span class="ohne-seite">Mit dem Nachtwächter unterwegs</span></li>
+          <li><span class="top10-liste__nr">10</span> <span class="ohne-seite">Radtouren</span></li>
+        </ol>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== UNSERE SPEZIALFÜHRUNGEN ================================
+       Gleiche Gliederung wie auf der Startseite: sechs Themenkacheln,
+       hier jeweils mit der vollständigen Liste ihrer Führungen.
+       Führungen ohne eigene Detailseite stehen ohne Link da.
+  ============================================================ -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <h2>Unsere Spezialführungen</h2>
+
+      <div class="themenraster" style="margin-top: 1.75rem;">
+
+        <div class="themenblock">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-geschichte"/></svg>
+            <h3><a href="geschichte-geschichten.html">Geschichte &amp; Geschichten</a></h3>
+          </div>
+          <ul>
+            <li class="ohne-seite">Vom Dorf zur Stadt – Düsseldorfs Stadtentwicklung</li>
+            <li><a href="mittelalter-1288.html">Auf den Spuren des Dorfes von 1288</a></li>
+            <li class="ohne-seite">Architektur der Innenstadt (nicht nur Neue Mitte)</li>
+            <li class="ohne-seite">Sagen und Legenden</li>
+            <li><a href="neue-mitte.html">Neue Mitte</a></li>
+            <li><a href="highlights.html">Das Beste von Düsseldorf</a></li>
+            <li class="ohne-seite">Düsseldorf macht Landespolitik</li>
+            <li><a href="lebendiges-rathaus.html">Lebendiges Rathaus</a></li>
+            <li class="ohne-seite">Geldgeschichten und Wirtschaftsgeschichte</li>
+            <li><a href="originale.html">Düsseldorfer Originale</a></li>
+            <li class="ohne-seite">Starke Frauen – Düsseldorfs weibliche Seite</li>
+            <li class="ohne-seite">Düsseldorf divers – Vielfalt und Verfolgung (Diversity-Führung)</li>
+            <li class="ohne-seite">Jüdisches Düsseldorf</li>
+            <li class="ohne-seite">Düsseldorf und die Welt – Düsseldorf international</li>
+            <li><a href="filmstadt.html">Filmstadt Düsseldorf</a></li>
+            <li class="ohne-seite">Die Kirchen der Altstadt</li>
+            <li class="ohne-seite">Karneval und Brauchtum</li>
+            <li><a href="weihnachtsmaerkte.html">Advent, Advent – ein Bummel über die Weihnachtsmärkte</a></li>
+            <li><a href="duesseldorf-vs-koeln.html">Köln versus Düsseldorf – ein amüsanter Schlagabtausch</a></li>
+            <li class="ohne-seite">Natur in der Stadt – Düsseldorfs grüne Seite</li>
+            <li class="ohne-seite">Natur: Düsseldorfer Natur, Fledermäuse, Vogelstimmen</li>
+            <li class="ohne-seite">Links und rechts der Düssel</li>
+            <li class="ohne-seite">Heißes Pflaster: Wie sich Düsseldorf auf den Klimawandel einstellt</li>
+            <li class="ohne-seite">Düsseldorf kriminell (Altstadt und Kaiserswerth)</li>
+          </ul>
+        </div>
+
+        <div class="themenblock">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kunst"/></svg>
+            <h3><a href="kunst-kultur.html">Kunst &amp; Kultur</a></h3>
+          </div>
+          <ul>
+            <li><a href="wehrhahnlinie.html">Kunst im Untergrund – die Wehrhahnlinie</a></li>
+            <li><a href="joseph-beuys.html">Joseph Beuys verstehen</a></li>
+            <li><a href="kunst-im-oeffentlichen-raum.html">Kunst im öffentlichen Raum</a></li>
+            <li class="ohne-seite">Bühne frei: Düsseldorf macht Theater</li>
+            <li><a href="musik.html">In Düsseldorf spielt die Musik</a></li>
+            <li class="ohne-seite">Literaten, Poeten und Dramatiker</li>
+            <li class="ohne-seite">Die Säulenheiligen von Christoph Pöggeler</li>
+            <li class="ohne-seite">Die Skulpturen von Bert Gerresheim</li>
+            <li class="ohne-seite">Kunst rund um den Nationalsozialismus</li>
+            <li><a href="street-art.html">Street-Art</a></li>
+          </ul>
+        </div>
+
+        <div class="themenblock">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-viertel"/></svg>
+            <h3><a href="stadtviertel.html">Stadtviertel</a></h3>
+          </div>
+          <ul>
+            <li><a href="altstadt.html">Altstadt</a></li>
+            <li><a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></li>
+            <li><a href="bahnhofsviertel.html">Bahnhofsviertel</a></li>
+            <li class="ohne-seite">Benrath</li>
+            <li class="ohne-seite">Carlstadt</li>
+            <li><a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></li>
+            <li><a href="medienhafen.html">Medienhafen</a></li>
+            <li><a href="kaiserswerth.html">Kaiserswerth</a></li>
+            <li class="ohne-seite">Flingern</li>
+            <li class="ohne-seite">Gerresheim</li>
+            <li class="ohne-seite">Golzheim</li>
+            <li class="ohne-seite">Grafenberg</li>
+            <li><a href="japanviertel.html">Japanisches Viertel</a></li>
+            <li class="ohne-seite">Oberbilk</li>
+            <li><a href="oberkassel.html">Oberkassel</a></li>
+            <li class="ohne-seite">Pempelfort</li>
+            <li class="ohne-seite">Unterbilk</li>
+            <li class="ohne-seite">Luxus und Glamour rund um die Kö</li>
+            <li class="ohne-seite">Unterschätzte Kunstmeile Königsallee</li>
+            <li class="ohne-seite">Ehrenhof und Hofgarten</li>
+            <li><a href="nordpark.html">Nordpark</a></li>
+            <li class="ohne-seite">Volksgarten</li>
+            <li class="ohne-seite">Nordfriedhof</li>
+            <li class="ohne-seite">Friedhof Golzheim</li>
+          </ul>
+        </div>
+
+        <div class="themenblock">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rad"/></svg>
+            <h3><a href="sportlich.html">Sportlich</a></h3>
+          </div>
+          <ul>
+            <li class="ohne-seite">Radtour</li>
+            <li class="ohne-seite">Sight Running</li>
+            <li class="ohne-seite">Sight Walking</li>
+          </ul>
+        </div>
+
+        <div class="themenblock">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kinder"/></svg>
+            <h3><a href="besondere-beduerfnisse.html">Familien &amp; besondere Bedürfnisse</a></h3>
+          </div>
+          <ul>
+            <li class="ohne-seite">Düsseldorf für Schüler</li>
+            <li class="ohne-seite">Kinder suchen den verschwundenen Kurhut</li>
+            <li class="ohne-seite">Barrierefrei: Altstadt für Rollstuhlfahrer*innen</li>
+            <li class="ohne-seite">Altstadt und Japanviertel für Blinde und Sehbehinderte</li>
+            <li class="ohne-seite">Dusseldorf for Expats</li>
+            <li class="ohne-seite">Düsseldorf pour Expats</li>
+          </ul>
+        </div>
+
+        <div class="themenblock">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-karte"/></svg>
+            <h3><a href="touren-ausserhalb.html">Touren außerhalb von Düsseldorf</a></h3>
+          </div>
+          <ul>
+            <li><a href="koeln-altstadt.html">Köln</a></li>
+            <li class="ohne-seite">Königswinter + Drachenfels</li>
+            <li class="ohne-seite">Zons</li>
+            <li class="ohne-seite">Mülheim a. d. Ruhr</li>
+            <li class="ohne-seite">Essen</li>
+            <li><a href="landschaftspark-duisburg-nord.html">Landschaftspark Duisburg-Nord</a></li>
+            <li class="ohne-seite">Kloster Kamp</li>
+            <li class="ohne-seite">Neuss</li>
+            <li class="ohne-seite">Museumsinsel Hombroich</li>
+            <li class="ohne-seite">Schloss Dyck</li>
+            <li class="ohne-seite">Schloss Rheydt</li>
+            <li class="ohne-seite">Britischer Soldatenfriedhof Rheinberg</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2>Ihr Thema war nicht dabei?</h2>
+          <p>Wir passen jede Tour gerne an Ihre Wünsche an – fragen Sie einfach unverbindlich an.</p>
+        </div>
+
+        <a class="knopf knopf--umriss" href="anfrage.html">
+          Jetzt anfragen
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches und Service">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__sozial">
+      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="touren-daten.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
