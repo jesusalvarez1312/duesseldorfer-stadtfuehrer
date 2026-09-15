@@ -5,7 +5,7 @@
    entstehen automatisch daraus, in zufälliger Reihenfolge.
 
    bild:       Dateiname ohne Endung. Erwartet wird eine Datei
-               bilder/gaestefuehrer/<bild>.jpg (Hochformat, ca. 600×750px).
+               bilder/<bild>.jpg (Querformat 4:3, ca. 800px breit).
                Fehlt die Datei, erscheint automatisch ein Platzhalter.
    stichworte: genau 3 Begriffe, die die Schwerpunkte beschreiben.
    sprachen:   Kürzel aus der Liste unten, 1–4 Stück.

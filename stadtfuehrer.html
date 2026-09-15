@@ -70,7 +70,8 @@
       <h1>Unsere Stadtführerinnen<br>und Stadtführer</h1>
       <p class="lead">
         Jede und jeder von ihnen führt mit eigenen Schwerpunkten und in
-        eigenen Sprachen durch Düsseldorf.
+        eigenen Sprachen durch Düsseldorf. Die Reihenfolge unten ist bei
+        jedem Aufruf neu gemischt.
       </p>
     </div>
 
@@ -82,8 +83,8 @@
 
          BILDER EINSETZEN:
          Jede Kachel zeigt so lange einen Platzhalter mit dem Dateinamen,
-         bis eine Datei mit genau diesem Namen im Ordner
-         "bilder/gaestefuehrer" liegt. Dann erscheint das Foto
+         bis eine Datei mit genau diesem Namen im Ordner "bilder" liegt.
+         Dann erscheint das Foto
          automatisch – ohne Änderung am Code.
          Empfohlen: Querformat 4:3, ca. 800 Pixel breit, unter 200 KB.
     ============================================================== -->
@@ -151,7 +152,7 @@
         return spracheInfo[code].label;
       }).join(", ");
 
-      const dateiname = "bilder/gaestefuehrer/" + f.bild + ".jpg";
+      const dateiname = "bilder/" + f.bild + ".jpg";
 
       return (
         '<li class="fuehrer-kachel">' +
