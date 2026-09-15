@@ -4,16 +4,19 @@
    hier einfach ergänzt werden – die Kacheln auf stadtfuehrer.html
    entstehen automatisch daraus, in zufälliger Reihenfolge.
 
-   bild:       Dateiname ohne Endung. Erwartet wird eine , "en"
+   bild:       Dateiname ohne Endung. Erwartet wird eine Datei
                bilder/<bild>.jpg (Querformat 4:3, ca. 800px breit).
                Fehlt die Datei, erscheint automatisch ein Platzhalter.
    stichworte: genau 3 Begriffe, die die Schwerpunkte beschreiben.
    sprachen:   Kürzel aus der Liste unten, 1–4 Stück.
                de = Deutsch, en = English, fr = Français, nl = Nederlands,
                es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski
+   link:       optional. Wenn gesetzt, werden Foto und Name der Person
+               dorthin verlinkt (z. B. eigene Website); beim Überfahren
+               mit der Maus erscheint "mehr Infos".
 =================================================================== */
 const stadtfuehrerListe = [
-  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Architektur"],       sprachen: ["de", "en", "fr", "es"] },
+  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Architektur"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
   { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Geschichte", "Carlstadt", "Krimitouren"],        sprachen: ["de", "en"] },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"] },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Kirchen", "Persönlichkeiten", "Altstadt"],         sprachen: ["de", "fr", "en"] },
