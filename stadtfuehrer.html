@@ -1,0 +1,183 @@
+  <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Unsere Stadtführer:innen – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="22 zertifizierte Gästeführerinnen und Gästeführer aus Düsseldorf – mit ihren Themenschwerpunkten und Sprachen auf einen Blick.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stadtfuehrer.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- =================================================================
+     ICON-BIBLIOTHEK (identisch zu index.html, für Kopf- und Fußbereich)
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-mail"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.8 7 8.2 5.8L20.2 7"/></g>
+    <g id="i-telefon"><path d="M6.4 3.5h3l1.5 4-2 1.5a12.2 12.2 0 0 0 6.1 6.1l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2C11.6 19 5 12.4 4.4 5.7a2 2 0 0 1 2-2.2Z"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH (wie index.html) ============================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <span class="navi__trenner" aria-hidden="true"></span>
+      <a href="english.html" hreflang="en">English</a>
+      <a href="francais.html" hreflang="fr">Français</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== TITELBEREICH DER UNTERSEITE ============================ -->
+  <section class="band">
+    <div class="huelle fuehrer-kopf">
+      <p class="augenbraue">22 Persönlichkeiten, eine Stadt</p>
+      <h1>Unsere Stadtführerinnen<br>und Stadtführer</h1>
+      <p class="lead">
+        Jede und jeder von ihnen führt mit eigenen Schwerpunkten und in
+        eigenen Sprachen durch Düsseldorf. Die Reihenfolge unten ist bei
+        jedem Aufruf neu gemischt.
+      </p>
+    </div>
+
+    <!-- ===== KACHELN =============================================
+         Die Kacheln selbst kommen aus stadtfuehrer-daten.js und
+         werden von script.js unten eingefügt – dort steht auch die
+         Zufallsmischung. Neue Personen werden nur in der Datendatei
+         ergänzt, nicht hier im HTML.
+
+         BILDER EINSETZEN:
+         Jede Kachel zeigt so lange einen Platzhalter mit dem Dateinamen,
+         bis eine Datei mit genau diesem Namen im Ordner
+         "bilder/gaestefuehrer" liegt. Dann erscheint das Foto
+         automatisch – ohne Änderung am Code.
+         Empfohlen: Hochformat, ca. 600×750 Pixel, unter 200 KB.
+    ============================================================== -->
+    <div class="huelle">
+      <ul class="fuehrer-liste" id="fuehrerListe" hidden></ul>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH (wie index.html) ============================ -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches und Service">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+      <p>© 1997–2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__sozial">
+      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script src="stadtfuehrer-daten.js"></script>
+<script>
+  /* Kacheln aus stadtfuehrerListe erzeugen, dabei die Reihenfolge
+     mischen (Fisher-Yates), bevor die Liste sichtbar wird. */
+  (function () {
+    const liste = document.getElementById("fuehrerListe");
+    const daten = [...stadtfuehrerListe];
+
+    for (let i = daten.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [daten[i], daten[j]] = [daten[j], daten[i]];
+    }
+
+    liste.innerHTML = daten.map(function (f) {
+      const stichworte = f.stichworte.map(function (s) {
+        return "<li>" + s + "</li>";
+      }).join("");
+
+      const flaggen = f.sprachen.map(function (code) {
+        const info = spracheInfo[code];
+        return '<span class="flagge" title="' + info.label + '">' + info.flagge + "</span>";
+      }).join("");
+
+      const sprachenLabel = f.sprachen.map(function (code) {
+        return spracheInfo[code].label;
+      }).join(", ");
+
+      const dateiname = "bilder/gaestefuehrer/" + f.bild + ".jpg";
+
+      return (
+        '<li class="fuehrer-kachel">' +
+          '<figure class="tour__bild fuehrer-kachel__bild">' +
+            '<img src="' + dateiname + '" alt="' + f.name + '" loading="lazy" ' +
+                 'onload="this.closest(\'.tour__bild\').querySelector(\'.platzhalter\')?.remove()" ' +
+                 'onerror="this.remove()">' +
+            '<span class="platzhalter">' +
+              '<span class="platzhalter__wort">Bild fehlt</span>' +
+              '<span class="platzhalter__datei">' + dateiname + '</span>' +
+            '</span>' +
+          '</figure>' +
+          '<div class="fuehrer-kachel__inhalt">' +
+            '<h3 class="fuehrer-kachel__name">' + f.name + '</h3>' +
+            '<p class="fuehrer-kachel__label">Touren</p>' +
+            '<ul class="fuehrer-kachel__stichworte">' + stichworte + '</ul>' +
+            '<div class="fuehrer-kachel__flaggen" aria-label="Sprachen: ' + sprachenLabel + '">' + flaggen + '</div>' +
+          '</div>' +
+        '</li>'
+      );
+    }).join("");
+
+    liste.hidden = false;
+  })();
+</script>
+<script src="script.js"></script>
+</body>
+</html>

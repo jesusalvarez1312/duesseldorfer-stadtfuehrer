@@ -1,0 +1,109 @@
+/* ================================================================
+   STADTFÜHRER-KACHELN
+   Ergänzt style.css um die Komponenten dieser Unterseite.
+   Nutzt die Bild-Platzhalter-Technik und die Klasse ".flagge"
+   aus index.html weiter, damit beides zusammenpasst.
+=================================================================== */
+
+.fuehrer-kopf {
+  max-width: 46rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.fuehrer-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: 1.75rem 1.5rem;
+}
+
+.fuehrer-kachel {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(20, 12, 8, 0.06), 0 8px 20px -12px rgba(20, 12, 8, 0.18);
+}
+
+.fuehrer-kachel__bild {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+}
+
+.fuehrer-kachel__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fuehrer-kachel__inhalt {
+  padding: 1rem 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fuehrer-kachel__name {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2a1c14;
+}
+
+.fuehrer-kachel__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #B4131C;
+  margin: 0;
+}
+
+.fuehrer-kachel__stichworte {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.fuehrer-kachel__stichworte li {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  color: #5a4c40;
+  background: #F4F1EA;
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.55rem;
+}
+
+.fuehrer-kachel__flaggen {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.fuehrer-kachel__flaggen .flagge {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.fuehrer-kachel__flaggen .flagge svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Solange stadtfuehrerListe.js seine Kacheln noch nicht eingefügt hat,
+   bleibt die Liste unsichtbar – so gibt es keinen kurzen Blitz der
+   unsortierten Reihenfolge, bevor gemischt wurde. */
+.fuehrer-liste[hidden] {
+  display: none;
+}
