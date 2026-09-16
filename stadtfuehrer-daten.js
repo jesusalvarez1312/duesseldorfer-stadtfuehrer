@@ -22,7 +22,7 @@ const stadtfuehrerListe = [
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Kirchen", "Persönlichkeiten", "Altstadt"],         sprachen: ["de", "fr", "en"] },
   { name: "Jesús Alvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Altbier", "Stadtviertel"],        sprachen: ["de", "es"] },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Grünflächen", "Rheinufer"],           sprachen: ["de", "en"] },
-  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sight-Running", "Sportlich", "Altstadt"],                  sprachen: ["de", "en", "nl"] },
+  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sight-Running", "Sportlich", "Altstadt"],                  sprachen: ["de", "en"] link: "https://die-gaestefuehrer.de/profile/stefanie-buss-2708" },
   { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Radtouren", "Jugendstil", "Kulinarisches"],            sprachen: ["de", "en", "nl", "fr", "es"] },
   { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Geschichte", "Kirchen", "Literatur"],              sprachen: ["de", "fr", "en"] },
   { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Kulinarisches", "Stadtviertel"],    sprachen: ["de", "en", "fr"] },
