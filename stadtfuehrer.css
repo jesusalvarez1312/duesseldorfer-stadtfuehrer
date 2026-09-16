@@ -41,8 +41,25 @@
   display: block;
 }
 
+.fuehrer-kachel__link,
+.fuehrer-kachel__link:hover,
+.fuehrer-kachel__link:focus-visible {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.fuehrer-kachel__link .fuehrer-kachel__name {
+  transition: color 0.15s ease;
+}
+
+.fuehrer-kachel__link:hover .fuehrer-kachel__name,
+.fuehrer-kachel__link:focus-visible .fuehrer-kachel__name {
+  color: #B4131C;
+}
+
 .fuehrer-kachel__inhalt {
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 0.55rem 1.1rem 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
@@ -53,6 +70,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin: 0;
+  padding: 0.8rem 1.1rem 0;
   color: #2a1c14;
 }
 
