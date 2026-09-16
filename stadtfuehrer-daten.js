@@ -7,8 +7,8 @@
    bild:       Dateiname ohne Endung. Erwartet wird eine Datei
                bilder/<bild>.jpg (Querformat 4:3, ca. 800px breit).
                Fehlt die Datei, erscheint automatisch ein Platzhalter.
-   stichworte: genau 3 Begriffe, die die Schwerpunkte beschreiben.
-   sprachen:   Kürzel aus der Liste unten, 1–4 Stück.
+   stichworte: Begriffe, die die Schwerpunkte beschreiben (beliebig viele).
+   sprachen:   Kürzel aus der Liste unten, beliebig viele.
                de = Deutsch, en = English, fr = Français, nl = Nederlands,
                es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski
    link:       optional. Wenn gesetzt, werden Foto und Name der Person
