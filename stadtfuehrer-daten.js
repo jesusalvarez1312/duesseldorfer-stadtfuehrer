@@ -22,22 +22,22 @@ const stadtfuehrerListe = [
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Kirchen", "Persönlichkeiten", "Altstadt"],         sprachen: ["de", "fr", "en"] },
   { name: "Jesús Alvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Altbier", "Stadtviertel"],        sprachen: ["de", "es"] },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Grünflächen", "Rheinufer"],           sprachen: ["de", "en"] },
-  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Familien", "Kinder", "Altstadt"],                  sprachen: ["de", "en", "nl"] },
-  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Jugendstil", "Mode"],            sprachen: ["de", "en", "nl", "fr", "es"] },
+  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sight-Running", "Sportlich", "Altstadt"],                  sprachen: ["de", "en", "nl"] },
+  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Radtouren", "Jugendstil", "Kulinarisches"],            sprachen: ["de", "en", "nl", "fr", "es"] },
   { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Geschichte", "Kirchen", "Literatur"],              sprachen: ["de", "fr", "en"] },
   { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Kulinarisches", "Stadtviertel"],    sprachen: ["de", "en", "fr"] },
   { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Altstadt", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
   { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Altstadt", "Kunst & Kultur", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
-  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Geschichte", "Architektur", "Neue Mitte"],         sprachen: ["de", "pl"] },
+  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Geschichte", "Golzheim"],         sprachen: ["de", "pl"] },
   { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Radtouren", "Rheinufer"],           sprachen: ["de", "nl", "en"] },
   { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de", "en"] },
-  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Barrierefrei", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"] },
+  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Barrierefrei", "Familien", "Geschichte"],         sprachen: ["de", "en", "nl"] },
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Kulinarisches", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
-  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "MedienHafen"],        sprachen: ["de", "en"] },
-  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Jugendstil", "Kunst & Kultur", "Stadtviertel"],    sprachen: ["de", "en"] },
+  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"] },
+  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Geschichte", "Kunst & Kultur", "Niederrhein"],    sprachen: ["de", "en"] },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "it"] },
-  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Familien", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "fr"] },
-  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Altstadt", "Persönlichkeiten", "Kulinarisches"],   sprachen: ["de", "en"] }
+  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Geschichte", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "fr"] },
+  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Persönlichkeiten", "Kulinarisches"],   sprachen: ["de", "en"] }
 ];
 
 /* Anzeigedaten je Sprachkürzel – deckt sich mit der Liste im
