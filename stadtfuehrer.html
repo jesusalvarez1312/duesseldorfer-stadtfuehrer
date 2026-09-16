@@ -154,19 +154,30 @@
 
       const dateiname = "bilder/" + f.bild + ".jpg";
 
+      const bild =
+        '<figure class="tour__bild fuehrer-kachel__bild">' +
+          '<img src="' + dateiname + '" alt="' + f.name + '" loading="lazy" ' +
+               'onload="this.closest(\'.tour__bild\').querySelector(\'.platzhalter\')?.remove()" ' +
+               'onerror="this.remove()">' +
+          '<span class="platzhalter">' +
+            '<span class="platzhalter__wort">Bild fehlt</span>' +
+            '<span class="platzhalter__datei">' + dateiname + '</span>' +
+          '</span>' +
+        '</figure>';
+
+      const name = '<h3 class="fuehrer-kachel__name">' + f.name + '</h3>';
+
+      // Foto und Name werden nur verlinkt, wenn in stadtfuehrer-daten.js
+      // ein "link" hinterlegt ist. Beim Überfahren mit der Maus
+      // erscheint dann "mehr Infos" (title-Attribut).
+      const bildUndName = f.link
+        ? '<a class="fuehrer-kachel__link" href="' + f.link + '" title="mehr Infos" target="_blank" rel="noopener">' + bild + name + '</a>'
+        : bild + name;
+
       return (
         '<li class="fuehrer-kachel">' +
-          '<figure class="tour__bild fuehrer-kachel__bild">' +
-            '<img src="' + dateiname + '" alt="' + f.name + '" loading="lazy" ' +
-                 'onload="this.closest(\'.tour__bild\').querySelector(\'.platzhalter\')?.remove()" ' +
-                 'onerror="this.remove()">' +
-            '<span class="platzhalter">' +
-              '<span class="platzhalter__wort">Bild fehlt</span>' +
-              '<span class="platzhalter__datei">' + dateiname + '</span>' +
-            '</span>' +
-          '</figure>' +
+          bildUndName +
           '<div class="fuehrer-kachel__inhalt">' +
-            '<h3 class="fuehrer-kachel__name">' + f.name + '</h3>' +
             '<ul class="fuehrer-kachel__stichworte">' + stichworte + '</ul>' +
             '<div class="fuehrer-kachel__flaggen" aria-label="Sprachen: ' + sprachenLabel + '">' + flaggen + '</div>' +
           '</div>' +
