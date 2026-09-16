@@ -33,7 +33,7 @@ const stadtfuehrerListe = [
   { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de", "en"] },
   { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Barrierefrei", "Familien", "Geschichte"],         sprachen: ["de", "en", "nl"] },
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Kulinarisches", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
-  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"] },
+  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"] }, link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Geschichte", "Kunst & Kultur", "Niederrhein"],    sprachen: ["de", "en"] },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "it"] },
   { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Geschichte", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "fr"] },
