@@ -19,7 +19,7 @@ const stadtfuehrerListe = [
   { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Architektur"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
   { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Geschichte", "Carlstadt", "Krimitouren"],        sprachen: ["de", "en"] },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"] },
-  { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Kirchen", "Persönlichkeiten", "Altstadt"],         sprachen: ["de", "fr", "en"] },
+  { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Kirchen", "Persönlichkeiten", "Altstadt"],         sprachen: ["de", "fr", "en"] link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
   { name: "Jesús Alvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Altbier", "Stadtviertel"],        sprachen: ["de", "es"] },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Grünflächen", "Rheinufer"],           sprachen: ["de", "en"] },
   { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sight-Running", "Sportlich", "Altstadt"],                  sprachen: ["de", "en"] link: "https://die-gaestefuehrer.de/profile/stefanie-buss-2708" },
