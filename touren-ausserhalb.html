@@ -16,6 +16,23 @@
   <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="unterseiten.css">
+
+  <!-- Regionen-Überschriften: kann bei Bedarf nach unterseiten.css umziehen -->
+  <style>
+    .region { margin: 0 0 clamp(2.5rem, 6vw, 4.5rem); scroll-margin-top: 6rem; }
+    .region:last-child { margin-bottom: 0; }
+    .region__titel {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+      line-height: 1.15;
+      margin: 0 0 .9rem;
+    }
+    .region__titel::after {
+      content: ""; display: block; width: 3rem; height: 3px;
+      margin-top: .6rem; background: #B4131C; border-radius: 2px;
+    }
+    .region__text { margin: 0 0 1.75rem; max-width: 62ch; }
+  </style>
 </head>
 
 <body>
@@ -169,49 +186,19 @@
   </section>
 
 
-  <!-- ===== DIE GRUPPEN ==========================================
-       Aufklappbare Bereiche, gebaut mit details und summary.
-       Das ist eingebautes HTML: funktioniert ohne JavaScript,
-       lässt sich mit der Tastatur bedienen und wird von
-       Screenreadern richtig angesagt.
-
-       Alle drei sind beim Laden zu. Soll eine offen starten,
-       schreibt man in ihren details-Tag das Wort open.
+  <!-- ===== DIE REGIONEN =========================================
+       Alle Touren stehen offen auf der Seite, gegliedert durch
+       Überschriften – nichts muss aufgeklappt werden.
+       Jede Region ist ein eigener section-Block mit h2 und Kacheln.
   ============================================================ -->
   <section class="band">
     <div class="huelle">
 
-        <!-- ---- Gruppe 1: Rheinaufwärts ---- -->
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
+        <section class="region" id="rheinaufwaerts" aria-labelledby="region-rheinaufwaerts">
+          <h2 class="region__titel" id="region-rheinaufwaerts">Köln und der Drachenfels</h2>
+          <p class="region__text">Nicht weit rheinaufwärts warten die Domstadt, das mittelalterliche Zons und ein Gipfel mit Aussicht: Ausflüge, die sich wunderbar als Tagesausflug ab Düsseldorf eignen.</p>
 
-            <span class="gruppe__bild">
-              <img src="bilder/gruppe-rheinaufwaerts.jpg" alt=""
-                   width="800" height="500" loading="lazy">
-            </span>
-
-            <span class="gruppe__symbol" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-karte"/></svg>
-            </span>
-
-            <h2 class="gruppe__titel">
-              Köln und der Drachenfels
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </h2>
-
-            <span class="gruppe__untertitel">Mit dem Rhein flussaufwärts nach Köln, Zons und zum Siebengebirge.</span>
-
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
-
-          <div class="gruppe__inhalt">
-            <p class="gruppe__text">Nicht weit rheinaufwärts warten die Domstadt, das mittelalterliche Zons und ein Gipfel mit Aussicht: Ausflüge, die sich wunderbar als Tagesausflug ab Düsseldorf eignen.</p>
-
-            <ul class="viertel-liste">
+          <ul class="viertel-liste">
 
             <li class="viertel" id="tour-koeln">
               <figure class="viertel__bild">
@@ -266,48 +253,13 @@
             </li>
 
             </ul>
+        </section>
 
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </details>
+        <section class="region" id="ruhrgebiet" aria-labelledby="region-ruhrgebiet">
+          <h2 class="region__titel" id="region-ruhrgebiet">Ruhrgebiet</h2>
+          <p class="region__text">Im Ruhrgebiet erwarten Sie Industriekultur und Stadtgeschichte – von der Zeche bis zum Wasserbahnhof.</p>
 
-        <!-- ---- Gruppe 2: Ruhrgebiet ---- -->
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
-
-            <span class="gruppe__bild">
-              <img src="bilder/gruppe-ruhrgebiet.jpg" alt=""
-                   width="800" height="500" loading="lazy">
-            </span>
-
-            <span class="gruppe__symbol" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fabrik"/></svg>
-            </span>
-
-            <h2 class="gruppe__titel">
-              Ruhrgebiet
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </h2>
-
-            <span class="gruppe__untertitel">Industriekultur und Stadtgeschichte im Ruhrgebiet.</span>
-
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
-
-          <div class="gruppe__inhalt">
-            <p class="gruppe__text">Im Ruhrgebiet erwarten Sie Industriekultur und Stadtgeschichte – von der Zeche bis zum Wasserbahnhof.</p>
-
-            <ul class="viertel-liste">
+          <ul class="viertel-liste">
 
             <li class="viertel" id="tour-muelheim-a-d-ruhr">
               <figure class="viertel__bild">
@@ -364,48 +316,13 @@
             </li>
 
             </ul>
+        </section>
 
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </details>
+        <section class="region" id="neuss-niederrhein" aria-labelledby="region-neuss-niederrhein">
+          <h2 class="region__titel" id="region-neuss-niederrhein">Neuss und Niederrhein</h2>
+          <p class="region__text">Nur einen Katzensprung entfernt: die Römerstadt Neuss, ein außergewöhnlicher Ort für Kunst und Natur und prunkvolle Schlösser am Niederrhein.</p>
 
-        <!-- ---- Gruppe 3: Neuss und Niederrhein ---- -->
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
-
-            <span class="gruppe__bild">
-              <img src="bilder/gruppe-rund-um-neuss.jpg" alt=""
-                   width="800" height="500" loading="lazy">
-            </span>
-
-            <span class="gruppe__symbol" aria-hidden="true">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
-            </span>
-
-            <h2 class="gruppe__titel">
-              Neuss und Niederrhein
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </h2>
-
-            <span class="gruppe__untertitel">Die Nachbarstadt Neuss, die Museumsinsel Hombroich und Schlösser am Niederrhein.</span>
-
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
-
-          <div class="gruppe__inhalt">
-            <p class="gruppe__text">Nur einen Katzensprung entfernt: die Römerstadt Neuss, ein außergewöhnlicher Ort für Kunst und Natur und prunkvolle Schlösser am Niederrhein.</p>
-
-            <ul class="viertel-liste">
+          <ul class="viertel-liste">
 
             <li class="viertel" id="tour-neuss">
               <figure class="viertel__bild">
@@ -478,16 +395,7 @@
             </li>
 
             </ul>
-
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </details>
+        </section>
 
     </div>
   </section>
