@@ -32,6 +32,11 @@
       margin-top: .6rem; background: #B4131C; border-radius: 2px;
     }
     .region__text { margin: 0 0 1.75rem; max-width: 62ch; }
+    /* Titel wird rot, wenn Bild oder Titel einer Kachel mit Detailseite berührt wird */
+    .viertel__titel a { transition: color .2s ease; }
+    .viertel__titel a:hover,
+    .viertel__titel a:focus-visible,
+    .viertel:has(.viertel__bildlink:hover) .viertel__titel a { color: #B4131C; }
   </style>
 </head>
 
@@ -202,7 +207,7 @@
 
             <li class="viertel" id="tour-koeln">
               <figure class="viertel__bild">
-                <a href="koeln-altstadt.html">
+                <a class="viertel__bildlink" href="koeln-altstadt.html" tabindex="-1" aria-hidden="true">
                   <img src="bilder/ausflug-koeln.jpg" alt="Kölner Dom und Altstadt"
                        width="800" height="600" loading="lazy">
                 </a>
@@ -236,7 +241,7 @@
 
             <li class="viertel" id="tour-zons">
               <figure class="viertel__bild">
-                <a href="zons.html">
+                <a class="viertel__bildlink" href="zons.html" tabindex="-1" aria-hidden="true">
                   <img src="bilder/ausflug-zons.jpg" alt="Stadtmauer der mittelalterlichen Stadt Zons"
                        width="800" height="600" loading="lazy">
                 </a>
@@ -299,7 +304,7 @@
 
             <li class="viertel" id="tour-landschaftspark-duisburg-nord">
               <figure class="viertel__bild">
-                <a href="landschaftspark-duisburg-nord.html">
+                <a class="viertel__bildlink" href="landschaftspark-duisburg-nord.html" tabindex="-1" aria-hidden="true">
                   <img src="bilder/ausflug-landschaftspark-duisburg-nord.jpg" alt="Beleuchtete Hochöfen im Landschaftspark Duisburg-Nord"
                        width="800" height="600" loading="lazy">
                 </a>
@@ -360,7 +365,7 @@
 
             <li class="viertel" id="tour-schloss-dyck">
               <figure class="viertel__bild">
-                <a href="schloss-dyck.html">
+                <a class="viertel__bildlink" href="schloss-dyck.html" tabindex="-1" aria-hidden="true">
                   <img src="bilder/ausflug-schloss-dyck.jpg" alt="Wasserschloss Dyck mit Park"
                        width="800" height="600" loading="lazy">
                 </a>
@@ -378,7 +383,7 @@
 
             <li class="viertel" id="tour-schloss-rheydt">
               <figure class="viertel__bild">
-                <a href="schloss-rheydt.html">
+                <a class="viertel__bildlink" href="schloss-rheydt.html" tabindex="-1" aria-hidden="true">
                   <img src="bilder/ausflug-schloss-rheydt.jpg" alt="Renaissanceschloss Rheydt in Mönchengladbach"
                        width="800" height="600" loading="lazy">
                 </a>
