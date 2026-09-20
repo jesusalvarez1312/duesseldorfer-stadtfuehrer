@@ -34,7 +34,7 @@ const stadtfuehrerListe = [
   { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Barrierefrei", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"] },
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Kulinarisches", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
   { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"] },
-  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en"] },
+  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"] },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "it"] },
   { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Familien", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "fr"] },
   { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Altstadt", "Persönlichkeiten", "Kulinarisches"],   sprachen: ["de", "en"] }
