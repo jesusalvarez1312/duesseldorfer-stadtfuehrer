@@ -25,7 +25,7 @@ const stadtfuehrerListe = [
   { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Familien", "Kinder", "Altstadt"],                  sprachen: ["de", "en", "nl"] },
   { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Jugendstil", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
   { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Geschichte", "Kirchen", "Literatur"],              sprachen: ["de", "fr", "en"] },
-  { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Kulinarisches", "Stadtviertel"],    sprachen: ["de", "en", "fr"] },
+  { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Geschichte"],    sprachen: ["de", "en"] },
   { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Altstadt", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
   { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Altstadt", "Kunst & Kultur", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
   { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Geschichte", "Architektur", "Neue Mitte"],         sprachen: ["de", "pl"] },
