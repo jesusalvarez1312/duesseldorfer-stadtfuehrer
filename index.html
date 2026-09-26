@@ -440,28 +440,40 @@
   <section class="band band--dunkel" id="verein">
     <div class="huelle verein">
 
-      <div>
-        <h2 class="titel-strich">Wer wir sind</h2>
-        <p>
-          ...ein Zusammenschluss qualifizierter, selbständiger Gästeführer in Düsseldorf. So bunt wie Düsseldorf sind auch wir. Zu uns gehören Experten in Kunst und Geschichte, Architekten, Journalisten, Pädagogen, Sprach- und Wirtschaftswissenschaftler. 
-          Dank dieser breiten Palette an Fachwissen besitzen wir mittlerweile einen "Schatz" von Führungen zu mehr als 100 Themen. Touren von der Stange sind nicht nach unserem Geschmack.
-        </p>                                                              
-        <p>Viele von uns haben inzwischen 2 oder 3 Sterne - der “Meisterbrief” des in Deutschlands anspruchsvollsten Ausbildungsprogramms für Gästeführer. Bei uns sind Sie immer in guten Händen!</p>
+      <!-- Text und Foto nebeneinander; das Grid stapelt auf schmalen
+           Bildschirmen automatisch (auto-fit/minmax). -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2.5rem; align-items:center;">
 
-        <div class="knopfreihe">
-          <a class="knopf" href="stadtfuehrer.html">
-            Guide finden
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-          </a>
-          <a class="knopf knopf--rand" href="ueber-den-verein.html">
-            Über den Verein
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-          </a>
+        <div>
+          <h2 class="titel-strich">Wer wir sind</h2>
+          <p>
+            ...ein Zusammenschluss qualifizierter, selbständiger Gästeführer in Düsseldorf. So bunt wie Düsseldorf sind auch wir. Zu uns gehören Experten in Kunst und Geschichte, Architekten, Journalisten, Pädagogen, Sprach- und Wirtschaftswissenschaftler. 
+            Dank dieser breiten Palette an Fachwissen besitzen wir mittlerweile einen "Schatz" von Führungen zu mehr als 100 Themen. Touren von der Stange sind nicht nach unserem Geschmack.
+          </p>                                                              
+          <p>Viele von uns haben inzwischen 2 oder 3 Sterne - der “Meisterbrief” des in Deutschlands anspruchsvollsten Ausbildungsprogramms für Gästeführer. Bei uns sind Sie immer in guten Händen!</p>
+
+          <div class="knopfreihe">
+            <a class="knopf" href="stadtfuehrer.html">
+              Guide finden
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+            </a>
+            <a class="knopf knopf--rand" href="ueber-den-verein.html">
+              Über den Verein
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+            </a>
+          </div>
         </div>
-      
+
+        <!-- Gleiche Bildklasse wie im Seitenaufmacher (held__bild), daher
+             automatisch mit denselben abgerundeten Ecken. -->
+        <figure class="held__bild">
+          <img src="bilder/team-verein.jpg"
+               alt="Gästeführerinnen und Gästeführer des Düsseldorfer Stadtführer e.V."
+               width="900" height="675" loading="lazy">
+        </figure>
+
       </div>
-      
-        
+
         <!-- Skyline: reine Dekoration, deshalb leeres alt-Attribut -->
         <img class="skyline" src="bilder/skyline-klar.png" alt="" aria-hidden="true" loading="lazy">
      
