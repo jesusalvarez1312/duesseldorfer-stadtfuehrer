@@ -440,11 +440,18 @@
   <section class="band band--dunkel" id="verein">
     <div class="huelle verein">
 
-      <!-- Text und Foto nebeneinander; das Grid stapelt auf schmalen
-           Bildschirmen automatisch (auto-fit/minmax). -->
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2.5rem; align-items:center;">
+      <!-- Gleiche Struktur/Klassen wie im Seitenaufmacher (.held /
+           .held__bild / .held__text), damit Foto-Positionierung und
+           Umbruchpunkt exakt identisch sind. -->
+      <div class="held">
 
-        <div>
+        <figure class="held__bild">
+          <img src="bilder/team-verein.jpg"
+               alt="Gästeführerinnen und Gästeführer des Düsseldorfer Stadtführer e.V."
+               width="900" height="675" loading="lazy">
+        </figure>
+
+        <div class="held__text">
           <h2 class="titel-strich">Wer wir sind</h2>
           <p>
             ...ein Zusammenschluss qualifizierter, selbständiger Gästeführer in Düsseldorf. So bunt wie Düsseldorf sind auch wir. Zu uns gehören Experten in Kunst und Geschichte, Architekten, Journalisten, Pädagogen, Sprach- und Wirtschaftswissenschaftler. 
@@ -463,14 +470,6 @@
             </a>
           </div>
         </div>
-
-        <!-- Gleiche Bildklasse wie im Seitenaufmacher (held__bild), daher
-             automatisch mit denselben abgerundeten Ecken. -->
-        <figure class="held__bild">
-          <img src="bilder/team-verein.jpg"
-               alt="Gästeführerinnen und Gästeführer des Düsseldorfer Stadtführer e.V."
-               width="900" height="675" loading="lazy">
-        </figure>
 
       </div>
 
