@@ -10,7 +10,7 @@
    stichworte: Begriffe, die die Schwerpunkte beschreiben (beliebig viele).
    sprachen:   Kürzel aus der Liste unten, beliebig viele.
                de = Deutsch, en = English, fr = Français, nl = Nederlands,
-               es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski
+               es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski, ru = Russki
    link:       optional. Wenn gesetzt, werden Foto und Name der Person
                dorthin verlinkt (z. B. eigene Website); beim Überfahren
                mit der Maus erscheint "mehr Infos".
@@ -35,7 +35,7 @@ const stadtfuehrerListe = [
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Kulinarisches", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
   { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"] },
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"] },
-  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cz"] },
+  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"] },
   { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Familien", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "ru"] },
   { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Altstadt", "Persönlichkeiten", "Kulinarisches"],   sprachen: ["de", "en"] }
 ];
