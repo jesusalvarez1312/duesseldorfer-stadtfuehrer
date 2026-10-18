@@ -53,4 +53,5 @@ const spracheInfo = {
   it: { label: "Italiano", flagge: "🇮🇹" },
   cs: { label: "Čeština",  flagge: "🇨🇿" },
   pl: { label: "Polski",   flagge: "🇵🇱" }
+  ru: { label: "Russki",   flagge: "RU" }
 };
