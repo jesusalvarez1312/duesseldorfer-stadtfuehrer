@@ -3,6 +3,8 @@
    Eine Zeile pro Gästeführerin/Gästeführer. Neue Personen können
    hier einfach ergänzt werden – die Kacheln auf stadtfuehrer.html
    entstehen automatisch daraus, in zufälliger Reihenfolge.
+   Kacheln, die immer am Ende stehen sollen, kommen in die Liste
+   "stadtfuehrerFesteKacheln" weiter unten.
 
    bild:       Dateiname ohne Endung. Erwartet wird eine Datei
                bilder/<bild>.jpg (Querformat 4:3, ca. 800px breit).
@@ -10,7 +12,8 @@
    stichworte: Begriffe, die die Schwerpunkte beschreiben (beliebig viele).
    sprachen:   Kürzel aus der Liste unten, beliebig viele.
                de = Deutsch, en = English, fr = Français, nl = Nederlands,
-               es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski, ru = Russki
+               es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski,
+               ru = Русский
    link:       optional. Wenn gesetzt, werden Foto und Name der Person
                dorthin verlinkt (z. B. eigene Website); beim Überfahren
                mit der Maus erscheint "mehr Infos".
@@ -29,15 +32,23 @@ const stadtfuehrerListe = [
   { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Altstadt", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
   { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Altstadt", "Kunst & Kultur", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
   { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Geschichte", "Architektur", "Neue Mitte"],         sprachen: ["de", "pl"] },
-  { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Radtouren", "Rheinufer"],           sprachen: ["de", "pl"] },
-  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de"] },
+  { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Radtouren", "Rheinufer"],           sprachen: ["de", "nl", "en"] },
+  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de", "en"] },
   { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Barrierefrei", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"] },
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Kulinarisches", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
   { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"] },
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"] },
-  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"] },
-  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Familien", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "ru"] },
+  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "it", "cs"] },
+  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Familien", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "fr", "ru"] },
   { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Altstadt", "Persönlichkeiten", "Kulinarisches"],   sprachen: ["de", "en"] }
+];
+
+/* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser
+   Reihenfolge, und werden von der Zufallsmischung ausgenommen.
+   Felder wie oben; "sprachen" darf leer bleiben (dann erscheinen
+   keine Flaggen). */
+const stadtfuehrerFesteKacheln = [
+  { name: "Ente Quak", bild: "ente-quak", stichworte: ["Parks", "Wasser", "Teich"], sprachen: [] }
 ];
 
 /* Anzeigedaten je Sprachkürzel – deckt sich mit der Liste im
@@ -45,13 +56,13 @@ const stadtfuehrerListe = [
    Emoji, sondern eine kleine SVG-Fahne. */
 const spracheInfo = {
   de: { label: "Deutsch",  flagge: "🇩🇪" },
-  en: { label: "English",  flagge: "🇬🇧" },
+  en: { label: "English",  flagge: "<svg viewBox=\"0 0 20 20\"><rect width=\"20\" height=\"20\" rx=\"2\" fill=\"#1F3A6E\"/><text x=\"10\" y=\"13.6\" text-anchor=\"middle\" font-family=\"Inter, Arial, sans-serif\" font-size=\"9.5\" font-weight=\"700\" fill=\"#fff\">EN</text></svg>" },
   fr: { label: "Français", flagge: "🇫🇷" },
   nl: { label: "Nederlands", flagge: "🇳🇱" },
   es: { label: "Español",  flagge: "🇪🇸" },
   ca: { label: "Català",   flagge: "<svg viewBox=\"0 0 20 20\"><rect width=\"20\" height=\"20\" fill=\"#FCDD09\"/><g fill=\"#DA121A\"><rect y=\"3\" width=\"20\" height=\"2.4\"/><rect y=\"8\" width=\"20\" height=\"2.4\"/><rect y=\"13\" width=\"20\" height=\"2.4\"/></g></svg>" },
   it: { label: "Italiano", flagge: "🇮🇹" },
   cs: { label: "Čeština",  flagge: "🇨🇿" },
-  pl: { label: "Polski",   flagge: "🇵🇱" }
-  ru: { label: "Russki",   flagge: "RU" }
+  pl: { label: "Polski",   flagge: "🇵🇱" },
+  ru: { label: "Русский",  flagge: "🇷🇺" }
 };

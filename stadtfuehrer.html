@@ -66,8 +66,8 @@
   <!-- ===== TITELBEREICH DER UNTERSEITE ============================ -->
   <section class="band">
     <div class="huelle fuehrer-kopf">
-      <p class="augenbraue">Wir Stadtführerinnen<br>und Stadtführer</p>
-      <h1>22 Guide-Persönlichkeiten, eine Stadt</h1>
+      <p class="augenbraue">22 Guide-Persönlichkeiten, eine Stadt</p>
+      <h1>Wir Stadtführerinnen<br>und Stadtführer</h1>
       <p class="lead">
         Jede und jeder von uns führt mit eigenen thematischen Schwerpunkten durch Düsseldorf.
       </p>
@@ -76,7 +76,7 @@
     <!-- ===== KACHELN =============================================
          Die Kacheln selbst kommen aus stadtfuehrer-daten.js und
          werden von script.js unten eingefügt – dort steht auch die
-         Zufallsmischung. Neue Personen werden nur in der Datendatei
+         Zufallsmischung (feste Kacheln am Ende sind davon ausgenommen). Neue Personen werden nur in der Datendatei
          ergänzt, nicht hier im HTML.
 
          BILDER EINSETZEN:
@@ -136,7 +136,10 @@
       [daten[i], daten[j]] = [daten[j], daten[i]];
     }
 
-    liste.innerHTML = daten.map(function (f) {
+    // Feste Kacheln (z. B. "Ente Quak") bleiben ungemischt am Ende.
+    const alle = daten.concat(stadtfuehrerFesteKacheln);
+
+    liste.innerHTML = alle.map(function (f) {
       const stichworte = f.stichworte.map(function (s) {
         return "<li>" + s + "</li>";
       }).join("");
@@ -177,7 +180,9 @@
           bildUndName +
           '<div class="fuehrer-kachel__inhalt">' +
             '<ul class="fuehrer-kachel__stichworte">' + stichworte + '</ul>' +
-            '<div class="fuehrer-kachel__flaggen" aria-label="Sprachen: ' + sprachenLabel + '">' + flaggen + '</div>' +
+            (f.sprachen.length
+              ? '<div class="fuehrer-kachel__flaggen" aria-label="Sprachen: ' + sprachenLabel + '">' + flaggen + '</div>'
+              : '') +
           '</div>' +
         '</li>'
       );
