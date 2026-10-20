@@ -6,7 +6,8 @@
 
    - Flaggen werden dargestellt  -> alle Sprachen zeigen ihre Flagge.
    - Flaggen fehlen              -> alle Sprachen zeigen ihr Textkürzel
-                                    (DE, EN, FR …), auch Català.
+                                    (DE, EN, FR …) im bisherigen Kreis,
+                                    auch Català.
 
    Gilt für jedes Element mit class="flagge" und data-code="xx".
    Eingebunden in index.html und stadtfuehrer.html. Nachträglich
@@ -39,28 +40,29 @@
   }
 
   var mitFlaggen = flaggenUnterstuetzt();
-  var stilEingefuegt = false;
+  // Buchstaben als Regional-Indicator-Zeichen: Geräte ohne Flaggen-Emoji
+  // zeigen sie als zwei Buchstaben (DE, EN …) – genau so wie bisher,
+  // mit dem vorhandenen Kreis-Layout der Klasse ".flagge".
+  // Abweichungen vom Sprachkürzel: Tschechisch wird als CZ angezeigt.
+  var anzeigeKuerzel = { cs: "CZ" };
 
-  function stilEinfuegen() {
-    if (stilEingefuegt) return;
-    stilEingefuegt = true;
-    var st = document.createElement("style");
-    st.textContent =
-      ".flagge--text{font-family:'Inter',sans-serif;font-size:.72em;font-weight:700;" +
-      "letter-spacing:.04em;line-height:1;display:inline-block;}";
-    document.head.appendChild(st);
+  function alsBuchstaben(code) {
+    var out = "";
+    code = (anzeigeKuerzel[code] || code).toUpperCase();
+    for (var i = 0; i < code.length; i++) {
+      out += String.fromCodePoint(0x1F1E6 + code.charCodeAt(i) - 65);
+    }
+    return out;
   }
 
   function anwenden(wurzel) {
     if (mitFlaggen) return;
-    stilEinfuegen();
     var knoten = (wurzel || document).querySelectorAll(".flagge[data-code]");
     for (var i = 0; i < knoten.length; i++) {
       var el = knoten[i];
-      if (el.classList.contains("flagge--text")) continue;
-      el.classList.add("flagge--text");
-      el.textContent = el.getAttribute("data-code").toUpperCase();
-      el.removeAttribute("aria-hidden");
+      if (el.getAttribute("data-kuerzel")) continue;
+      el.setAttribute("data-kuerzel", "1");
+      el.textContent = alsBuchstaben(el.getAttribute("data-code"));
     }
   }
 
