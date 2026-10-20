@@ -55,12 +55,14 @@ const stadtfuehrerFesteKacheln = [
   { name: "Ente Quak", bild: "ente-quak", stichworte: ["Parks", "Wasser", "Teich"], sprachen: [] }
 ];
 
-/* Anzeigedaten je Sprachkürzel – deckt sich mit der Liste im
+/* Anzeigedaten je Sprachkürzel. "flagge" wird nur verwendet, wenn das
+   Gerät Flaggen darstellen kann; sonst zeigen alle Sprachen ihr
+   Textkürzel (siehe flaggen.js). Englisch nutzt die britische Flagge. – deckt sich mit der Liste im
    Abschnitt "Sprachen" auf index.html. Català nutzt dort kein
    Emoji, sondern eine kleine SVG-Fahne. */
 const spracheInfo = {
   de: { label: "Deutsch",  flagge: "🇩🇪" },
-  en: { label: "English",  flagge: "<svg viewBox=\"0 0 20 20\"><rect width=\"20\" height=\"20\" rx=\"2\" fill=\"#1F3A6E\"/><text x=\"10\" y=\"13.6\" text-anchor=\"middle\" font-family=\"Inter, Arial, sans-serif\" font-size=\"9.5\" font-weight=\"700\" fill=\"#fff\">EN</text></svg>" },
+  en: { label: "English",  flagge: "🇬🇧" },
   fr: { label: "Français", flagge: "🇫🇷" },
   nl: { label: "Nederlands", flagge: "🇳🇱" },
   es: { label: "Español",  flagge: "🇪🇸" },

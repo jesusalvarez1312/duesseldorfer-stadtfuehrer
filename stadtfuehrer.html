@@ -124,6 +124,7 @@
 </footer>
 
 <script src="stadtfuehrer-daten.js"></script>
+<script src="flaggen.js"></script>
 <script>
   /* Kacheln aus stadtfuehrerListe erzeugen, dabei die Reihenfolge
      mischen (Fisher-Yates), bevor die Liste sichtbar wird. */
@@ -146,7 +147,7 @@
 
       const flaggen = f.sprachen.map(function (code) {
         const info = spracheInfo[code];
-        return '<span class="flagge" title="' + info.label + '">' + info.flagge + "</span>";
+        return '<span class="flagge" data-code="' + code + '" title="' + info.label + '">' + info.flagge + "</span>";
       }).join("");
 
       const sprachenLabel = f.sprachen.map(function (code) {
@@ -168,12 +169,14 @@
 
       const name = '<h3 class="fuehrer-kachel__name">' + f.name + '</h3>';
 
-      // Foto und Name werden nur verlinkt, wenn in stadtfuehrer-daten.js
-      // ein "link" hinterlegt ist. Beim Überfahren mit der Maus
-      // erscheint dann "mehr Infos" (title-Attribut).
-      const bildUndName = f.link
-        ? '<a class="fuehrer-kachel__link" href="' + f.link + '" title="mehr Infos" target="_blank" rel="noopener">' + bild + name + '</a>'
-        : bild + name;
+      // Foto und Name sind immer verlinkt: auf den eigenen "link" aus
+      // stadtfuehrer-daten.js oder, falls keiner hinterlegt ist, auf die
+      // Anfrage-Seite (standardLink). Externe Links öffnen in neuem Tab.
+      const ziel = f.link || standardLink;
+      const extern = /^https?:/i.test(ziel);
+      const bildUndName =
+        '<a class="fuehrer-kachel__link" href="' + ziel + '" title="' + (extern ? "mehr Infos" : "Anfrage stellen") + '"' +
+        (extern ? ' target="_blank" rel="noopener"' : '') + '>' + bild + name + '</a>';
 
       return (
         '<li class="fuehrer-kachel">' +
@@ -187,6 +190,9 @@
         '</li>'
       );
     }).join("");
+
+    // Auf Geräten ohne Flaggen-Emoji alle Flaggen durch Textkürzel ersetzen.
+    flaggenAnwenden(liste);
 
     liste.hidden = false;
   })();
