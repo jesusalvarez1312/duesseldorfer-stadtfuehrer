@@ -24,27 +24,27 @@ const standardLink = "index.html#buchung";
 
 const stadtfuehrerListe = [
   { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Neue Mitte"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
-  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Geschichte", "Carlstadt", "Krimitouren"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
+  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Franzosenzeit", "Carlstadt", "Krimitouren"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"] },
-  { name: "Jesús Alvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Altbier", "Stadtviertel"],        sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
+  { name: "Jesús Alvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Altbier", "Neuss"],        sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
-  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Familien", "Kinder", "Altstadt"],                  sprachen: ["de", "en", "nl"], link: "http://www.run-and-see-duesseldorf.de/entertrainerin_steffi_buss.html" },
-  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Jugendstil", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
+  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Familien", "Kinder", "Sportlich"],                  sprachen: ["de", "en", "nl"], link: "http://www.run-and-see-duesseldorf.de/entertrainerin_steffi_buss.html" },
+  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
   { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Geschichte", "Kirchen", "Literatur"],              sprachen: ["de", "fr", "en"] },
-  { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Geschichte"],    sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
+  { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
   { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Altstadt", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
-  { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Altstadt", "Kunst & Kultur", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
-  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Geschichte", "Architektur", "Neue Mitte"],         sprachen: ["de", "pl"] },
+  { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Naturexpertin", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
+  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"] },
   { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Radtouren", "Rheinufer"],           sprachen: ["de", "pl"] },
-  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de", "en"] },
-  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Barrierefrei", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"] },
+  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de"] },
+  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"] },
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Kulinarisches", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
   { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"] },
-  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Familien", "Kinder", "Radtouren"],                 sprachen: ["de", "en", "ru"] },
-  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Altstadt", "Persönlichkeiten", "Kulinarisches"],   sprachen: ["de", "en"] }
+  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Musik", "Kinder", "Barrierefrei"],                 sprachen: ["de", "en", "ru"] },
+  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"] }
 ];
 
 /* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser
