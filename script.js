@@ -75,9 +75,25 @@ document.querySelectorAll(".gruppe__zu").forEach((knopf) => {
 /* ==================================================================
    3. SUCHE
    ------------------------------------------------------------------
-   Durchsucht die Liste TOUREN aus js/touren-daten.js. Dort stehen
-   alle Führungen – eine neue Tour trägt man nur dort ein, hier ist
-   nichts zu ändern.
+   Die Suche findet Führungen, Unterseiten und Guides.
+
+   Woher kommen die Treffer?
+     a) Die Liste TOUREN aus touren-daten.js (sofort verfügbar)
+     b) Die Guides aus stadtfuehrer-daten.js (Name, Stichworte, Sprachen)
+     c) Der komplette Text ALLER Unterseiten. Beim ersten Öffnen der
+        Suche liest das Skript im Hintergrund alle Seiten ein, die von
+        der Startseite, „Alle Themen“ und den Themenseiten aus verlinkt
+        sind – und deren Unterseiten.
+
+   Für das Team heißt das: Eine neue Unterseite wird automatisch
+   gefunden, sobald sie auf einer Themenseite verlinkt ist. Hier im
+   Skript ist nichts zu ändern.
+
+   Wie wird gesucht?
+     - Groß-/Kleinschreibung und Umlaute sind egal (Fuehrung = Führung).
+     - Wortteile genügen: „geh“ findet „Gehry“, „brück“ findet „Brücken“.
+     - Mehrere Wörter: Jedes Wort muss vorkommen („frank gehry“,
+       „kunst spanisch“).
 ================================================================== */
 
 const suchknopf    = document.getElementById("suchknopf");
@@ -87,36 +103,175 @@ const suchezu      = document.getElementById("suchezu");
 const suchetreffer = document.getElementById("suchetreffer");
 const suchehinweis = document.getElementById("suchehinweis");
 
-// Die Suche braucht JavaScript. Erst wenn alles vorhanden ist, wird
-// der Knopf sichtbar – vorher steht er mit "hidden" im HTML.
 if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
 
   suchknopf.hidden = false;
 
-  /* ---- Schreibweisen angleichen ---------------------------------
-     Damit „Fuehrung", „Führung" und „FÜHRUNG" dasselbe finden:
-     alles klein schreiben, Umlaute auflösen, Satzzeichen zu
-     Leerzeichen machen.
-  --------------------------------------------------------------- */
+  const HOECHSTENS = 12;          // so viele Treffer werden angezeigt
+
+  // Diese Seiten sind keine Führungen und werden nicht durchsucht
+  const NICHT_DURCHSUCHEN = ["index.html", "alle-themen.html", "anfrage.html", "impressum.html",
+                             "datenschutz.html", "stadtfuehrer.html"];
+
+  // Von hier aus sucht das Skript alle verlinkten Seiten zusammen
+  const STARTSEITEN = ["index.html", "alle-themen.html", "stadtviertel.html",
+                       "kunst-kultur.html", "geschichte-geschichten.html",
+                       "sportlich.html", "besondere-beduerfnisse.html",
+                       "touren-ausserhalb.html"];
+
+  // Sprachkürzel der Guides -> Wörter, nach denen man suchen kann
+  const SPRACHWOERTER = {
+    de: "Deutsch German", en: "Englisch English", fr: "Französisch Français French",
+    nl: "Niederländisch Nederlands Holländisch", es: "Spanisch Español Spanish",
+    ca: "Katalanisch Català", it: "Italienisch Italiano", cs: "Tschechisch Čeština",
+    pl: "Polnisch Polski", ru: "Russisch Русский"
+  };
+
+  /* ---- Schreibweisen angleichen ---------------------------------- */
   function vereinfachen(text) {
     return (text || "")
       .toLowerCase()
       .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue")
       .replace(/ß/g, "ss")
-      .replace(/[éèê]/g, "e").replace(/[áàâ]/g, "a").replace(/[íì]/g, "i")
-      .replace(/[^a-z0-9]+/g, " ")
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")   // é -> e, č -> c
+      .replace(/[^a-z0-9а-яё]+/g, " ")
       .trim();
   }
 
-  // Suchtext einmal vorbereiten – das spart Arbeit bei jedem Tastendruck
-  const vorrat = TOUREN.map((t) => ({
-    tour:    t,
-    imTitel: vereinfachen(t.titel),
-    imRest:  vereinfachen(t.titel + " " + t.thema + " " + t.worte),
+  /* ---- Der Vorrat an Einträgen -----------------------------------
+     Jeder Eintrag: titel, link, thema, text (Originaltext für den
+     Textauszug) und die vereinfachten Fassungen zum Vergleichen.
+  ---------------------------------------------------------------- */
+  const vorrat = new Map();       // Schlüssel: Link ohne „#…“ bzw. Link
+
+  function aufnehmen(e) {
+    const schluessel = e.link;
+    const alt = vorrat.get(schluessel);
+    if (alt) {                    // gleiche Seite: Text ergänzen
+      alt.text += " " + (e.text || "");
+      alt.imText = vereinfachen(alt.text);
+      if (e.gewicht > alt.gewicht) {
+        alt.titel = e.titel; alt.thema = e.thema || alt.thema; alt.gewicht = e.gewicht;
+        alt.imTitel = vereinfachen(alt.titel);
+      }
+      return;
+    }
+    e.imTitel = vereinfachen(e.titel);
+    e.imText  = vereinfachen(e.titel + " " + (e.thema || "") + " " + (e.worte || "") + " " + (e.text || ""));
+    e.text    = e.text || "";
+    vorrat.set(schluessel, e);
+  }
+
+  // a) Führungen aus touren-daten.js
+  TOUREN.forEach((t) => aufnehmen({
+    titel: t.titel, link: t.seite, gewicht: 3,
+    thema: t.uebersicht ? "Themenübersicht" : t.thema, worte: t.worte, text: ""
   }));
 
-  const HOECHSTENS = 8;   // so viele Treffer werden angezeigt
+  // b) Guides aus stadtfuehrer-daten.js
+  function guidesAufnehmen(liste) {
+    (liste || []).forEach((g) => {
+      const sprachen = (g.sprachen || []).map((c) => SPRACHWOERTER[c] || c).join(" ");
+      const kurz = (g.sprachen || []).map((c) => c.toUpperCase()).join(", ");
+      aufnehmen({
+        titel: g.name, link: "stadtfuehrer.html#guide-" + (g.bild || ""), gewicht: 3,
+        thema: "Guide" + (kurz ? " · " + kurz : "") +
+               ((g.stichworte || []).length ? " · " + g.stichworte.join(", ") : ""),
+        worte: "Guide Gästeführer Stadtführer " + (g.stichworte || []).join(" ") + " " + sprachen,
+        text: ""
+      });
+    });
+  }
 
+  if (typeof stadtfuehrerListe !== "undefined") {
+    guidesAufnehmen(stadtfuehrerListe);
+  } else {
+    // Datei laden, ohne sie fest in jede Seite einzubauen
+    fetch("stadtfuehrer-daten.js")
+      .then((r) => (r.ok ? r.text() : ""))
+      .then((code) => {
+        if (!code) return;
+        guidesAufnehmen(new Function(code + "\n;return stadtfuehrerListe;")());
+        if (sucheingabe.value.trim()) anzeigen(sucheingabe.value);
+      })
+      .catch(() => {});
+  }
+
+  /* ---- c) Alle Unterseiten einlesen (einmal, im Hintergrund) ---- */
+  let seitenStatus = "offen";     // offen -> laedt -> fertig
+
+  function textVon(knoten) {
+    return (knoten ? knoten.textContent : "").replace(/\s+/g, " ").trim();
+  }
+
+  function seiteAuswerten(adresse, html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const haupt = doc.querySelector("main") || doc.body;
+    if (!haupt) return [];
+
+    const h1 = textVon(doc.querySelector("h1")) ||
+               textVon(doc.querySelector("title")).split(" – ")[0];
+
+    // Karten auf Themenseiten: jede Karte ist ein eigener Treffer
+    haupt.querySelectorAll("li.viertel[id]").forEach((karte) => {
+      const titelLink = karte.querySelector(".viertel__titel a");
+      const ziel = titelLink ? titelLink.getAttribute("href") : adresse + "#" + karte.id;
+      aufnehmen({
+        titel: textVon(karte.querySelector(".viertel__titel")) || h1,
+        link: ziel, thema: h1, gewicht: 2, text: textVon(karte)
+      });
+      karte.remove();             // nicht doppelt im Seitentext zählen
+    });
+
+    // Navigation, Fußzeile, Formulare und Knöpfe nicht mitlesen
+    haupt.querySelectorAll("nav, footer, script, style, form, .knopfreihe").forEach((n) => n.remove());
+
+    aufnehmen({ titel: h1, link: adresse, thema: "Seite", gewicht: 1, text: textVon(haupt) });
+
+    // Weitere Unterseiten, die hier verlinkt sind
+    return Array.from(doc.querySelectorAll('a[href$=".html"], a[href*=".html#"]'))
+      .map((a) => a.getAttribute("href").split("#")[0])
+      .filter((h) => /^[a-z0-9-]+\.html$/i.test(h));
+  }
+
+  function alleSeitenLaden() {
+    if (seitenStatus !== "offen" || !window.fetch || !window.DOMParser) return;
+    seitenStatus = "laedt";
+
+    const gesehen = new Set();
+    let warteschlange = STARTSEITEN.map((s) => [s, 0]);
+    let laufend = 0;
+
+    function weiter() {
+      while (laufend < 6 && warteschlange.length) {
+        const [adresse, tiefe] = warteschlange.shift();
+        if (gesehen.has(adresse) || gesehen.size > 150) continue;
+        gesehen.add(adresse);
+        laufend++;
+        fetch(adresse)
+          .then((r) => (r.ok ? r.text() : ""))
+          .then((html) => {
+            if (!html) return;
+            const links = seiteAuswerten(adresse, html);
+            if (tiefe < 2) links.forEach((l) => warteschlange.push([l, tiefe + 1]));
+          })
+          .catch(() => {})
+          .finally(() => {
+            laufend--;
+            weiter();
+          });
+      }
+      if (!warteschlange.length && laufend === 0 && seitenStatus !== "fertig") {
+        seitenStatus = "fertig";
+        NICHT_DURCHSUCHEN.forEach((s) => vorrat.delete(s));
+        if (sucheingabe.value.trim()) anzeigen(sucheingabe.value);
+      }
+    }
+    // Startseite & Co. liefern nur Links, ihr Text kommt nicht in die Treffer
+    weiter();
+  }
+
+  /* ---- Suchen ------------------------------------------------------ */
   function suchen(eingabe) {
 
     const woerter = vereinfachen(eingabe).split(" ").filter(Boolean);
@@ -124,26 +279,43 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
 
     const gefunden = [];
 
-    vorrat.forEach((eintrag) => {
+    vorrat.forEach((e, schluessel) => {
+      if (NICHT_DURCHSUCHEN.includes(schluessel)) return;
+      if (!woerter.every((w) => e.imText.includes(w))) return;
 
-      // Jedes eingegebene Wort muss irgendwo vorkommen
-      if (!woerter.every((w) => eintrag.imRest.includes(w))) return;
-
-      // Treffer im Titel zählen mehr als Treffer in den Stichworten
-      let punkte = 0;
+      let punkte = e.gewicht;
       woerter.forEach((w) => {
-        if (eintrag.imTitel.startsWith(w))    punkte += 4;
-        else if (eintrag.imTitel.includes(w)) punkte += 2;
-        else                                  punkte += 1;
+        if (e.imTitel.startsWith(w))                       punkte += 8;
+        else if (e.imTitel.includes(w))                    punkte += 5;
+        else if (vereinfachen(e.thema).includes(w))        punkte += 3;
+        else                                               punkte += 1;
       });
-
-      gefunden.push({ tour: eintrag.tour, punkte: punkte });
+      gefunden.push({ e: e, punkte: punkte });
     });
 
     gefunden.sort((a, b) =>
-      b.punkte - a.punkte || a.tour.titel.localeCompare(b.tour.titel, "de"));
+      b.punkte - a.punkte || a.e.titel.localeCompare(b.e.titel, "de"));
 
-    return gefunden.slice(0, HOECHSTENS).map((g) => g.tour);
+    // Gleicher Titel doppelt (Karte auf der Themenseite und eigene
+    // Detailseite)? Dann nur einmal zeigen – bevorzugt die Detailseite.
+    const titel = new Map();
+    gefunden.forEach((g) => {
+      const t = g.e.imTitel, da = titel.get(t);
+      if (!da || (da.e.link.includes("#") && !g.e.link.includes("#") && g.punkte >= da.punkte - 3)) titel.set(t, g);
+    });
+    return gefunden.filter((g) => titel.get(g.e.imTitel) === g)
+                   .slice(0, HOECHSTENS).map((g) => g.e);
+  }
+
+  // Kurzer Textauszug, in dem das erste Suchwort vorkommt
+  function auszug(e, eingabe) {
+    if (!e.text) return "";
+    const w = vereinfachen(eingabe).split(" ").filter(Boolean)[0];
+    if (!w || e.imTitel.includes(w)) return "";
+    const saetze = e.text.split(/(?<=[.!?•])\s+/);
+    const satz = saetze.find((s) => vereinfachen(s).includes(w));
+    if (!satz) return "";
+    return satz.length > 140 ? satz.slice(0, 137).trim() + " …" : satz;
   }
 
   /* ---- Trefferliste aufbauen ------------------------------------ */
@@ -153,13 +325,18 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
 
     if (!eingabe.trim()) {
       suchehinweis.textContent =
-        "Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.";
+        "Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen und Guides.";
       return;
     }
 
     const treffer = suchen(eingabe);
+    const nochAmLaden = seitenStatus !== "fertig";
 
     if (!treffer.length) {
+      if (nochAmLaden) {
+        suchehinweis.textContent = "Einen Moment – wir durchsuchen alle Seiten …";
+        return;
+      }
       suchehinweis.innerHTML =
         "Dazu haben wir nichts gefunden. Schreiben Sie uns gern – wir stellen " +
         "auch eine Führung ganz nach Ihren Wünschen zusammen. " +
@@ -167,17 +344,14 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
       return;
     }
 
-    suchehinweis.textContent = treffer.length === 1
-      ? "1 Führung gefunden"
-      : treffer.length + " Führungen gefunden";
+    suchehinweis.textContent = (treffer.length === 1 ? "1 Treffer" : treffer.length + " Treffer") +
+      (nochAmLaden ? " – wir durchsuchen noch weitere Seiten …" : "");
 
     treffer.forEach((t) => {
-
       const zeile = document.createElement("li");
-
       const link = document.createElement("a");
       link.className = "treffer";
-      link.href = t.seite;
+      link.href = t.link;
 
       const titel = document.createElement("span");
       titel.className = "treffer__titel";
@@ -185,7 +359,9 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
 
       const thema = document.createElement("span");
       thema.className = "treffer__thema";
-      thema.textContent = t.uebersicht ? "Themenübersicht" : t.thema;
+      const text = auszug(t, eingabe);
+      thema.textContent = text ? (t.thema && t.thema !== "Seite" ? t.thema + ": " : "") + text
+                               : (t.thema === "Seite" ? "Unterseite" : t.thema);
 
       link.append(titel, thema);
       zeile.append(link);
@@ -200,6 +376,7 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
     menueSchliessen();
     sucheingabe.focus();
     sucheingabe.select();
+    alleSeitenLaden();
   }
 
   function sucheSchliessen() {

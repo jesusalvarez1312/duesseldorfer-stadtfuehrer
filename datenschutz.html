@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Datenschutz – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Datenschutzerklärung des Düsseldorfer Stadtführer e.V.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-info"><circle cx="12" cy="12" r="8.8"/><path d="M12 11v5.4M12 7.6v.01"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite zeigen die Menülinks auf index.html, sonst
+     suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Wer wir sind</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF =========================================== -->
+  <section class="seitenkopf">
+    <div class="huelle">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Datenschutz</span>
+        </nav>
+
+        <p class="augenbraue">Rechtliche Angaben</p>
+        <h1 class="titel-strich">Datenschutzerklärung</h1>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== DATENSCHUTZ-TEXT =======================================
+       ENTWURF Oktober 2026 – vom Vorstand vor dem Start zu prüfen.
+       Bei Änderungen an der Website (z. B. Formspree für das
+       Anfrageformular, Statistik, eingebettete Karten oder Videos)
+       muss dieser Text angepasst werden.
+  ============================================================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+      <div class="rechtstext">
+
+        <h2>1. Wer ist verantwortlich?</h2>
+        <address>
+          Düsseldorfer Stadtführer e.&thinsp;V.<br>
+          c/o Brigitta Binsfeld-Rizkalla<br>
+          Landsberger Str. 12<br>
+          40599 Düsseldorf<br><br>
+          Mobil: <a href="tel:+4915510319869">+49 155 10319869</a><br>
+          E-Mail: <a href="mailto:anfrage@duesseldorfer-stadtfuehrer.de">anfrage@duesseldorfer-stadtfuehrer.de</a>
+        </address>
+        <p>Vertreten durch den Vorstand: Brigitta Binsfeld-Rizkalla, Peter Jäger, Jörg Allenstein.</p>
+
+        <h2>2. Das Wichtigste in Kürze</h2>
+        <p>
+          Sie können unsere Website besuchen, ohne Angaben zu Ihrer Person zu machen.
+          Wir setzen <strong>keine Cookies</strong>, verwenden <strong>keine Analyse- oder Tracking-Werkzeuge</strong>
+          und binden keine Inhalte von Google, Facebook oder anderen Anbietern ein.
+          Alle Schriften und Bilder liegen auf unserem eigenen Webspace in Deutschland.
+          Personenbezogene Daten verarbeiten wir nur, wenn Sie uns von sich aus kontaktieren.
+        </p>
+
+        <h2>3. Hosting</h2>
+        <p>
+          Unsere Website liegt bei der Hetzner Online GmbH, Industriestr. 25,
+          91710 Gunzenhausen. Die Server stehen ausschließlich in Deutschland.
+          Mit Hetzner haben wir einen Vertrag zur Auftragsverarbeitung nach
+          Art. 28 DSGVO geschlossen. Hetzner verarbeitet die Daten nur in unserem
+          Auftrag und nach unseren Weisungen. Rechtsgrundlage ist unser berechtigtes
+          Interesse an einer sicheren und zuverlässigen Bereitstellung der Website
+          (Art. 6 Abs. 1 lit. f DSGVO).
+        </p>
+
+        <h2>4. Server-Logfiles</h2>
+        <p>
+          Bei jedem Aufruf unserer Website speichert der Server automatisch
+          technische Angaben, die Ihr Browser übermittelt:
+        </p>
+        <ul>
+          <li>IP-Adresse,</li>
+          <li>Datum und Uhrzeit des Abrufs,</li>
+          <li>aufgerufene Seite bzw. Datei,</li>
+          <li>die zuvor besuchte Seite (Referrer),</li>
+          <li>Browsertyp, Browserversion und Betriebssystem.</li>
+        </ul>
+        <p>
+          Diese Daten brauchen wir, um die Website auszuliefern und ihre Sicherheit
+          zu gewährleisten, etwa um Angriffe zu erkennen. Wir führen sie nicht mit
+          anderen Daten zusammen und werten sie nicht zu Werbezwecken aus. Sie werden
+          gelöscht, sobald sie für diesen Zweck nicht mehr erforderlich sind.
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+        </p>
+
+        <h2>5. Verschlüsselung</h2>
+        <p>
+          Unsere Website nutzt eine SSL- bzw. TLS-Verschlüsselung. Sie erkennen sie
+          am Schloss-Symbol und an „https://“ in der Adresszeile Ihres Browsers.
+        </p>
+
+        <h2>6. Wenn Sie uns kontaktieren</h2>
+        <p>
+          Sie können uns per E-Mail, telefonisch oder über unser Anfrageformular
+          erreichen. Das Formular speichert nichts auf unserer Website: Es öffnet
+          Ihr eigenes E-Mail-Programm mit einer vorbereiteten Nachricht, die Sie
+          selbst absenden.
+        </p>
+        <p>
+          Wir verarbeiten die Angaben, die Sie uns mitteilen (z.&nbsp;B. Name,
+          E-Mail-Adresse, Telefonnummer, Wunschtermin, Gruppengröße), um Ihre Anfrage
+          zu beantworten und Ihre Führung zu organisieren. Dazu leiten wir Ihre Anfrage
+          an die Gästeführerin bzw. den Gästeführer aus unserem Verein weiter, die bzw.
+          der Ihre Führung übernimmt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
+          (Anbahnung und Durchführung eines Vertrags), bei allgemeinen Fragen unser
+          berechtigtes Interesse an der Beantwortung (Art. 6 Abs. 1 lit. f DSGVO).
+        </p>
+        <p>
+          Wir löschen Ihre Angaben, sobald Ihre Anfrage erledigt ist, es sei denn,
+          gesetzliche Aufbewahrungspflichten (z.&nbsp;B. für Rechnungen) stehen dem entgegen.
+        </p>
+
+        <h2>7. Speicherung in Ihrem Browser</h2>
+        <p>
+          Wenn Sie auf der Startseite eine andere Sprache wählen oder einen Hinweis
+          wegklicken, merkt sich Ihr Browser diese Einstellung (sogenannter
+          „Local Storage“). Die Angabe bleibt auf Ihrem Gerät und wird nicht an uns
+          übertragen. Sie dient nur dazu, die von Ihnen gewünschte Anzeige beizubehalten
+          (§ 25 Abs. 2 Nr. 2 TDDDG). Sie können sie jederzeit in den Einstellungen Ihres
+          Browsers löschen.
+        </p>
+
+        <h2>8. Links zu Facebook und Instagram</h2>
+        <p>
+          In der Fußzeile finden Sie Links zu Facebook und Instagram. Das sind
+          einfache Links, keine eingebundenen „Plugins“. Beim bloßen Besuch unserer
+          Website werden deshalb keine Daten an diese Dienste übertragen. Erst wenn
+          Sie einen Link anklicken, gelangen Sie auf die Seite des jeweiligen Anbieters
+          (Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Irland). Dort gelten
+          dessen Datenschutzbestimmungen.
+        </p>
+
+        <h2>9. Links zu anderen Websites</h2>
+        <p>
+          Unsere Seiten enthalten Links zu anderen Websites, etwa zu den eigenen
+          Seiten unserer Gästeführer*innen oder zum Berufsverband BVGD. Für deren
+          Inhalte und den Umgang mit Ihren Daten sind die jeweiligen Betreiber
+          verantwortlich.
+        </p>
+
+        <h2>10. Ihre Rechte</h2>
+        <p>Sie haben jederzeit das Recht auf</p>
+        <ul>
+          <li>Auskunft über Ihre bei uns gespeicherten Daten (Art. 15 DSGVO),</li>
+          <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO),</li>
+          <li>Löschung (Art. 17 DSGVO),</li>
+          <li>Einschränkung der Verarbeitung (Art. 18 DSGVO),</li>
+          <li>Datenübertragbarkeit (Art. 20 DSGVO),</li>
+          <li>Widerspruch gegen eine Verarbeitung, die auf unserem berechtigten
+              Interesse beruht (Art. 21 DSGVO).</li>
+        </ul>
+        <p>
+          Eine erteilte Einwilligung können Sie jederzeit für die Zukunft widerrufen.
+          Schreiben Sie uns dazu einfach an
+          <a href="mailto:anfrage@duesseldorfer-stadtfuehrer.de">anfrage@duesseldorfer-stadtfuehrer.de</a>.
+        </p>
+
+        <h2>11. Beschwerderecht</h2>
+        <p>
+          Sie können sich bei einer Datenschutz-Aufsichtsbehörde beschweren.
+          Für uns zuständig ist:
+        </p>
+        <address>
+          Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen<br>
+          Kavalleriestraße 2–4<br>
+          40213 Düsseldorf<br>
+          <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener noreferrer">www.ldi.nrw.de</a>
+        </address>
+
+        <h2>12. Stand</h2>
+        <p>Oktober 2026</p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__rechts">
+      <!-- Mitgliedschaft im Berufsverband -->
+      <a class="fuss__bvgd" href="https://www.bvgd.org" target="_blank" rel="noopener noreferrer"
+         title="Bundesverband der Gästeführer in Deutschland e.&thinsp;V.">
+        <img src="bilder/bvgd-logo.png" alt="Mitglied im BVGD – Bundesverband der Gästeführer in Deutschland e.V." width="500" height="159" loading="lazy">
+      </a>
+
+      <div class="fuss__sozial">
+        <a href="https://www.facebook.com/Duesseldorf.TouristGuide/" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/duesseldorferstadtfuehrer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="touren-daten.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

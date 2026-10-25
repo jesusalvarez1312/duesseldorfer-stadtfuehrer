@@ -8,9 +8,6 @@
   <meta name="description" content="22 zertifizierte Gästeführerinnen und Gästeführer aus Düsseldorf – mit ihren Themenschwerpunkten und Sprachen auf einen Blick.">
   <meta name="theme-color" content="#B4131C">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="stadtfuehrer.css">
@@ -47,10 +44,16 @@
       <a href="index.html#sprachen">Sprachen</a>
       <a href="index.html#buchung">Anfrage</a>
       <a href="index.html#kontakt">Kontakt</a>
-      <span class="navi__trenner" aria-hidden="true"></span>
-      <a href="english.html" hreflang="en">English</a>
-      <a href="francais.html" hreflang="fr">Français</a>
     </nav>
+
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
 
     <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
       <span class="burger__striche" aria-hidden="true"></span>
@@ -58,6 +61,37 @@
     </button>
 
   </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
 </header>
 
 
@@ -103,21 +137,28 @@
     </a>
 
     <div class="fuss__mitte">
-      <nav aria-label="Rechtliches und Service">
+      <nav aria-label="Rechtliches">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="sitemap.html">Sitemap</a>
       </nav>
-      <p>© 1997–2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
     </div>
 
-    <div class="fuss__sozial">
-      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+    <div class="fuss__rechts">
+      <!-- Mitgliedschaft im Berufsverband -->
+      <a class="fuss__bvgd" href="https://www.bvgd.org" target="_blank" rel="noopener noreferrer"
+         title="Bundesverband der Gästeführer in Deutschland e.&thinsp;V.">
+        <img src="bilder/bvgd-logo.png" alt="Mitglied im BVGD – Bundesverband der Gästeführer in Deutschland e.V." width="500" height="159" loading="lazy">
       </a>
-      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
-      </a>
+
+      <div class="fuss__sozial">
+        <a href="https://www.facebook.com/Duesseldorf.TouristGuide/" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/duesseldorferstadtfuehrer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
     </div>
 
   </div>
@@ -179,7 +220,7 @@
         (extern ? ' target="_blank" rel="noopener"' : '') + '>' + bild + name + '</a>';
 
       return (
-        '<li class="fuehrer-kachel">' +
+        '<li class="fuehrer-kachel" id="guide-' + f.bild + '">' +
           bildUndName +
           '<div class="fuehrer-kachel__inhalt">' +
             '<ul class="fuehrer-kachel__stichworte">' + stichworte + '</ul>' +
@@ -195,8 +236,19 @@
     flaggenAnwenden(liste);
 
     liste.hidden = false;
+
+    // Kommt man über die Suche (stadtfuehrer.html#guide-…), wird die
+    // passende Kachel angesprungen und kurz hervorgehoben.
+    if (location.hash.indexOf("#guide-") === 0) {
+      const kachel = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (kachel) {
+        kachel.classList.add("fuehrer-kachel--markiert");
+        kachel.scrollIntoView({ block: "center" });
+      }
+    }
   })();
 </script>
+<script src="touren-daten.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

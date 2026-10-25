@@ -90,25 +90,42 @@ sichtbar.
 
 ---
 
+## Neu seit Oktober 2026
+
+**Pop-up-Banner** (nur Startseite): Text, Link und Zeitraum stehen oben in
+`banner.js`. Nach dem „bis“-Datum verschwindet das Banner von selbst.
+Ausschalten: `aktiv: false`.
+
+**Sprachen der Startseite** (Deutsch, English, Español, Français): Die
+Übersetzungen stehen in `sprachen-startseite.js`. Wer einen deutschen Text
+auf der Startseite ändert, passt dort den gleichnamigen Schlüssel an
+(z. B. `held_lead`). Fehlt eine Übersetzung, erscheint der deutsche Text.
+
+**Suche**: findet Wortteile, mehrere Wörter, den Text aller Unterseiten
+und alle Guides. Eine neue Unterseite wird automatisch gefunden, sobald
+sie auf einer Themenseite verlinkt ist. Ein neuer Guide, sobald er in
+`stadtfuehrer-daten.js` steht.
+
+**Schriften** liegen im Ordner `schriften/` – nichts wird mehr von Google
+geladen.
+
+**Datenschutz**: `datenschutz.html` – Entwurf, vom Vorstand zu prüfen.
+
+---
+
 ## Noch offen
 
-- [ ] Formular auf Formspree umstellen (Anleitung steht in `script.js`)
-- [ ] Schriften selbst hosten statt über Google Fonts laden
-- [ ] Neue Vereinsfotos statt der Platzhalter
-- [ ] `datenschutz.html` und `sitemap.html` fehlen, sind aber im Fußbereich verlinkt
-- [ ] `english.html` und `francais.html` fehlen, sind aber im Menü verlinkt
-- [ ] Einige Bilddateien fehlen noch (siehe unten)
+- [ ] Formular auf Formspree umstellen (Anleitung steht in `script.js`) –
+      danach `datenschutz.html` anpassen
+- [ ] Datenschutzerklärung vom Vorstand prüfen lassen
+- [ ] Einige Bilddateien fehlen noch (Platzhalter auf der Seite)
 - [ ] `noindex` entfernen, wenn die Seite öffentlich gehen soll
 
 ### Bilder
-Alle Fotos wurden für das Web verkleinert (max. 1000 px breit, Kopfbilder
-1600 px, JPEG-Qualität 82). Aus 309 MB wurden 23 MB. Die Kamera-Originale
-sind **nicht** im Repository – bitte separat aufbewahren.
+Alle Fotos sind für das Handy verkleinert: Kartenbilder max. 800 px,
+Kopfbilder 1000 px, Titelbild und Gruppenfoto 1400 px. Der ganze Ordner
+hat rund 13 MB. Die Kamera-Originale sind **nicht** im Repository –
+bitte separat aufbewahren.
 
-Neue Fotos vor dem Hochladen bitte genauso behandeln: Kamera-Originale mit
-4000 Pixeln Breite machen die Seite auf dem Handy unbenutzbar.
-
-### Fehlende Bilder
-`touren-ausserhalb.html` (17 Stück), `besondere-beduerfnisse.html` (7),
-`sportlich.html` (3), `stadtviertel.html` (2), `kulinarische-tour.html` (1).
-Die genauen Dateinamen stehen jeweils im `src`-Attribut im HTML.
+Neue Fotos vor dem Hochladen bitte genauso verkleinern (z. B. mit
+squoosh.app): ca. 800 px breit, unter 200 KB.

@@ -117,3 +117,7 @@
 .fuehrer-liste[hidden] {
   display: none;
 }
+
+
+/* Hervorhebung, wenn man über die Suche zu einer Person springt */
+.fuehrer-kachel--markiert { outline: 3px solid var(--rot); outline-offset: 3px; }

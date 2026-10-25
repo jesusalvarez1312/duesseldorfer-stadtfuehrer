@@ -9,10 +9,6 @@
   <meta name="theme-color" content="#B4131C">
   <meta name="robots" content="noindex, nofollow">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="unterseiten.css">
@@ -53,9 +49,6 @@
       <a href="index.html#sprachen">Sprachen</a>
       <a href="index.html#buchung">Anfrage</a>
       <a href="index.html#kontakt">Kontakt</a>
-      <span class="navi__trenner" aria-hidden="true"></span>
-      <a href="english.html" hreflang="en">English</a>
-      <a href="francais.html" hreflang="fr">Français</a>
     </nav>
 
     <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
@@ -223,21 +216,28 @@
     </a>
 
     <div class="fuss__mitte">
-      <nav aria-label="Rechtliches und Service">
+      <nav aria-label="Rechtliches">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="sitemap.html">Sitemap</a>
       </nav>
       <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
     </div>
 
-    <div class="fuss__sozial">
-      <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+    <div class="fuss__rechts">
+      <!-- Mitgliedschaft im Berufsverband -->
+      <a class="fuss__bvgd" href="https://www.bvgd.org" target="_blank" rel="noopener noreferrer"
+         title="Bundesverband der Gästeführer in Deutschland e.&thinsp;V.">
+        <img src="bilder/bvgd-logo.png" alt="Mitglied im BVGD – Bundesverband der Gästeführer in Deutschland e.V." width="500" height="159" loading="lazy">
       </a>
-      <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
-      </a>
+
+      <div class="fuss__sozial">
+        <a href="https://www.facebook.com/Duesseldorf.TouristGuide/" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/duesseldorferstadtfuehrer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
     </div>
 
   </div>
