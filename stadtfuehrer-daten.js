@@ -24,7 +24,7 @@ const standardLink = "index.html#buchung";
 
 const stadtfuehrerListe = [
   { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Neue Mitte"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
-  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Franzosenzeit", "Carlstadt", "Krimitouren"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
+  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
   { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"],        sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
