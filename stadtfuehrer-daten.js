@@ -32,7 +32,7 @@ const stadtfuehrerListe = [
   { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sportlich", "Kunst", "Unterhaltsames"],                  sprachen: ["de", "en"], link: "https://www.steffibuss.com/ueber-uns" },
   { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
   { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Kaiserswerth", "Frauen", "Medienhafen"],              sprachen: ["de", "en"] },
-  { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
+  { name: "Brigitta Binsfeld",           bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
   { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
   { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
   { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"] },
