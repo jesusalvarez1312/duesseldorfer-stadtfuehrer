@@ -1053,3 +1053,60 @@
 /* Aufzählung der Stationen mit etwas Luft */
 .rechtstext .stationen { padding-left: 1.2rem; margin: 0 0 1.4rem; }
 .rechtstext .stationen li { margin-bottom: 0.6rem; }
+
+
+/* ---- 15. Breiter Fließtext (z. B. Neuss) -------------------------
+   Text läuft über die ganze Breite; die Stationen stehen ab Laptop
+   in zwei Spalten, damit die Zeilen gut lesbar bleiben.
+------------------------------------------------------------------ */
+.rechtstext--breit { max-width: none; }
+
+@media (min-width: 1024px) {
+  .rechtstext--breit .stationen { columns: 2; column-gap: 3rem; }
+  .rechtstext--breit .stationen li { break-inside: avoid; }
+}
+
+
+/* ---- 16. Bilder-Mosaik auf „Alle Touren“ ------------------------
+   Nur ab Laptop – auf dem Handy bleibt der Kopf schlank.
+------------------------------------------------------------------ */
+.mosaik { display: none; }
+
+@media (min-width: 1024px) {
+  .mosaik {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 92px;
+    gap: 10px;
+  }
+  .mosaik__kachel {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--creme);
+  }
+  .mosaik__kachel--gross { grid-column: span 2; grid-row: span 2; }
+  .mosaik__kachel--hoch  { grid-row: span 2; }
+  .mosaik__kachel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .mosaik__kachel span {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.5rem;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  }
+  .mosaik__kachel:hover img { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mosaik__kachel img { transition: none; }
+}
