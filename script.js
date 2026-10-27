@@ -166,7 +166,7 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
   // a) Führungen aus touren-daten.js
   TOUREN.forEach((t) => aufnehmen({
     titel: t.titel, link: t.seite, gewicht: 3,
-    thema: t.uebersicht ? "Themenübersicht" : t.thema, worte: t.worte, text: ""
+    thema: t.uebersicht ? "Tourenübersicht" : t.thema, worte: t.worte, text: ""
   }));
 
   // b) Guides aus stadtfuehrer-daten.js

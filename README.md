@@ -118,6 +118,8 @@ geladen.
 - [ ] Formular auf Formspree umstellen (Anleitung steht in `script.js`) –
       danach `datenschutz.html` anpassen
 - [ ] Datenschutzerklärung vom Vorstand prüfen lassen
+- [ ] Touren „Flingern“ (Stadtviertel) und „Kloster Kamp“ (Touren außerhalb) anlegen
+      und danach wieder in `touren-daten.js` eintragen
 - [ ] Einige Bilddateien fehlen noch (Platzhalter auf der Seite)
 - [ ] `noindex` entfernen, wenn die Seite öffentlich gehen soll
 
