@@ -1439,3 +1439,27 @@ a { color: inherit; }
 
   .verein__bild img { border-radius: 20px 150px 20px 20px; }
 }
+
+
+/* ---- Startseite: weniger Abstand zwischen Titelbereich und Top 10 ---- */
+.held { padding-bottom: 1rem; }
+#touren { padding-top: 1.75rem; }
+
+@media (min-width: 1024px) {
+  .held { padding-bottom: 1.5rem; }
+  #touren { padding-top: 2.25rem; }
+}
+
+/* ---- Suche: Zwischenüberschriften „Führungen“ und „Guides“ ---- */
+.treffer__gruppe {
+  grid-column: 1 / -1;
+  margin: 0.9rem 0 0.2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--linie);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rot);
+}
+.treffer__gruppe:first-child { margin-top: 0.2rem; }

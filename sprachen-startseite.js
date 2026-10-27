@@ -83,11 +83,11 @@
       k_ausserhalb: "Tours outside Düsseldorf",
 
       verein_h2: "About us",
-      verein_p1: "…an association of qualified, self-employed tour guides in Düsseldorf. We are as colourful as Düsseldorf itself. Our members include experts in art and history, architects, journalists, educators, linguists and economists. Thanks to this wide range of expertise, we now have a real “treasure trove” of tours on more than 100 topics. Of course we also offer standard tours – but we love to be tailor-made.",
+      verein_p1: "We are an association of qualified, self-employed tour guides in Düsseldorf. We are as colourful as Düsseldorf itself. Our members include experts in art and history, architects, journalists, educators, linguists and economists. Thanks to this wide range of expertise, we now have a real “treasure trove” of tours on more than 100 topics. Of course we also offer standard tours – but we love to be tailor-made.",
       verein_p2: "In 1997 a handful of experienced tour guides founded our association. Since then our members have also belonged to the <a href=\"https://www.bvgd.org\" target=\"_blank\" rel=\"noopener noreferrer\">BVGD</a>, the German professional association of tourist guides.",
       verein_p3: "Many of us hold the 3-star certification under the European training standard for tourist guides, DIN EN 15565. This makes us the guides in Düsseldorf with the “master's certificate” from the most demanding training programme for tourist guides in Germany. You are always in good hands with us!",
       verein_alt: "Cheerful group photo of the association's tour guides",
-      btn_verein: "About our guides",
+      btn_verein: "About the association",
 
       sprachen_h2: "We guide in<br>many languages",
       sprachen_p: "Tell us which language your group speaks – we'll find the right person.",
@@ -170,11 +170,11 @@
       k_ausserhalb: "Excursiones fuera de Düsseldorf",
 
       verein_h2: "Sobre nosotros",
-      verein_p1: "…una asociación de guías turísticos cualificados e independientes de Düsseldorf. Somos tan diversos como la propia ciudad. Entre nosotros hay especialistas en arte e historia, arquitectos, periodistas, pedagogos, filólogos y economistas. Gracias a esta amplia gama de conocimientos, contamos ya con un auténtico «tesoro» de visitas sobre más de 100 temas. Por supuesto, también ofrecemos visitas estándar, pero lo que más nos gusta es hacerlas a medida.",
+      verein_p1: "Somos una asociación de guías turísticos cualificados e independientes de Düsseldorf. Somos tan diversos como la propia ciudad. Entre nosotros hay especialistas en arte e historia, arquitectos, periodistas, pedagogos, filólogos y economistas. Gracias a esta amplia gama de conocimientos, contamos ya con un auténtico «tesoro» de visitas sobre más de 100 temas. Por supuesto, también ofrecemos visitas estándar, pero lo que más nos gusta es hacerlas a medida.",
       verein_p2: "En 1997, un puñado de guías con experiencia fundó nuestra asociación. Desde entonces, nuestros miembros forman parte también de la <a href=\"https://www.bvgd.org\" target=\"_blank\" rel=\"noopener noreferrer\">BVGD</a>, la asociación profesional alemana de guías turísticos.",
       verein_p3: "Muchos de nosotros tenemos la certificación de 3 estrellas según la norma europea de formación de guías DIN EN 15565. Somos, por tanto, los guías de Düsseldorf con el «título de maestría» del programa de formación para guías más exigente de Alemania. ¡Con nosotros está siempre en buenas manos!",
       verein_alt: "Foto de grupo alegre de las y los guías de la asociación",
-      btn_verein: "Sobre los guías",
+      btn_verein: "Sobre la asociación",
 
       sprachen_h2: "Guiamos en<br>muchos idiomas",
       sprachen_p: "Díganos qué idioma habla su grupo y le buscaremos la persona adecuada.",
@@ -257,11 +257,11 @@
       k_ausserhalb: "Excursions hors de Düsseldorf",
 
       verein_h2: "À propos de nous",
-      verein_p1: "…une association de guides qualifiés et indépendants à Düsseldorf. Nous sommes aussi variés que Düsseldorf elle-même. Parmi nous, des spécialistes de l'art et de l'histoire, des architectes, des journalistes, des pédagogues, des linguistes et des économistes. Grâce à cette large palette de compétences, nous disposons aujourd'hui d'un véritable « trésor » de visites sur plus de 100 thèmes. Nous proposons bien sûr aussi des visites classiques – mais nous préférons le sur-mesure.",
+      verein_p1: "Nous sommes une association de guides qualifiés et indépendants à Düsseldorf. Nous sommes aussi variés que Düsseldorf elle-même. Parmi nous, des spécialistes de l'art et de l'histoire, des architectes, des journalistes, des pédagogues, des linguistes et des économistes. Grâce à cette large palette de compétences, nous disposons aujourd'hui d'un véritable « trésor » de visites sur plus de 100 thèmes. Nous proposons bien sûr aussi des visites classiques – mais nous préférons le sur-mesure.",
       verein_p2: "En 1997, une poignée de guides expérimentés a fondé notre association. Depuis, nos membres font également partie du <a href=\"https://www.bvgd.org\" target=\"_blank\" rel=\"noopener noreferrer\">BVGD</a>, l'association professionnelle allemande des guides.",
       verein_p3: "Beaucoup d'entre nous sont titulaires de la certification 3 étoiles selon la norme européenne de formation des guides DIN EN 15565. Nous sommes ainsi les guides de Düsseldorf détenteurs du « brevet de maîtrise » du programme de formation le plus exigeant d'Allemagne. Avec nous, vous êtes toujours entre de bonnes mains !",
       verein_alt: "Photo de groupe joyeuse des guides de l'association",
-      btn_verein: "À propos des guides",
+      btn_verein: "À propos de l'association",
 
       sprachen_h2: "Nous guidons en<br>de nombreuses langues",
       sprachen_p: "Dites-nous quelle langue parle votre groupe – nous trouverons la bonne personne.",

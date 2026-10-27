@@ -107,7 +107,8 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
 
   suchknopf.hidden = false;
 
-  const HOECHSTENS = 12;          // so viele Treffer werden angezeigt
+  const HOECHSTENS_FUEHRUNGEN = 8; // so viele Führungen werden angezeigt
+  const HOECHSTENS_GUIDES     = 6; // … und so viele Guides darunter
 
   // Diese Seiten sind keine Führungen und werden nicht durchsucht
   const NICHT_DURCHSUCHEN = ["index.html", "alle-themen.html", "anfrage.html", "impressum.html",
@@ -174,7 +175,7 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
       const sprachen = (g.sprachen || []).map((c) => SPRACHWOERTER[c] || c).join(" ");
       const kurz = (g.sprachen || []).map((c) => c.toUpperCase()).join(", ");
       aufnehmen({
-        titel: g.name, link: "stadtfuehrer.html#guide-" + (g.bild || ""), gewicht: 3,
+        titel: g.name, link: "stadtfuehrer.html#guide-" + (g.bild || ""), gewicht: 3, guide: true,
         thema: "Guide" + (kurz ? " · " + kurz : "") +
                ((g.stichworte || []).length ? " · " + g.stichworte.join(", ") : ""),
         worte: "Guide Gästeführer Stadtführer " + (g.stichworte || []).join(" ") + " " + sprachen,
@@ -214,6 +215,7 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
 
     // Karten auf Themenseiten: jede Karte ist ein eigener Treffer
     haupt.querySelectorAll("li.viertel[id]").forEach((karte) => {
+      karte.querySelectorAll(".viertel__anfrage, [data-tour]").forEach((k) => k.remove());  // „Tour anfragen“ nicht mitlesen
       const titelLink = karte.querySelector(".viertel__titel a");
       const ziel = titelLink ? titelLink.getAttribute("href") : adresse + "#" + karte.id;
       aufnehmen({
@@ -275,7 +277,7 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
   function suchen(eingabe) {
 
     const woerter = vereinfachen(eingabe).split(" ").filter(Boolean);
-    if (!woerter.length) return [];
+    if (!woerter.length) return { fuehrungen: [], guides: [] };
 
     const gefunden = [];
 
@@ -283,7 +285,7 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
       if (NICHT_DURCHSUCHEN.includes(schluessel)) return;
       if (!woerter.every((w) => e.imText.includes(w))) return;
 
-      let punkte = e.gewicht;
+      let punkte = e.gewicht + (e.thema === "Seite" ? -6 : 0);
       woerter.forEach((w) => {
         if (e.imTitel.startsWith(w))                       punkte += 8;
         else if (e.imTitel.includes(w))                    punkte += 5;
@@ -303,8 +305,13 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
       const t = g.e.imTitel, da = titel.get(t);
       if (!da || (da.e.link.includes("#") && !g.e.link.includes("#") && g.punkte >= da.punkte - 3)) titel.set(t, g);
     });
-    return gefunden.filter((g) => titel.get(g.e.imTitel) === g)
-                   .slice(0, HOECHSTENS).map((g) => g.e);
+    const eindeutig = gefunden.filter((g) => titel.get(g.e.imTitel) === g).map((g) => g.e);
+
+    // Erst die Führungen, dann – getrennt – die Guides
+    return {
+      fuehrungen: eindeutig.filter((e) => !e.guide).slice(0, HOECHSTENS_FUEHRUNGEN),
+      guides:     eindeutig.filter((e) =>  e.guide).slice(0, HOECHSTENS_GUIDES)
+    };
   }
 
   // Kurzer Textauszug, in dem das erste Suchwort vorkommt
@@ -329,10 +336,11 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
       return;
     }
 
-    const treffer = suchen(eingabe);
+    const ergebnis = suchen(eingabe);
+    const anzahl = ergebnis.fuehrungen.length + ergebnis.guides.length;
     const nochAmLaden = seitenStatus !== "fertig";
 
-    if (!treffer.length) {
+    if (!anzahl) {
       if (nochAmLaden) {
         suchehinweis.textContent = "Einen Moment – wir durchsuchen alle Seiten …";
         return;
@@ -344,29 +352,42 @@ if (suchknopf && suchbereich && sucheingabe && typeof TOUREN !== "undefined") {
       return;
     }
 
-    suchehinweis.textContent = (treffer.length === 1 ? "1 Treffer" : treffer.length + " Treffer") +
+    suchehinweis.textContent = (anzahl === 1 ? "1 Treffer" : anzahl + " Treffer") +
       (nochAmLaden ? " – wir durchsuchen noch weitere Seiten …" : "");
 
-    treffer.forEach((t) => {
+    function ueberschrift(text) {
       const zeile = document.createElement("li");
-      const link = document.createElement("a");
-      link.className = "treffer";
-      link.href = t.link;
-
-      const titel = document.createElement("span");
-      titel.className = "treffer__titel";
-      titel.textContent = t.titel;
-
-      const thema = document.createElement("span");
-      thema.className = "treffer__thema";
-      const text = auszug(t, eingabe);
-      thema.textContent = text ? (t.thema && t.thema !== "Seite" ? t.thema + ": " : "") + text
-                               : (t.thema === "Seite" ? "Unterseite" : t.thema);
-
-      link.append(titel, thema);
-      zeile.append(link);
+      zeile.className = "treffer__gruppe";
+      zeile.textContent = text;
       suchetreffer.append(zeile);
-    });
+    }
+
+    if (ergebnis.fuehrungen.length) ueberschrift("Führungen");
+    ergebnis.fuehrungen.forEach(trefferZeile);
+    if (ergebnis.guides.length) ueberschrift("Guides");
+    ergebnis.guides.forEach(trefferZeile);
+  }
+
+  function trefferZeile(t) {
+    const eingabe = sucheingabe.value;
+    const zeile = document.createElement("li");
+    const link = document.createElement("a");
+    link.className = "treffer";
+    link.href = t.link;
+
+    const titel = document.createElement("span");
+    titel.className = "treffer__titel";
+    titel.textContent = t.titel;
+
+    const thema = document.createElement("span");
+    thema.className = "treffer__thema";
+    const text = auszug(t, eingabe);
+    thema.textContent = text ? (t.thema && t.thema !== "Seite" ? t.thema + ": " : "") + text
+                             : (t.thema === "Seite" ? "Unterseite" : t.thema);
+
+    link.append(titel, thema);
+    zeile.append(link);
+    suchetreffer.append(zeile);
   }
 
   /* ---- Auf- und zuklappen ---------------------------------------- */
