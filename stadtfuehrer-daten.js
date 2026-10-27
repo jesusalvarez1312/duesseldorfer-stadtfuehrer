@@ -23,17 +23,17 @@
 const standardLink = "index.html#buchung";
 
 const stadtfuehrerListe = [
-  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Neue Mitte"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
+  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
   { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
   { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"],        sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
-  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Familien", "Kinder", "Sportlich"],                  sprachen: ["de", "en", "nl"], link: "http://www.run-and-see-duesseldorf.de/entertrainerin_steffi_buss.html" },
+  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sportlich", "Kunst", "Achitektur"],                  sprachen: ["de", "en"], link: "https://www.steffibuss.com/ueber-uns" },
   { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
   { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Kaiserswerth", "Frauen", "Medienhafen"],              sprachen: ["de", "en"] },
   { name: "Brigitta Binsfeld-Rizkalla",  bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
-  { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Altstadt", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
+  { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
   { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
   { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"] },
   { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Königsallee", "Rheinufer"],           sprachen: ["de", "pl"] },
