@@ -27,7 +27,7 @@ const stadtfuehrerListe = [
   { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
-  { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"]        sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
+  { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"], sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
   { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sportlich", "Kunst", "Unterhaltsames"],                  sprachen: ["de", "en"], link: "https://www.steffibuss.com/ueber-uns" },
   { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
@@ -44,7 +44,8 @@ const stadtfuehrerListe = [
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"] },
   { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Musik", "Kinder", "Barrierefrei"],                 sprachen: ["de", "en", "ru"] },
-  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"] }
+  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"] },
+  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Wirtschaft", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"] }
 ];
 
 /* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser
