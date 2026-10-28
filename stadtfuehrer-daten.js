@@ -10,6 +10,8 @@
                bilder/<bild>.jpg (Querformat 4:3, ca. 800px breit).
                Fehlt die Datei, erscheint automatisch ein Platzhalter.
    stichworte: Begriffe, die die Schwerpunkte beschreiben (beliebig viele).
+   sterne:     1, 2 oder 3 – Qualifikationsnachweis, erscheint als Sterne
+               hinter dem Namen. Fehlt der Wert, werden keine Sterne gezeigt.
    sprachen:   Kürzel aus der Liste unten, beliebig viele.
                de = Deutsch, en = English, fr = Français, nl = Nederlands,
                es = Español, ca = Català, it = Italiano, cs = Čeština, pl = Polski,
@@ -23,29 +25,28 @@
 const standardLink = "index.html#buchung";
 
 const stadtfuehrerListe = [
-  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], link: "https://www.duesseldorf-entdecken.de/" },
-  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], link: "https://www.stadtstreicherin.de/" },
-  { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
-  { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
-  { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"], sprachen: ["de", "es"], link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
-  { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
-  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sportlich", "Kunst", "Unterhaltsames"],                  sprachen: ["de", "en"], link: "https://www.steffibuss.com/ueber-uns" },
-  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"] },
-  { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Kaiserswerth", "Frauen", "Medienhafen"],              sprachen: ["de", "en"] },
-  { name: "Brigitta Binsfeld",           bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
-  { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"] },
-  { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"] },
-  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"] },
-  { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Königsallee", "Rheinufer"],           sprachen: ["de", "pl"] },
-  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de"] },
-  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"] },
-  { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Landesgeschichte", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"] },
-  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"], link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
-  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
-  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"] },
-  { name: "Mechthild Langohr",           bild: "mechthild-langohr",           stichworte: ["Musik", "Kinder", "Barrierefrei"],                 sprachen: ["de", "en", "ru"] },
-  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"] },
-  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Wirtschaft", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"] }
+  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://www.duesseldorf-entdecken.de/" },
+  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://www.stadtstreicherin.de/" },
+  { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], sterne: 2, link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
+  { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
+  { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"], sprachen: ["de", "es"], sterne: 1, link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
+  { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], sterne: 2, link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
+  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sportlich", "Kunst", "Unterhaltsames"],                  sprachen: ["de", "en"], sterne: 3, link: "https://www.steffibuss.com/ueber-uns" },
+  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"], sterne: 1 },
+  { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Kaiserswerth", "Frauen", "Medienhafen"],              sprachen: ["de", "en"], sterne: 3 },
+  { name: "Brigitta Binsfeld",           bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
+  { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"], sterne: 1 },
+  { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"], sterne: 1 },
+  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"], sterne: 1 },
+  { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Königsallee", "Rheinufer"],           sprachen: ["de", "pl"], sterne: 1 },
+  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de"], sterne: 3 },
+  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Familien", "Grünflächen"],         sprachen: ["de", "en", "nl"], sterne: 1 },
+  { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Landesgeschichte", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"], sterne: 1 },
+  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
+  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
+  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2 },
+  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"], sterne: 1 },
+  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Wirtschaft", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"], sterne: 1 }
 ];
 
 /* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser

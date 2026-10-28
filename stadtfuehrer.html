@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Unsere Stadtführer:innen – Düsseldorfer Stadtführer e.V.</title>
-  <meta name="description" content="23 zertifizierte Gästeführerinnen und Gästeführer aus Düsseldorf – mit ihren Themenschwerpunkten und Sprachen auf einen Blick.">
+  <meta name="description" content="22 zertifizierte Gästeführerinnen und Gästeführer aus Düsseldorf – mit ihren Themenschwerpunkten und Sprachen auf einen Blick.">
   <meta name="theme-color" content="#B4131C">
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="stadtfuehrer.css">
+  <style>
+    .sterne { color: #B4131C; white-space: nowrap; letter-spacing: .05em; margin-left: .3em; font-size: .9em; }
+  </style>
 </head>
 
 <body>
@@ -100,7 +103,7 @@
   <!-- ===== TITELBEREICH DER UNTERSEITE ============================ -->
   <section class="band">
     <div class="huelle fuehrer-kopf">
-      <p class="augenbraue">23 Guide-Persönlichkeiten, eine Stadt</p>
+      <p class="augenbraue">22 Guide-Persönlichkeiten, eine Stadt</p>
       <h1>Wir Stadtführerinnen<br>und Stadtführer</h1>
       <p class="lead">
         Alle sind wir in der Altstadt zuhaus und kennen uns exzellent mit der Düsseldorfer Geschichte aus. Aber jede und jeder von uns führt mit eigenen thematischen Schwerpunkten durch Düsseldorf.
@@ -208,7 +211,10 @@
           '</span>' +
         '</figure>';
 
-      const name = '<h3 class="fuehrer-kachel__name">' + f.name + '</h3>';
+      const sterne = f.sterne
+        ? ' <span class="sterne" role="img" aria-label="Qualifikation: ' + f.sterne + ' von 3 Sternen" title="Qualifikation: ' + f.sterne + ' von 3 Sternen">' + "★".repeat(f.sterne) + "</span>"
+        : "";
+      const name = '<h3 class="fuehrer-kachel__name">' + f.name + sterne + '</h3>';
 
       // Foto und Name sind immer verlinkt: auf den eigenen "link" aus
       // stadtfuehrer-daten.js oder, falls keiner hinterlegt ist, auf die
