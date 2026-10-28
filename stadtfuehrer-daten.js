@@ -27,7 +27,7 @@ const standardLink = "index.html#buchung";
 const stadtfuehrerListe = [
   { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://www.duesseldorf-entdecken.de/" },
   { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://www.stadtstreicherin.de/" },
-  { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], sterne: 2, link: "https://die-gaestefuehrer.de/profile/georg-reinders-424" },
+  { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Wirtschaft"],  sprachen: ["de", "en"], sterne: 2, link: "https://www.reisezeit-rheinruhr.de/" },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
   { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "Neuss"], sprachen: ["de", "es"], sterne: 1, link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
   { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], sterne: 2, link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
