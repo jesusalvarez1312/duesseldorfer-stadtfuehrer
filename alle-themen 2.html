@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Alle Touren – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Alle Touren und Themen auf einen Blick: unsere Top 10 und alle Spezialführungen, gegliedert nach Kategorie.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+
+  <!-- Seiteneigene Zusätze nur für diese Übersichtsliste. Nutzt
+       ausschließlich die Farb- und Schriftvariablen aus style.css,
+       damit sich nichts von der übrigen Gestaltung entfernt. -->
+  <style>
+    .themenraster {
+      display: grid;
+      gap: 2.25rem;
+      grid-template-columns: 1fr;
+    }
+    .themenblock__kopf {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 0.9rem;
+    }
+    .themenblock__kopf .icon {
+      width: 22px;
+      height: 22px;
+      color: var(--rot);
+      flex-shrink: 0;
+    }
+    .themenblock__kopf h3 {
+      margin: 0;
+      font-family: var(--titelschrift);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .themenblock__kopf a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .themenblock__kopf a:hover {
+      color: var(--rot);
+    }
+    .themenblock ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .themenblock li {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+    .themenblock li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--linie);
+    }
+    .themenblock li a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .themenblock li a:hover {
+      color: var(--rot);
+      text-decoration: underline;
+    }
+    .themenblock li.ohne-seite {
+      color: var(--text-leise);
+    }
+    .top10-liste {
+      list-style: none;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .top10-liste li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      font-size: 1.02rem;
+      border-bottom: 1px solid var(--linie);
+      padding-bottom: 0.7rem;
+    }
+    .top10-liste .top10-liste__nr {
+      font-family: var(--titelschrift);
+      font-weight: 700;
+      color: var(--rot);
+      min-width: 1.6em;
+    }
+    .top10-liste a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .top10-liste a:hover {
+      color: var(--rot);
+    }
+    .top10-liste span.ohne-seite {
+      color: var(--text-leise);
+      font-weight: 600;
+    }
+    @media (min-width: 720px) {
+      .themenraster { grid-template-columns: repeat(2, 1fr); }
+      .top10-liste { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .themenraster { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ---- Spezialführungen: Karten statt langer Listen ----------- */
+    .spezialkopf {
+      display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between;
+      gap: 0.5rem 1.5rem; margin-bottom: 1.5rem;
+    }
+    .spezialkopf__titel { margin: 0; }
+    .marke-alt {
+      display: inline-block;
+      background: var(--rot); color: #fff;
+      font-family: var(--textschrift); font-weight: 600;
+      font-size: 0.55em; letter-spacing: .01em;
+      padding: 0.2em 0.55em; border-radius: 6px;
+      vertical-align: middle; transform: translateY(-0.12em) rotate(-1.5deg);
+    }
+    .spezialraster { display: grid; gap: 1rem; }
+    .spezialkarte {
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 18px;
+      padding: 1.3rem 1.3rem 1.1rem;
+    }
+    .spezialkarte--breit .themenblock__kopf { justify-content: center; }
+    .spezialliste { list-style: none; margin: 0; padding: 0; }
+    .spezialliste li {
+      position: relative; padding-left: 1.05rem; margin: 0 0 0.5rem;
+      font-size: 0.95rem; line-height: 1.38; break-inside: avoid;
+    }
+    .spezialliste li::before {
+      content: ""; position: absolute; left: 0; top: 0.5em;
+      width: 7px; height: 7px; border-radius: 50%; background: var(--rot);
+    }
+    .spezialliste li.auf-anfrage::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--rot); }
+    .spezialliste a { color: var(--text); text-decoration: none; }
+    .spezialliste .auf-anfrage a { color: var(--text-leise); }
+    .spezialliste a:hover { color: var(--rot); text-decoration: underline; }
+    .flagge--klein { display: inline-grid; width: 18px; height: 18px; font-size: 11px; vertical-align: -3px; margin-left: 0.25rem; }
+
+    .zeichenerklaerung { display: flex; align-items: center; gap: 0.4rem 1rem; flex-wrap: wrap; margin: 0; font-size: 0.82rem; color: var(--text-leise); }
+    .punkt { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: -0.55rem; }
+    .punkt--rot { background: var(--rot); }
+    .punkt--ring { box-shadow: inset 0 0 0 1.5px var(--rot); }
+
+    @media (min-width: 720px) {
+      .spezialraster { grid-template-columns: repeat(2, 1fr); }
+      .spezialkarte--breit { grid-column: 1 / -1; }
+      .spezialkarte--breit .spezialliste { columns: 2; column-gap: 2rem; }
+    }
+    @media (min-width: 1024px) {
+      .spezialraster { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+      .spezialkarte--breit .spezialliste { columns: 3; }
+    }
+
+    /* ---- Karten: Stadtviertel & Parks / Touren außerhalb -------- */
+    .kartenbereich { display: grid; gap: 1.5rem; align-items: center; }
+    .kartenbereich__titel { margin: 0; font-family: var(--titelschrift); font-size: clamp(1.4rem, 3vw, 1.9rem); }
+    .kartenbereich__titel a { color: var(--text); text-decoration: none; }
+    .kartenbereich__titel a:hover { color: var(--rot); }
+    .kartenbereich__text { margin: 0 0 0.6rem; color: var(--text-leise); }
+
+    .ortsliste {
+      list-style: none; margin: 1.1rem 0 0; padding: 0;
+      columns: 2; column-gap: 1.5rem;
+    }
+    .ortsliste li { position: relative; padding-left: 1rem; margin: 0 0 0.45rem; font-size: 0.93rem; line-height: 1.35; break-inside: avoid; }
+    .ortsliste li::before {
+      content: ""; position: absolute; left: 0; top: 0.48em;
+      width: 7px; height: 7px; border-radius: 50%; background: var(--rot);
+    }
+    .ortsliste li.auf-anfrage::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--rot); }
+    .ortsliste__eintrag { color: var(--text); text-decoration: none; }
+    .auf-anfrage .ortsliste__eintrag { color: var(--text-leise); }
+    .ortsliste__eintrag:hover, .ortsliste__eintrag.ist-aktiv { color: var(--rot); text-decoration: underline; }
+    @media (min-width: 720px) and (max-width: 1023px) { .ortsliste { columns: 3; } }
+
+    .stadtkarte { position: relative; margin: 0 auto; width: 100%; max-width: 440px; }
+    .stadtkarte__svg { display: block; width: 100%; height: auto; }
+    .stadtkarte__bezirke path { stroke: #fff; stroke-width: 3; stroke-linejoin: round; }
+    .stadtkarte__rhein { fill: none; stroke: #BFD6E6; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    .stadtkarte__ort circle {
+      fill: var(--rot); stroke: #fff; stroke-width: 3;
+      transition: transform .15s ease; transform-box: fill-box; transform-origin: center;
+    }
+    .stadtkarte__ort--anfrage circle { fill: #fff; stroke: var(--rot); stroke-width: 3; }
+    .stadtkarte__ort:hover circle, .stadtkarte__ort:focus-visible circle,
+    .stadtkarte__ort.ist-aktiv circle { transform: scale(1.5); }
+    .stadtkarte__ort:focus-visible { outline: none; }
+    .stadtkarte__tipp {
+      position: absolute; transform: translate(-50%, calc(-100% - 12px));
+      background: var(--nacht); color: #fff; font-size: 0.8rem; font-weight: 600;
+      padding: 0.3rem 0.6rem; border-radius: 6px; white-space: nowrap; pointer-events: none;
+    }
+    .stadtkarte__tipp[hidden] { display: none; }
+
+    .landkarte { margin: 0 auto; width: 100%; max-width: 440px; }
+    .landkarte__svg { display: block; width: 100%; height: auto; }
+    .landkarte__fluss { fill: none; stroke: #BFD6E6; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .landkarte__fluss--klein { stroke-width: 3; }
+    .landkarte__bruch { stroke: var(--text-leise); stroke-width: 1.5; }
+    .landkarte__wasser { fill: #7FA3BE; font: italic 600 12px var(--textschrift); letter-spacing: 1px; }
+    .landkarte__region, .landkarte__hinweis { fill: var(--text-leise); font: 500 12px var(--textschrift); }
+    .landkarte__hinweis { font-style: italic; }
+    .landkarte__stadt { fill: var(--nacht); font: 700 16px var(--titelschrift); }
+    .landkarte__name { fill: var(--text); font: 600 13.5px var(--textschrift); paint-order: stroke; stroke: var(--creme); stroke-width: 4px; stroke-linejoin: round; }
+    .landkarte__nord path { fill: var(--text-leise); }
+    .landkarte__nord text { fill: var(--text-leise); font: 600 10px var(--textschrift); text-anchor: middle; }
+    .landkarte__ort circle { transition: transform .15s ease; transform-box: fill-box; transform-origin: center; }
+    a.landkarte__ort:hover circle { transform: scale(1.4); }
+    a.landkarte__ort:hover .landkarte__name { fill: var(--rot); }
+
+    @media (min-width: 1024px) {
+      .kartenbereich { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; }
+      .kartenbereich--umland .kartenbereich__info { order: 2; }
+    }
+
+    /* ---- Diese Seite: engere Abstände, größere Überschriften ---- */
+    #inhalt .band { padding-block: 2.25rem; }
+    .spezialkopf { margin-bottom: 1.1rem; }
+    .spezialkopf__titel { font-size: clamp(1.9rem, 7vw, 2.8rem); }
+    .spezialkarte .themenblock__kopf { margin-bottom: 1rem; }
+    .spezialkarte .themenblock__kopf .icon { width: 28px; height: 28px; }
+    .spezialkarte .themenblock__kopf h3 { font-size: clamp(1.4rem, 4.5vw, 1.75rem); }
+    .kartenbereich__titel { font-size: clamp(1.9rem, 7vw, 2.8rem) !important; }
+    .kartenbereich .themenblock__kopf .icon { width: 28px; height: 28px; }
+    @media (min-width: 1024px) { #inhalt .band { padding-block: 2.75rem; } }
+
+    /* ---- Top 10 kompakt, Sprunglinks, Mosaik-Wechsel ------------ */
+    .abschnittstitel { font-size: clamp(1.9rem, 7vw, 2.8rem) !important; margin: 0 0 1.25rem !important; }
+    .seitenkopf { padding-bottom: 0.5rem; }
+    .tour--kompakt .tour__titel { padding: 0.75rem 0.9rem 0.9rem; }
+    .sprunglinks { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+    .sprunglinks a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.9rem; border: 1px solid var(--linie); border-radius: 999px;
+      background: var(--weiss); color: var(--text); text-decoration: none;
+      font-size: 0.9rem; font-weight: 600;
+    }
+    .sprunglinks a::after { content: "↓"; color: var(--rot); font-weight: 700; }
+    .sprunglinks a:hover { border-color: var(--rot); color: var(--rot); }
+    #top10, #spezialfuehrungen, #stadtviertel, #ausserhalb { scroll-margin-top: 80px; }
+    html { scroll-behavior: smooth; }
+    .mosaik__kachel img, .mosaik__kachel span { transition: opacity .7s ease; }
+    .mosaik__kachel.wechselt img, .mosaik__kachel.wechselt span { opacity: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .mosaik__kachel img, .mosaik__kachel span { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     beliebig oft eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+    <g id="i-geschichte"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.2l3.2 2"/></g>
+    <g id="i-kunst"><circle cx="12" cy="12" r="8.5"/><circle cx="9.2" cy="9.5" r="1.1"/><circle cx="14.6" cy="9.2" r="1.1"/><circle cx="10.2" cy="15" r="1.1"/></g>
+    <g id="i-viertel"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></g>
+    <g id="i-rad"><circle cx="6" cy="17" r="3.4"/><circle cx="18" cy="17" r="3.4"/><path d="m6 17 4.2-8H15l3 8M9.4 9h4.2"/></g>
+    <g id="i-kinder"><circle cx="12" cy="12" r="8.5"/><path d="M9.2 10.4v.01M14.8 10.4v.01M8.4 14.4a4.6 4.6 0 0 0 7.2 0"/></g>
+    <g id="i-karte"><path d="M9 4.5 3.5 6.8v12.7L9 17.2m0-12.7 6 2.4m-6-2.4v12.7m6-10.3 5.5-2.3v12.7L15 19.6m0-12.7v12.7m-6-2.4 6 2.4"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite müssen die Menülinks auf index.html zeigen,
+     sonst suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren">Touren</a>
+      <a href="index.html#verein">Über uns</a>
+      <a href="index.html#sprachen">Sprachen</a>
+      <a href="index.html#buchung">Anfrage</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
+</header>
+
+
+<main id="inhalt">
+
+  <!-- ===== SEITENKOPF ===========================================
+       Schlank, ohne Bildcollage – wie bei impressum.html/anfrage.html.
+       Diese Seite ist eine reine Übersichtsliste, kein Bild nötig.
+  ============================================================ -->
+  <section class="seitenkopf">
+    <div class="huelle seitenkopf__raster">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html">Start</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#touren">Touren</a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Alle Touren</span>
+        </nav>
+
+        <p class="augenbraue">Der schnelle Überblick</p>
+        <h1 class="titel-strich">Alle Touren</h1>
+        <p class="lead">
+          Von unseren Top 10 bis zu allen Spezialführungen – hier finden Sie jedes Thema auf einen Blick.
+          Und unsere Expertise endet nicht an der Stadtgrenze: Auch am Niederrhein, im Ruhrgebiet,
+          in Köln und bis an den Mittelrhein führen wir Sie mit demselben Wissen und derselben Begeisterung.
+        </p>
+
+        <!-- Sprunglinks zu den Abschnitten weiter unten -->
+        <nav class="sprunglinks" aria-label="Auf dieser Seite">
+          <a href="#spezialfuehrungen">Spezialführungen</a>
+          <a href="#stadtviertel">Stadtviertel &amp; Parks</a>
+          <a href="#ausserhalb">Außerhalb von Düsseldorf</a>
+        </nav>
+
+      </div>
+
+      <!-- Bilder-Mosaik: zeigt die Vielfalt (nur ab Laptop sichtbar).
+           Ein Bild tauschen: Link, Bilddatei und Text ändern. -->
+      <!-- Bilder-Mosaik (nur ab Laptop): wechselt alle 10 Sekunden.
+           Weitere Bilder: in der Liste MOSAIK_BILDER unten im Script
+           eine Zeile ergänzen (Datei, Beschriftung, Link). -->
+      <div class="mosaik" id="mosaik" aria-label="Eine Auswahl unserer Touren">
+        <a class="mosaik__kachel mosaik__kachel--gross" href="bacharach.html"><img src="bilder/kopfbild-bacharach.jpg" alt="" loading="lazy"><span>Bacharach</span></a>
+        <a class="mosaik__kachel" href="wehrhahnlinie.html"><img src="bilder/kunst-wehrhahnlinie.jpg" alt="" loading="lazy"><span>Wehrhahnlinie</span></a>
+        <a class="mosaik__kachel mosaik__kachel--hoch" href="neuss.html"><img src="bilder/neuss-glockenspiel.jpg" alt="" loading="lazy"><span>Neuss</span></a>
+        <a class="mosaik__kachel" href="benrath.html"><img src="bilder/benrath.jpg" alt="" loading="lazy"><span>Benrath</span></a>
+        <a class="mosaik__kachel" href="street-art.html"><img src="bilder/kunst-street-art.jpg" alt="" loading="lazy"><span>Street-Art</span></a>
+        <a class="mosaik__kachel" href="koeln-altstadt.html"><img src="bilder/ausflug-koeln.jpg" alt="" loading="lazy"><span>Köln</span></a>
+        <a class="mosaik__kachel" href="zons.html"><img src="bilder/ausflug-zons.jpg" alt="" loading="lazy"><span>Zons</span></a>
+        <a class="mosaik__kachel" href="joseph-beuys.html"><img src="bilder/kunst-joseph-beuys.jpg" alt="" loading="lazy"><span>Joseph Beuys</span></a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== UNSERE TOP 10 =========================================
+       Dieselben Kacheln wie auf der Startseite – hier kompakt:
+       nur Bild und Titel, ohne Beschreibung und ohne Anfrage-Knopf.
+  ============================================================ -->
+  <section class="band" id="top10">
+    <div class="huelle">
+
+      <h2 class="abschnittstitel">Unsere Top 10</h2>
+
+      <ul class="touren">
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="altstadt.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">01</span>
+              <img src="bilder/tour-01-altstadt.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Altstadt</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="neue-mitte.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">02</span>
+              <img src="bilder/tour-02-neue-mitte.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Neue Mitte</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="medienhafen.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">03</span>
+              <img src="bilder/tour-03-medienhafen.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">MedienHafen</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="highlights.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">04</span>
+              <img src="bilder/tour-04-highlights.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Das Beste von Düsseldorf</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="kulinarische-tour.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">05</span>
+              <img src="bilder/tour-05-kulinarisch.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Kulinarisches Düsseldorf</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="altbier.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">06</span>
+              <img src="bilder/tour-06-altbier.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Altbier &amp; die längste Theke der Welt</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="japanviertel.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">07</span>
+              <img src="bilder/tour-07-klein-tokio.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Klein-Tokio</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="kaiserswerth.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">08</span>
+              <img src="bilder/tour-08-kaiserswerth.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Kaiserswerth</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="nachtwaechter.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">09</span>
+              <img src="bilder/tour-09-nachtwaechter.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Mit dem Nachtwächter unterwegs</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="anfrage.html" data-tour="Radtouren">
+            <figure class="tour__bild">
+              <span class="tour__nr">10</span>
+              <img src="bilder/tour-10-radtouren.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Radtouren</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ===== UNSERE SPEZIALFÜHRUNGEN ================================
+       Eine breite Karte (Geschichte) und darunter drei Karten.
+       Führungen ohne eigene Infoseite verlinken auf das Anfrageformular –
+       data-tour="…" trägt den Namen gleich ins Formular ein.
+  ============================================================ -->
+  <section class="band band--creme" id="spezialfuehrungen">
+    <div class="huelle">
+
+      <div class="spezialkopf">
+        <h2 class="spezialkopf__titel">Unsere Spezialführungen in Düsseldorf</h2>
+        <p class="zeichenerklaerung"><span class="punkt punkt--rot"></span> eigene Infoseite <span class="punkt punkt--ring"></span> auf Anfrage</p>
+      </div>
+
+      <div class="spezialraster">
+        <article class="spezialkarte spezialkarte--breit">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-geschichte"/></svg>
+            <h3><a href="geschichte-geschichten.html">Geschichte &amp; Geschichten</a></h3>
+          </div>
+          <ul class="spezialliste">
+            <li><a href="weihnachtsmaerkte.html">Advent, Advent – ein Bummel über die Weihnachtsmärkte</a></li>
+            <li><a href="architektur-innenstadt.html">Architektur der Innenstadt (nicht nur Neue Mitte)</a></li>
+            <li><a href="mittelalter-1288.html">Auf den Spuren des Dorfes von 1288</a></li>
+            <li><a href="highlights.html">Das Beste von Düsseldorf</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Die Kirchen der Altstadt" title="Auf Anfrage – öffnet das Anfrageformular">Die Kirchen der Altstadt</a></li>
+            <li><a href="diversity.html">Düsseldorf divers – Vielfalt und Verfolgung (Diversity-Führung)</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Düsseldorf kriminell (Altstadt und Kaiserswerth)" title="Auf Anfrage – öffnet das Anfrageformular">Düsseldorf kriminell (Altstadt und Kaiserswerth)</a></li>
+            <li><a href="landespolitik.html">Düsseldorf macht Landespolitik</a></li>
+            <li><a href="duesseldorf-international.html">Düsseldorf und die Welt – Düsseldorf international</a></li>
+            <li><a href="originale.html">Düsseldorfer Originale</a></li>
+            <li><a href="filmstadt.html">Filmstadt Düsseldorf</a></li>
+            <li><a href="wirtschaftsgeschichte.html">Geldgeschichten und Wirtschaftsgeschichte</a></li>
+            <li><a href="klimawandel.html">Heißes Pflaster: Wie sich Düsseldorf auf den Klimawandel einstellt</a></li>
+            <li><a href="juedisches-leben.html">Jüdisches Düsseldorf</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Karneval und Brauchtum" title="Auf Anfrage – öffnet das Anfrageformular">Karneval und Brauchtum</a></li>
+            <li><a href="duesseldorf-vs-koeln.html">Köln versus Düsseldorf – ein amüsanter Schlagabtausch</a></li>
+            <li><a href="lebendiges-rathaus.html">Lebendiges Rathaus</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Links und rechts der Düssel" title="Auf Anfrage – öffnet das Anfrageformular">Links und rechts der Düssel</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Natur in der Stadt – Düsseldorfs grüne Seite" title="Auf Anfrage – öffnet das Anfrageformular">Natur in der Stadt – Düsseldorfs grüne Seite</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Natur: Düsseldorfer Natur, Fledermäuse, Vogelstimmen" title="Auf Anfrage – öffnet das Anfrageformular">Natur: Düsseldorfer Natur, Fledermäuse, Vogelstimmen</a></li>
+            <li><a href="neue-mitte.html">Neue Mitte</a></li>
+            <li><a href="sagen-legenden.html">Sagen und Legenden</a></li>
+            <li><a href="beruehmte-frauen.html">Starke Frauen – Düsseldorfs weibliche Seite</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Vom Dorf zur Stadt – Düsseldorfs Stadtentwicklung" title="Auf Anfrage – öffnet das Anfrageformular">Vom Dorf zur Stadt – Düsseldorfs Stadtentwicklung</a></li>
+          </ul>
+        </article>
+        <article class="spezialkarte">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kunst"/></svg>
+            <h3><a href="kunst-kultur.html">Kunst &amp; Kultur</a></h3>
+          </div>
+          <ul class="spezialliste">
+            <li><a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Bühne frei: Düsseldorf macht Theater" title="Auf Anfrage – öffnet das Anfrageformular">Bühne frei: Düsseldorf macht Theater</a></li>
+            <li><a href="saeulenheilige.html">Die Säulenheiligen von Christoph Pöggeler</a></li>
+            <li><a href="bert-gerresheim.html">Die Skulpturen von Bert Gerresheim</a></li>
+            <li><a href="musik.html">In Düsseldorf spielt die Musik</a></li>
+            <li><a href="joseph-beuys.html">Joseph Beuys verstehen</a></li>
+            <li><a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></li>
+            <li><a href="kunst-im-oeffentlichen-raum.html">Kunst im öffentlichen Raum</a></li>
+            <li><a href="wehrhahnlinie.html">Kunst im Untergrund – die Wehrhahnlinie</a></li>
+            <li><a href="kunst-ns.html">Kunst rund um den Nationalsozialismus</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Literaten, Poeten und Dramatiker" title="Auf Anfrage – öffnet das Anfrageformular">Literaten, Poeten und Dramatiker</a></li>
+            <li><a href="street-art.html">Street-Art</a></li>
+          </ul>
+        </article>
+        <article class="spezialkarte">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kinder"/></svg>
+            <h3><a href="besondere-beduerfnisse.html">Familien &amp; besondere Bedürfnisse</a></h3>
+          </div>
+          <ul class="spezialliste">
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Altstadt und Japanviertel für Blinde und Sehbehinderte" title="Auf Anfrage – öffnet das Anfrageformular">Altstadt und Japanviertel für Blinde und Sehbehinderte</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Barrierefrei: Altstadt für Rollstuhlfahrer*innen" title="Auf Anfrage – öffnet das Anfrageformular">Barrierefrei: Altstadt für Rollstuhlfahrer*innen</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Dusseldorf for Expats" title="Auf Anfrage – öffnet das Anfrageformular">Dusseldorf for Expats</a> <span class="flagge flagge--klein" data-code="en" aria-hidden="true">🇬🇧</span></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Düsseldorf für Schüler" title="Auf Anfrage – öffnet das Anfrageformular">Düsseldorf für Schüler</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Düsseldorf para recién llegados" title="Auf Anfrage – öffnet das Anfrageformular">Düsseldorf para recién llegados</a> <span class="flagge flagge--klein" data-code="es" aria-hidden="true">🇪🇸</span></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Düsseldorf pour Expats" title="Auf Anfrage – öffnet das Anfrageformular">Düsseldorf pour Expats</a> <span class="flagge flagge--klein" data-code="fr" aria-hidden="true">🇫🇷</span></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Kinder suchen den verschwundenen Kurhut" title="Auf Anfrage – öffnet das Anfrageformular">Kinder suchen den verschwundenen Kurhut</a></li>
+          </ul>
+        </article>
+        <article class="spezialkarte">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-rad"/></svg>
+            <h3><a href="sportlich.html">Sportlich</a></h3>
+          </div>
+          <ul class="spezialliste">
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Radtour" title="Auf Anfrage – öffnet das Anfrageformular">Radtour</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Sight Running" title="Auf Anfrage – öffnet das Anfrageformular">Sight Running</a></li>
+            <li class="auf-anfrage"><a href="anfrage.html" data-tour="Sight Walking" title="Auf Anfrage – öffnet das Anfrageformular">Sight Walking</a></li>
+          </ul>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== STADTVIERTEL & PARKS AUF DER KARTE ======================
+       Abstrakte Karte der Düsseldorfer Stadtbezirke, ohne Beschriftung.
+       Volle Punkte: eigene Seite. Ringe: auf Anfrage (öffnet das
+       Anfrageformular mit dem Namen der Führung).
+  ============================================================== -->
+  <section class="band" id="stadtviertel">
+    <div class="huelle">
+      <div class="kartenbereich" data-karte>
+
+        <div class="kartenbereich__info">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-viertel"/></svg>
+            <h2 class="kartenbereich__titel"><a href="stadtviertel.html">Stadtviertel &amp; Parks</a></h2>
+          </div>
+          <p class="kartenbereich__text">Von Norden nach Süden – fahren Sie über die Punkte oder wählen Sie direkt ein Viertel.</p>
+          <p class="zeichenerklaerung"><span class="punkt punkt--rot"></span> eigene Infoseite <span class="punkt punkt--ring"></span> auf Anfrage</p>
+          <ul class="ortsliste">
+<li><a class="ortsliste__eintrag" data-ort="13" href="kaiserswerth.html">Kaiserswerth</a></li>
+<li><a class="ortsliste__eintrag" data-ort="12" href="nordpark.html">Nordpark</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="11" href="anfrage.html" data-tour="Nordfriedhof">Nordfriedhof</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="9" href="anfrage.html" data-tour="Golzheim">Golzheim</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="10" href="anfrage.html" data-tour="Friedhof Golzheim">Friedhof Golzheim</a></li>
+<li><a class="ortsliste__eintrag" data-ort="20" href="grafenberg.html">Grafenberg</a></li>
+<li><a class="ortsliste__eintrag" data-ort="8" href="pempelfort.html">Pempelfort</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="21" href="anfrage.html" data-tour="Gerresheim">Gerresheim</a></li>
+<li><a class="ortsliste__eintrag" data-ort="14" href="oberkassel.html">Oberkassel</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="7" href="anfrage.html" data-tour="Ehrenhof und Hofgarten">Ehrenhof und Hofgarten</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="19" href="anfrage.html" data-tour="Flingern">Flingern</a></li>
+<li><a class="ortsliste__eintrag" data-ort="0" href="altstadt.html">Altstadt</a></li>
+<li><a class="ortsliste__eintrag" data-ort="1" href="neue-mitte.html">Neue Mitte</a></li>
+<li><a class="ortsliste__eintrag" data-ort="3" href="japanviertel.html">Japanisches Viertel</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="4" href="anfrage.html" data-tour="Luxus und Glamour rund um die Kö">Luxus und Glamour rund um die Kö</a></li>
+<li><a class="ortsliste__eintrag" data-ort="2" href="carlstadt.html">Carlstadt</a></li>
+<li><a class="ortsliste__eintrag" data-ort="6" href="bahnhofsviertel.html">Bahnhofsviertel</a></li>
+<li><a class="ortsliste__eintrag" data-ort="5" href="kunst-an-der-koe.html">Unterschätzte Kunstmeile Königsallee</a></li>
+<li><a class="ortsliste__eintrag" data-ort="15" href="medienhafen.html">Medienhafen</a></li>
+<li><a class="ortsliste__eintrag" data-ort="16" href="unterbilk.html">Unterbilk</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="17" href="anfrage.html" data-tour="Oberbilk">Oberbilk</a></li>
+<li class="auf-anfrage"><a class="ortsliste__eintrag" data-ort="18" href="anfrage.html" data-tour="Volksgarten">Volksgarten</a></li>
+<li><a class="ortsliste__eintrag" data-ort="22" href="benrath.html">Benrath</a></li>
+          </ul>
+        </div>
+
+        <figure class="stadtkarte">
+<svg class="stadtkarte__svg" viewBox="0 0 704 922" role="img" aria-labelledby="stadtkarte-titel">
+<title id="stadtkarte-titel">Abstrakte Karte von Düsseldorf mit den Stadtvierteln unserer Führungen</title>
+<g class="stadtkarte__bezirke">
+<path d="M263.6 323.7 L258.6 326.6 L253.6 329.6 L248.6 332.6 L243.5 335.6 L238.4 338.7 L233.3 341.8 L227.4 348.7 L222.0 349.5 L216.7 350.4 L211.3 351.2 L206.0 352.1 L200.8 353.0 L195.2 357.5 L189.6 362.0 L188.3 367.3 L187.0 372.6 L191.4 374.8 L195.9 377.0 L200.4 379.3 L204.1 382.2 L207.7 385.0 L211.5 387.9 L215.2 390.9 L218.9 395.0 L222.7 399.2 L226.5 403.5 L230.4 407.8 L232.4 412.3 L234.4 416.8 L236.4 421.3 L240.9 422.2 L241.3 428.4 L241.7 434.6 L242.0 441.1 L246.5 444.9 L246.3 450.7 L246.0 456.7 L245.7 462.9 L245.3 469.3 L244.9 476.1 L244.5 483.3 L244.1 490.8 L243.9 498.9 L240.4 503.2 L240.4 515.6 L236.7 522.4 L233.2 528.7 L229.9 534.7 L226.6 540.4 L227.9 552.1 L233.9 556.8 L240.1 561.4 L246.9 562.9 L254.0 564.4 L261.4 564.9 L269.1 565.4 L276.9 565.6 L284.7 565.5 L292.5 565.3 L300.1 564.8 L307.5 564.2 L314.7 563.4 L321.6 562.7 L328.3 561.9 L334.7 561.1 L340.6 555.3 L346.3 549.5 L351.7 543.7 L356.9 538.0 L358.6 532.9 L358.6 526.3 L358.5 519.6 L358.2 512.8 L357.8 506.0 L357.3 499.1 L356.7 492.4 L355.9 485.6 L355.4 478.7 L354.9 471.9 L354.2 465.3 L353.5 458.8 L352.8 452.5 L352.1 446.3 L351.3 440.2 L350.6 434.3 L349.9 428.5 L349.2 422.8 L348.5 417.2 L347.8 411.8 L347.2 406.4 L346.5 401.1 L345.9 395.9 L342.6 390.7 L335.5 388.9 L335.0 384.1 L334.5 379.4 L330.6 375.0 L326.8 370.7 L326.2 365.6 L325.6 360.6 L325.0 355.7 L324.5 350.8 L323.9 345.9 L323.4 341.1 L322.9 336.3 L320.0 331.9 L317.1 327.5 L311.7 327.0 L306.4 326.5 L301.0 326.0 L295.7 325.6 L290.3 325.2 L285.0 324.8 L279.6 324.5 L274.3 324.2 L268.9 323.9 Z" fill="#EAD9D3"/>
+<path d="M339.4 372.8 L340.1 379.8 L343.7 385.2 L347.4 390.6 L351.1 396.1 L354.8 401.7 L355.3 406.8 L355.8 411.9 L356.3 417.1 L356.9 422.4 L357.4 427.8 L358.0 433.3 L358.5 438.9 L359.1 444.6 L359.6 450.4 L360.2 456.3 L360.7 462.4 L361.7 468.9 L362.7 475.6 L363.6 482.3 L364.4 489.2 L365.0 496.1 L365.6 503.1 L366.0 510.0 L366.4 517.0 L366.6 523.9 L366.6 530.7 L373.0 532.4 L379.2 534.1 L385.3 535.8 L388.0 541.0 L390.6 546.2 L393.2 551.2 L395.7 556.1 L398.3 561.0 L400.8 565.8 L403.2 570.5 L407.9 570.6 L412.6 570.8 L415.8 565.3 L419.0 559.7 L422.2 554.1 L425.3 548.5 L428.3 542.9 L431.2 537.4 L434.1 531.8 L435.3 526.2 L436.5 520.6 L441.3 520.0 L446.0 519.5 L450.6 519.0 L453.8 521.6 L458.3 521.5 L462.9 521.4 L467.4 521.4 L467.8 515.1 L468.2 508.9 L468.5 502.7 L465.4 498.0 L462.1 493.3 L458.9 488.5 L455.6 483.7 L455.4 478.3 L455.2 472.9 L454.9 467.6 L454.6 462.3 L450.8 458.5 L446.9 454.8 L442.9 451.0 L438.9 447.2 L434.9 443.4 L426.7 440.0 L425.9 430.7 L423.0 424.6 L420.1 418.5 L414.0 415.7 L407.8 412.8 L401.5 409.9 L397.2 406.0 L392.8 402.2 L388.3 398.3 L383.9 394.5 L379.4 390.7 L374.8 387.0 L370.2 383.3 L365.6 379.6 L361.0 376.0 L355.7 375.2 L350.3 374.4 L344.9 373.6 Z" fill="#EFE6DA"/>
+<path d="M110.7 503.9 L109.4 509.4 L108.1 514.8 L106.8 520.3 L105.5 525.7 L105.7 531.4 L105.9 537.1 L106.1 542.7 L106.3 548.4 L106.6 554.0 L108.5 559.4 L110.5 564.9 L112.5 570.3 L114.5 575.7 L117.6 580.5 L120.8 585.4 L121.3 590.6 L123.8 593.4 L124.4 599.8 L125.1 606.1 L127.7 610.2 L128.4 615.3 L129.1 620.3 L129.8 625.3 L130.6 630.2 L131.3 635.1 L132.0 640.0 L132.7 644.8 L133.4 649.6 L134.1 654.3 L134.9 659.0 L135.6 663.7 L136.3 668.3 L137.0 672.9 L137.7 677.4 L138.4 681.9 L139.1 686.4 L139.7 690.8 L142.6 695.4 L145.4 700.0 L148.9 703.5 L152.4 707.0 L155.9 710.5 L161.8 711.1 L163.5 715.4 L169.0 718.0 L174.6 720.6 L179.7 721.3 L184.8 721.9 L189.9 722.5 L195.0 723.1 L200.2 723.7 L205.2 723.2 L210.3 722.8 L215.4 722.2 L220.6 721.7 L225.8 721.2 L231.0 720.6 L232.1 718.6 L238.5 718.9 L243.2 717.6 L247.9 716.2 L252.7 714.8 L257.5 713.4 L263.1 713.2 L268.8 713.0 L274.4 712.7 L280.1 712.3 L285.7 712.0 L291.4 711.6 L296.6 712.3 L301.7 712.9 L306.9 713.6 L312.0 714.2 L316.6 716.7 L321.2 719.2 L325.7 721.7 L329.7 725.2 L333.6 728.7 L337.5 732.1 L342.9 731.5 L348.3 730.8 L353.6 730.1 L358.2 726.8 L362.7 723.5 L363.1 719.4 L363.5 715.3 L366.2 713.0 L367.2 708.3 L368.3 703.5 L371.6 699.4 L374.9 695.2 L378.2 691.0 L379.4 685.5 L380.7 680.0 L376.2 676.1 L371.7 674.4 L367.1 672.6 L362.5 670.9 L357.8 669.1 L353.1 667.3 L357.2 663.4 L361.2 659.4 L365.3 655.4 L369.3 651.3 L373.3 647.2 L378.9 646.8 L384.4 646.4 L389.9 646.0 L395.3 645.6 L400.6 645.2 L401.4 639.3 L402.1 633.3 L402.9 627.2 L408.2 622.9 L413.5 622.2 L418.8 621.5 L423.8 618.5 L423.9 612.3 L424.0 606.1 L421.0 602.3 L418.0 598.4 L414.9 594.5 L411.8 590.5 L408.7 586.5 L405.6 582.4 L403.4 578.2 L401.2 573.9 L398.9 569.5 L396.7 565.1 L394.4 560.6 L392.1 556.1 L389.7 551.4 L387.4 546.7 L384.9 541.9 L379.5 540.0 L373.9 538.1 L367.5 538.7 L360.9 539.2 L356.9 544.4 L352.8 549.6 L348.5 554.8 L344.2 559.9 L339.7 565.0 L335.1 570.0 L328.7 570.7 L322.2 571.5 L315.4 572.2 L308.4 572.8 L301.3 573.4 L293.9 573.8 L286.5 574.1 L279.0 574.2 L271.5 574.0 L264.1 573.8 L256.8 573.3 L249.7 572.7 L243.1 568.8 L236.5 564.8 L230.1 560.6 L223.9 556.4 L215.7 555.4 L207.9 554.4 L201.9 556.0 L196.0 557.6 L190.0 556.2 L184.0 554.8 L178.2 549.8 L172.4 544.8 L166.9 539.9 L163.0 534.0 L159.2 528.2 L155.5 522.5 L151.9 516.8 L147.6 512.3 L143.4 507.9 L139.3 503.6 L132.6 500.8 L127.1 500.9 L121.6 501.0 L116.1 501.1 Z" fill="#E7DCCB"/>
+<path d="M14.0 486.4 L14.1 491.6 L14.3 496.7 L14.5 501.8 L14.7 507.0 L17.6 511.4 L20.4 515.9 L23.3 520.4 L27.2 520.4 L31.1 520.5 L35.0 520.5 L39.0 520.6 L42.9 520.6 L46.9 520.7 L50.9 520.7 L54.9 520.8 L58.9 520.8 L63.0 520.9 L67.1 521.0 L71.2 521.0 L75.3 521.1 L79.4 521.2 L83.9 519.9 L88.3 518.7 L92.8 517.4 L95.9 514.7 L98.0 507.4 L100.1 499.9 L104.1 497.2 L108.0 494.4 L112.0 491.5 L114.3 487.3 L119.1 487.1 L124.1 487.0 L129.0 486.8 L134.0 486.5 L138.7 489.6 L143.5 492.6 L148.3 495.8 L153.1 499.0 L156.4 503.8 L159.7 508.7 L163.1 513.7 L166.6 518.8 L170.1 524.0 L173.8 529.2 L177.6 534.5 L182.8 538.0 L188.7 538.4 L194.8 538.9 L201.1 539.5 L206.3 536.7 L208.5 528.5 L213.0 521.8 L217.7 514.8 L220.6 503.8 L221.1 495.6 L221.9 487.5 L222.8 479.6 L223.8 472.0 L224.9 464.6 L226.0 457.5 L223.5 453.3 L223.8 446.9 L224.1 440.7 L224.4 434.6 L222.4 429.7 L220.4 424.9 L218.5 420.2 L216.6 415.6 L213.0 411.9 L209.5 408.3 L206.0 404.8 L202.6 401.2 L199.2 397.8 L195.8 394.3 L192.5 390.9 L188.0 389.1 L183.5 387.4 L179.1 385.6 L174.8 383.9 L170.4 382.2 L166.2 380.4 L161.9 378.7 L157.8 377.0 L153.6 375.3 L148.7 374.1 L143.9 372.9 L139.1 371.6 L134.3 370.4 L129.6 369.2 L124.9 368.0 L120.3 366.8 L113.6 367.6 L110.1 371.8 L106.7 376.1 L103.4 380.4 L100.0 384.7 L96.7 389.0 L93.4 393.3 L91.8 398.2 L88.6 402.2 L85.4 406.1 L82.3 410.1 L79.6 416.4 L73.0 421.9 L70.9 426.8 L68.9 431.7 L66.8 436.5 L64.8 441.4 L62.8 446.3 L60.9 451.2 L57.7 454.8 L54.5 458.4 L51.4 462.0 L48.3 465.6 L45.2 469.2 L42.2 472.7 L39.1 476.2 L36.1 479.7 L31.5 480.2 L27.0 480.6 L22.4 481.1 L17.9 481.5 Z" fill="#F1EADF"/>
+<path d="M327.4 21.4 L321.3 21.2 L320.3 22.8 L316.3 22.7 L312.2 22.7 L308.1 22.6 L304.1 24.2 L301.1 27.3 L301.1 31.7 L301.2 36.1 L295.0 36.9 L289.9 34.4 L285.8 33.5 L281.7 32.5 L277.6 31.6 L273.5 30.7 L269.4 29.8 L265.3 28.9 L262.3 26.1 L259.2 23.3 L256.2 20.6 L253.2 17.8 L248.6 17.9 L244.1 18.0 L238.9 21.2 L233.9 21.3 L229.3 23.0 L224.6 24.7 L221.7 22.6 L218.7 20.4 L215.7 18.3 L212.8 16.1 L209.9 14.0 L204.8 14.2 L199.8 14.3 L198.7 16.0 L194.7 17.3 L190.6 18.6 L189.9 21.8 L189.3 25.1 L187.2 25.9 L187.0 29.9 L184.9 31.6 L180.8 32.6 L177.0 34.9 L173.1 37.2 L169.3 39.6 L162.2 41.6 L161.0 43.2 L157.0 43.8 L152.9 44.3 L148.9 44.9 L144.8 45.4 L140.8 46.0 L137.7 47.8 L135.2 51.4 L132.7 55.0 L130.2 58.6 L127.7 62.2 L125.2 65.8 L124.3 69.2 L123.3 72.5 L122.4 75.9 L125.5 77.9 L128.7 79.9 L131.9 81.9 L134.5 84.2 L137.0 86.5 L139.6 88.8 L142.2 91.2 L144.7 93.5 L147.3 95.9 L149.9 98.2 L150.6 103.2 L155.4 108.0 L156.9 111.2 L158.4 114.5 L160.0 117.8 L161.5 121.2 L163.0 124.5 L164.6 127.8 L166.1 131.1 L166.5 134.5 L166.9 138.0 L167.3 141.4 L167.6 144.8 L168.0 148.3 L167.0 152.0 L165.9 155.7 L164.8 159.4 L163.8 163.1 L162.7 166.8 L161.6 170.6 L160.5 174.3 L158.2 177.7 L155.9 181.0 L153.6 184.4 L151.3 187.8 L149.0 191.2 L146.6 194.6 L144.3 198.1 L141.4 201.4 L138.6 204.7 L135.7 208.0 L131.2 210.2 L127.8 213.5 L124.5 216.8 L121.1 220.1 L117.8 223.4 L114.4 226.8 L109.3 229.7 L104.2 232.6 L102.8 235.6 L95.8 241.1 L95.6 243.1 L92.1 246.6 L88.7 250.3 L85.2 253.9 L81.8 257.5 L78.3 261.2 L74.9 264.9 L71.5 268.6 L68.1 272.3 L64.7 276.0 L64.0 281.1 L60.4 285.6 L59.8 290.4 L59.2 295.4 L58.6 300.3 L58.0 305.3 L58.9 310.3 L59.8 315.4 L62.5 318.7 L65.1 321.9 L67.8 325.2 L70.5 328.5 L73.2 331.8 L77.3 332.3 L80.6 335.1 L83.9 338.0 L87.2 340.8 L90.6 343.7 L94.7 345.0 L98.8 346.3 L102.9 347.6 L105.8 350.6 L110.1 351.1 L114.4 351.7 L119.0 354.5 L123.7 357.3 L129.4 356.6 L133.7 358.3 L138.0 360.0 L142.4 361.7 L147.1 361.2 L151.7 362.4 L156.2 363.7 L160.9 365.0 L165.5 366.3 L170.2 367.6 L177.1 366.2 L184.2 364.8 L189.4 360.6 L194.6 356.4 L199.9 352.3 L205.1 348.2 L212.4 346.5 L219.8 344.9 L222.6 342.5 L223.8 337.8 L224.9 333.2 L226.0 328.5 L227.1 324.0 L228.1 319.4 L229.2 314.9 L230.2 310.4 L227.3 306.5 L224.4 302.6 L221.5 298.7 L218.7 294.8 L220.2 290.7 L221.7 286.6 L224.3 285.5 L225.2 281.0 L226.1 276.5 L229.4 271.5 L232.8 266.5 L233.0 261.6 L237.6 258.6 L242.2 255.5 L246.7 252.5 L250.4 252.4 L252.9 249.5 L258.4 247.5 L263.9 245.5 L263.9 242.7 L268.2 238.9 L272.4 235.1 L274.8 230.9 L277.2 226.7 L280.4 224.0 L283.6 221.2 L286.7 218.4 L291.4 217.6 L296.1 216.7 L300.8 215.8 L305.4 215.0 L310.1 214.2 L314.4 215.9 L318.8 217.7 L323.1 219.4 L327.5 221.2 L331.8 223.0 L336.2 224.9 L340.6 226.7 L345.0 228.6 L349.3 230.4 L354.0 230.7 L358.7 231.0 L361.9 228.4 L361.6 224.3 L361.3 220.3 L361.0 216.2 L360.8 212.2 L360.5 208.3 L360.2 204.3 L355.6 202.7 L350.9 201.1 L348.5 198.2 L348.3 194.2 L348.0 190.2 L347.8 186.3 L347.6 182.3 L347.4 178.3 L347.2 174.4 L346.9 170.5 L350.1 167.1 L357.8 166.6 L358.8 164.8 L363.2 165.1 L367.4 162.6 L367.9 158.7 L368.3 154.8 L368.8 150.9 L369.3 147.0 L369.8 143.2 L370.2 139.3 L373.3 136.9 L376.3 134.5 L379.4 132.0 L382.4 129.6 L382.1 124.9 L381.7 120.2 L378.9 116.7 L376.0 113.1 L371.0 112.9 L365.9 112.6 L360.9 112.4 L355.8 112.2 L353.6 110.4 L353.1 106.7 L352.5 103.1 L352.0 99.4 L348.0 97.2 L343.9 95.0 L339.9 92.8 L335.8 90.6 L337.0 86.7 L338.1 82.8 L339.3 78.9 L340.5 75.0 L340.2 69.3 L335.5 66.3 L330.7 63.3 L331.9 59.2 L333.2 55.2 L334.4 51.2 L334.1 47.8 L333.7 44.3 L333.3 40.9 L333.0 37.5 L332.6 34.0 L332.2 30.6 L331.9 27.2 L331.5 23.8 Z" fill="#EDE4D6"/>
+<path d="M225.4 287.4 L225.1 291.4 L224.9 295.5 L224.6 299.5 L228.1 303.1 L231.7 306.6 L235.4 310.2 L234.6 314.8 L233.8 319.4 L232.9 324.0 L232.1 328.7 L231.3 333.4 L240.5 332.9 L245.2 329.7 L249.9 326.6 L254.6 323.5 L259.2 320.5 L263.7 317.5 L269.0 317.4 L274.3 317.4 L279.6 317.3 L284.9 317.4 L288.9 319.5 L294.4 319.9 L300.0 320.3 L305.5 320.8 L311.0 321.4 L316.5 321.9 L322.0 322.5 L323.6 327.3 L325.3 332.2 L328.9 336.6 L332.5 341.2 L332.9 345.7 L333.3 350.3 L333.7 355.0 L334.1 359.7 L334.5 364.5 L341.1 366.1 L347.6 367.8 L354.1 369.5 L360.5 371.3 L365.4 375.3 L370.2 379.4 L375.0 383.4 L379.9 387.6 L384.6 391.8 L389.5 395.0 L394.3 398.3 L399.1 401.6 L403.8 404.9 L408.4 408.3 L416.7 409.3 L416.9 400.6 L421.1 396.9 L425.2 393.2 L427.0 388.6 L426.1 381.4 L432.6 378.7 L434.0 371.9 L438.0 367.8 L442.8 367.1 L447.7 366.3 L452.5 365.6 L457.3 364.9 L462.0 364.1 L466.8 363.4 L471.2 363.3 L475.6 363.1 L480.0 363.0 L484.3 362.9 L488.6 362.7 L491.2 358.6 L493.8 354.5 L495.2 350.2 L496.5 346.0 L497.9 341.8 L499.2 337.7 L500.6 333.6 L506.3 331.1 L510.4 331.3 L514.4 331.5 L518.4 331.8 L522.4 332.0 L524.1 330.1 L523.6 325.2 L523.0 320.5 L524.6 317.5 L524.0 311.7 L523.3 305.9 L518.3 305.3 L515.9 301.9 L515.3 297.1 L514.7 292.3 L514.1 287.5 L510.1 287.0 L506.0 286.5 L505.2 288.4 L500.2 288.8 L496.7 285.3 L493.3 281.9 L489.1 281.4 L484.9 280.9 L480.6 283.3 L476.2 285.8 L471.8 285.1 L467.2 284.4 L462.7 283.6 L458.2 282.9 L453.6 282.2 L449.0 280.1 L444.5 278.1 L441.4 270.8 L435.9 270.2 L430.4 269.6 L424.8 269.0 L421.2 271.0 L417.7 273.0 L414.1 275.1 L410.5 277.1 L406.9 279.1 L401.5 278.2 L396.1 277.3 L390.7 276.4 L385.3 275.5 L379.8 274.7 L374.8 271.3 L372.9 266.9 L370.9 262.6 L369.0 258.2 L364.2 257.6 L359.5 256.9 L354.7 256.3 L354.1 251.9 L353.6 247.5 L353.0 243.1 L352.5 238.7 L351.9 234.3 L347.5 232.4 L343.1 230.5 L338.8 228.7 L334.4 226.8 L330.0 225.0 L325.6 223.2 L321.2 221.4 L316.9 219.7 L312.5 217.9 L307.8 217.8 L303.1 217.7 L297.3 219.5 L291.4 221.2 L285.5 221.2 L284.4 224.9 L281.1 228.1 L277.8 231.4 L274.5 234.6 L271.2 237.9 L270.0 242.2 L268.7 246.4 L263.2 247.9 L257.8 249.4 L253.6 251.8 L249.4 254.2 L245.1 256.6 L240.9 259.0 L236.7 261.5 L235.2 265.6 L233.8 269.7 L232.4 273.9 L230.9 278.1 L229.4 282.3 Z" fill="#E6DBCB"/>
+<path d="M689.7 312.1 L685.1 307.7 L680.3 306.7 L675.6 305.7 L673.5 308.4 L671.4 311.1 L669.3 313.9 L667.2 316.7 L663.2 314.4 L659.2 312.2 L655.1 310.0 L651.1 307.7 L647.0 305.5 L642.6 305.0 L638.2 304.5 L635.5 308.2 L632.7 311.9 L629.3 313.2 L625.9 314.5 L622.5 315.8 L619.2 318.4 L615.9 321.1 L614.6 324.8 L613.3 328.4 L611.9 332.1 L610.6 335.8 L609.3 339.5 L608.0 343.2 L606.7 347.0 L603.0 346.4 L599.3 345.8 L595.6 345.3 L591.9 344.7 L588.2 344.1 L584.5 343.5 L578.3 337.6 L575.1 332.6 L571.8 327.7 L568.4 322.8 L564.2 322.8 L560.0 322.9 L555.7 322.9 L551.4 322.9 L550.9 318.4 L550.4 313.9 L549.9 309.5 L549.4 305.1 L544.7 304.0 L540.0 302.9 L535.3 301.8 L530.5 300.7 L530.3 304.9 L530.0 309.1 L529.8 313.3 L529.6 317.6 L529.3 321.9 L529.1 326.2 L528.8 330.5 L528.6 334.9 L526.0 337.7 L521.7 337.9 L517.3 338.0 L513.0 338.1 L508.6 338.2 L504.2 338.3 L502.5 342.4 L500.8 346.5 L499.1 350.7 L497.4 354.9 L495.7 359.1 L493.9 363.4 L492.2 367.6 L488.2 368.2 L484.1 368.7 L480.0 369.2 L475.9 369.7 L471.8 370.2 L467.6 370.7 L463.4 371.2 L459.2 371.7 L454.9 372.2 L450.6 372.0 L446.2 371.9 L441.7 371.7 L438.4 376.5 L435.1 381.3 L436.1 389.7 L431.8 391.6 L427.5 393.4 L427.8 395.9 L423.6 399.0 L424.3 404.8 L424.9 410.7 L425.6 416.6 L428.4 422.0 L428.9 427.2 L429.4 432.4 L433.4 439.4 L438.2 443.4 L442.9 447.5 L447.5 451.5 L452.1 455.5 L455.5 459.7 L459.0 463.9 L462.3 468.0 L462.3 474.2 L462.1 480.4 L462.0 486.6 L465.6 490.7 L469.1 494.8 L472.6 498.8 L473.1 504.1 L473.5 509.4 L473.9 514.7 L474.3 519.9 L474.6 525.2 L468.4 526.7 L468.2 534.6 L471.2 538.4 L474.1 542.2 L477.1 546.0 L481.6 545.8 L486.1 545.6 L490.5 545.3 L495.0 545.1 L499.4 544.9 L499.6 537.4 L495.4 537.2 L491.1 537.0 L486.8 536.9 L482.5 536.7 L486.6 535.9 L490.7 535.1 L494.7 534.3 L498.7 533.6 L502.7 532.8 L506.7 532.1 L510.5 535.7 L514.4 539.3 L515.1 548.0 L519.0 547.8 L519.8 552.7 L523.7 552.1 L527.5 551.5 L531.4 550.9 L535.3 550.4 L539.1 549.8 L542.9 549.2 L543.2 540.8 L541.3 538.5 L545.7 534.7 L550.0 531.0 L552.7 533.3 L559.3 533.2 L559.4 527.2 L559.4 521.3 L562.2 517.5 L565.0 513.6 L567.8 509.8 L570.6 506.1 L573.3 502.3 L573.5 496.8 L573.7 491.2 L573.8 485.6 L573.9 480.1 L571.5 476.1 L569.0 472.2 L566.5 468.3 L564.0 464.3 L561.5 460.3 L558.9 456.4 L556.4 452.4 L559.1 450.2 L563.0 449.8 L566.9 449.4 L570.8 449.1 L574.7 448.7 L578.3 451.7 L581.8 454.7 L585.3 457.6 L588.7 460.6 L592.2 463.5 L595.6 466.4 L599.0 469.3 L603.1 469.4 L607.1 469.6 L609.6 464.6 L612.1 459.6 L615.3 462.6 L618.5 465.5 L624.6 465.7 L626.9 461.6 L629.2 457.5 L631.5 453.5 L633.7 449.4 L637.2 449.6 L640.8 451.9 L644.3 454.3 L648.6 454.5 L652.9 454.6 L655.6 452.1 L658.2 449.7 L660.9 447.2 L663.5 444.7 L666.1 442.2 L669.2 445.9 L672.3 449.5 L675.4 453.1 L678.5 456.7 L683.5 456.9 L683.5 452.3 L683.4 447.7 L683.3 443.1 L683.2 438.6 L683.1 434.0 L683.0 429.5 L682.9 424.9 L682.8 420.4 L682.7 415.8 L682.5 411.3 L678.5 409.3 L674.4 407.3 L670.4 405.2 L668.5 403.0 L667.8 398.2 L667.1 393.4 L667.5 386.1 L670.4 384.3 L673.2 382.4 L672.9 377.2 L672.5 372.0 L672.2 366.8 L671.2 361.9 L670.1 356.9 L669.1 351.9 L668.1 347.0 L670.6 344.6 L673.2 342.3 L675.8 340.0 L678.3 337.6 L680.8 335.3 L683.4 333.0 L685.9 330.7 L688.4 328.4 L691.0 326.1 L690.6 321.4 L690.2 316.7 Z" fill="#EEE5D8"/>
+<path d="M438.5 530.3 L435.9 535.8 L433.2 541.3 L430.4 546.8 L427.6 552.4 L424.7 557.9 L421.8 563.5 L418.8 569.0 L415.7 574.6 L415.1 580.7 L414.6 586.7 L417.4 590.5 L420.3 594.3 L423.2 598.0 L426.0 601.7 L428.8 605.3 L431.6 608.9 L430.7 614.0 L429.8 619.0 L428.8 623.9 L426.2 626.7 L421.6 627.2 L416.9 627.8 L412.2 628.4 L409.2 633.6 L408.4 640.2 L407.6 646.7 L412.1 648.0 L416.6 649.4 L421.0 650.8 L425.4 652.2 L429.8 653.5 L434.1 654.9 L436.0 658.0 L436.1 662.9 L436.3 667.7 L436.4 672.5 L441.4 672.4 L446.4 672.4 L454.5 668.0 L458.9 667.5 L463.3 667.0 L467.9 668.0 L472.5 669.1 L477.1 669.2 L481.7 669.4 L486.2 669.5 L490.7 669.6 L495.1 669.8 L499.6 669.9 L504.0 670.0 L508.3 670.2 L512.6 669.7 L516.9 669.2 L521.2 668.6 L525.4 668.1 L529.6 667.6 L533.8 667.2 L538.0 666.7 L542.1 666.2 L548.2 663.3 L549.4 661.0 L553.4 660.6 L557.5 660.1 L561.6 659.7 L565.6 659.2 L568.9 660.8 L572.2 662.4 L575.5 663.9 L578.8 665.5 L582.0 667.1 L585.3 668.6 L588.5 670.2 L591.8 671.7 L595.0 673.3 L598.2 674.8 L600.5 678.0 L602.7 681.1 L605.0 684.3 L607.2 687.4 L609.5 690.5 L611.7 693.6 L613.9 696.7 L616.1 699.8 L618.4 702.9 L620.6 706.0 L622.8 709.0 L626.9 708.5 L631.0 708.1 L635.1 707.6 L639.2 707.1 L643.3 706.7 L643.8 702.0 L644.2 697.2 L644.7 692.4 L643.8 687.5 L643.0 682.4 L646.3 679.4 L649.6 676.3 L652.9 673.2 L656.2 670.2 L659.4 667.1 L662.7 664.1 L663.1 658.9 L663.5 653.7 L659.3 652.7 L655.0 651.7 L650.8 650.7 L651.1 645.8 L651.5 640.9 L651.8 636.0 L648.4 635.7 L644.9 635.5 L642.5 632.5 L641.1 628.5 L639.6 624.5 L638.1 620.5 L636.6 616.5 L635.1 612.4 L633.6 608.4 L632.1 604.3 L630.6 600.2 L631.6 597.9 L635.4 596.2 L639.3 594.5 L643.1 592.8 L643.7 588.3 L644.3 583.7 L644.8 579.1 L645.3 574.5 L645.8 569.9 L642.1 570.0 L638.3 570.2 L634.6 570.4 L631.0 568.1 L627.4 565.8 L623.8 563.6 L620.2 561.3 L616.5 559.0 L611.7 559.2 L606.8 559.4 L603.6 561.8 L600.3 564.2 L595.8 565.5 L591.2 566.9 L587.7 564.5 L584.2 562.1 L580.6 559.6 L577.1 557.2 L573.5 553.3 L570.0 549.3 L565.7 546.8 L561.5 544.2 L557.2 541.5 L551.6 541.7 L551.4 548.9 L553.2 552.4 L549.4 553.7 L548.3 556.2 L544.5 556.6 L540.7 557.0 L536.9 557.4 L533.1 557.9 L529.2 558.3 L523.3 561.1 L520.9 557.5 L518.4 554.0 L516.0 550.4 L513.5 546.8 L511.0 543.2 L508.5 539.6 L504.0 540.1 L499.5 540.7 L495.0 541.3 L490.5 541.9 L485.9 542.6 L481.3 543.2 L480.4 539.4 L477.4 536.0 L474.4 532.6 L471.4 529.2 L466.5 528.7 L461.6 528.2 L456.6 527.6 L451.5 527.1 L447.2 528.2 L442.9 529.2 Z" fill="#E9DFD0"/>
+<path d="M371.2 654.3 L365.4 660.6 L364.7 667.3 L369.8 669.3 L374.9 671.3 L379.9 673.2 L384.9 675.2 L388.2 678.1 L386.3 683.7 L384.5 689.3 L381.2 693.5 L377.9 697.7 L374.6 701.9 L373.7 706.8 L372.8 711.7 L371.9 716.6 L367.5 724.1 L361.0 728.6 L359.4 733.7 L353.3 734.7 L347.1 735.5 L346.7 741.0 L346.3 746.4 L348.3 751.7 L350.3 756.9 L350.0 761.0 L349.7 765.1 L349.5 769.2 L349.2 773.3 L347.3 777.2 L345.3 781.2 L343.4 785.1 L341.5 789.0 L339.7 792.9 L337.8 796.8 L335.9 800.6 L334.1 804.4 L332.3 808.2 L330.5 812.0 L328.7 815.8 L326.9 819.6 L326.7 823.2 L326.6 826.8 L326.5 830.4 L326.3 834.0 L328.0 838.4 L329.7 842.7 L331.4 847.1 L335.7 850.5 L340.0 853.8 L345.4 855.8 L350.9 857.8 L355.4 857.6 L360.0 857.4 L364.6 857.1 L369.2 856.9 L373.7 856.6 L378.3 856.4 L382.8 854.3 L387.3 852.3 L389.9 846.8 L395.3 846.5 L402.2 841.5 L405.1 838.4 L408.0 835.2 L410.9 832.0 L413.9 828.8 L416.8 825.6 L419.7 822.3 L422.6 819.1 L423.2 813.5 L427.8 811.3 L429.2 807.5 L432.8 804.1 L436.4 800.8 L440.0 797.4 L443.5 794.0 L448.8 791.2 L454.1 788.5 L459.3 785.7 L464.4 784.2 L469.6 782.7 L474.7 781.2 L479.8 779.6 L481.0 777.6 L482.8 780.2 L486.9 779.8 L490.5 780.9 L494.1 782.1 L497.6 783.3 L500.1 785.9 L502.5 788.4 L505.0 791.0 L507.4 793.5 L508.4 797.7 L509.4 801.8 L508.6 805.6 L507.9 809.4 L507.2 813.2 L506.5 817.0 L503.1 820.1 L501.2 824.0 L499.3 827.9 L497.4 831.7 L495.5 835.6 L493.6 839.4 L491.6 843.2 L489.7 847.0 L487.9 850.8 L486.0 854.5 L484.1 858.3 L482.2 862.0 L481.7 865.9 L481.3 869.7 L480.9 873.6 L480.5 877.4 L480.0 881.2 L479.6 885.0 L482.3 887.4 L483.2 890.7 L484.1 894.1 L484.9 897.5 L485.8 900.8 L489.8 900.3 L493.8 899.8 L497.8 899.2 L501.7 898.7 L505.7 898.1 L509.6 897.6 L512.3 899.7 L514.9 901.9 L517.6 904.0 L520.2 906.1 L522.9 908.2 L527.2 907.6 L531.6 906.9 L536.0 906.2 L540.3 905.5 L544.6 904.2 L548.8 902.9 L553.0 901.6 L557.4 901.7 L561.7 901.7 L566.1 901.8 L569.9 901.0 L573.7 900.1 L577.0 895.4 L577.7 890.1 L573.6 885.4 L574.1 881.6 L574.6 877.9 L575.0 874.2 L575.5 870.4 L576.0 866.6 L573.7 862.5 L570.9 860.1 L568.1 857.8 L565.2 855.5 L560.7 854.2 L556.2 853.0 L553.7 849.7 L550.0 849.2 L548.5 845.8 L552.1 840.0 L556.1 836.5 L560.0 833.1 L564.0 829.7 L568.0 826.2 L568.5 822.0 L569.0 817.8 L567.6 814.3 L566.1 810.8 L566.7 806.1 L564.1 804.5 L567.5 801.3 L571.0 798.1 L574.4 794.8 L577.8 791.6 L581.8 790.9 L585.8 790.2 L589.8 789.5 L593.7 788.8 L597.6 788.2 L600.3 784.8 L603.0 781.3 L605.7 777.9 L608.4 774.5 L609.5 770.3 L610.7 766.1 L611.9 761.8 L613.0 757.6 L613.5 753.5 L614.0 749.4 L614.4 745.2 L614.9 741.1 L615.3 736.9 L615.8 732.8 L612.0 730.8 L608.1 728.7 L610.7 724.5 L613.3 720.2 L615.8 715.8 L615.8 711.3 L615.8 706.8 L613.7 704.0 L611.6 701.2 L609.4 698.4 L607.3 695.5 L605.1 692.7 L602.9 689.9 L600.8 687.0 L598.6 684.1 L596.4 681.3 L594.3 678.4 L590.7 676.8 L587.2 675.2 L583.7 673.6 L580.2 672.0 L576.6 670.4 L573.1 668.8 L569.5 667.2 L565.9 665.6 L560.7 666.2 L555.4 666.8 L552.3 669.3 L547.8 670.2 L543.2 671.1 L538.6 672.0 L535.5 674.5 L531.2 675.0 L526.9 675.5 L522.6 676.1 L518.2 676.6 L513.9 677.1 L509.5 677.6 L507.7 675.7 L503.3 676.0 L498.8 676.4 L494.2 676.7 L489.7 677.1 L485.1 677.4 L483.3 675.5 L478.6 675.2 L473.9 675.0 L469.2 674.7 L464.5 674.5 L459.8 675.6 L455.0 676.6 L450.2 677.7 L445.4 678.8 L440.6 679.8 L435.7 680.9 L430.8 681.9 L428.8 680.0 L429.1 675.0 L429.4 670.0 L429.8 665.0 L430.1 659.9 L425.3 658.5 L420.5 657.0 L415.6 655.6 L410.6 654.1 L405.7 652.7 L400.9 652.9 L396.1 653.2 L391.2 653.4 L386.3 653.6 L381.3 653.9 L376.3 654.1 Z" fill="#EFE7DB"/>
+<path d="M575.1 798.5 L571.9 801.7 L571.5 805.5 L571.0 809.3 L572.4 813.3 L573.7 817.3 L573.7 820.9 L573.8 824.6 L570.4 827.6 L567.0 830.5 L563.7 833.5 L560.3 836.4 L556.9 839.4 L556.5 843.1 L556.0 846.7 L559.5 848.5 L563.1 850.4 L566.6 852.2 L570.1 854.0 L572.5 856.9 L575.0 859.8 L577.4 862.8 L579.8 865.7 L582.2 868.6 L581.7 872.3 L581.3 876.1 L580.8 879.8 L580.3 883.5 L579.9 887.2 L584.3 888.5 L583.9 892.0 L579.7 895.9 L579.0 902.1 L582.7 901.6 L586.4 901.2 L590.1 900.8 L593.8 900.3 L597.5 899.9 L601.2 899.5 L604.8 899.0 L608.5 898.6 L612.1 898.2 L615.8 897.7 L619.4 897.3 L623.0 896.8 L626.6 896.4 L630.3 896.0 L633.8 895.5 L637.4 895.1 L640.7 890.4 L643.9 885.6 L644.3 882.0 L644.6 878.4 L645.0 874.8 L645.4 871.1 L645.8 867.5 L646.1 863.8 L646.5 860.2 L646.9 856.5 L647.3 852.8 L647.7 849.1 L648.0 845.4 L648.4 841.7 L644.5 837.7 L643.3 833.3 L639.7 833.8 L638.6 828.5 L635.4 825.2 L632.5 823.3 L629.5 821.5 L626.6 819.6 L623.6 817.8 L620.6 815.9 L617.7 814.1 L614.7 812.2 L612.2 809.6 L609.6 807.0 L607.1 804.4 L604.6 801.8 L602.0 799.2 L599.5 796.5 L596.9 793.9 L592.6 794.8 L588.3 795.7 L583.9 796.6 L579.5 797.6 Z" fill="#E6DBCB"/>
+</g>
+<path class="stadtkarte__rhein" d="M62.3 49.5 L58.1 52.3 L64.0 51.0 L67.4 52.5 L70.8 54.0 L74.2 55.4 L77.6 56.9 L81.0 58.4 L84.4 59.9 L87.8 61.4 L91.2 62.9 L94.7 64.4 L98.1 65.9 L101.6 67.4 L105.1 69.0 L108.7 71.0 L112.3 73.0 L115.9 75.1 L119.5 77.1 L123.1 79.2 L125.9 81.5 L128.7 83.8 L131.6 86.1 L134.4 88.4 L137.3 90.7 L139.9 95.5 L142.8 97.8 L145.7 100.2 L147.7 103.4 L149.8 106.6 L151.9 109.9 L153.9 113.1 L155.2 116.7 L156.5 120.2 L157.8 123.7 L159.1 127.3 L158.8 130.7 L161.6 134.9 L161.9 138.7 L162.1 142.6 L161.6 146.3 L161.1 150.0 L160.5 153.7 L160.0 157.4 L159.5 161.1 L157.8 165.0 L156.1 168.9 L154.5 172.8 L152.8 176.7 L150.3 180.4 L147.8 184.2 L145.3 188.0 L141.9 191.9 L138.6 195.8 L135.2 199.8 L131.9 203.7 L128.4 206.8 L124.9 209.9 L121.5 213.0 L118.0 216.1 L114.5 219.3 L111.1 222.4 L107.6 225.6 L104.1 228.8 L100.6 232.0 L97.2 235.2 L93.7 238.5 L90.3 241.7 L86.8 245.0 L83.4 248.3 L79.9 251.6 L76.5 254.9 L73.3 258.8 L70.2 262.7 L67.0 266.6 L63.9 270.5 L60.8 274.5 L58.2 278.8 L55.7 283.1 L53.8 290.4 L53.2 294.8 L52.7 299.2 L52.1 303.7 L51.6 308.1 L52.8 315.3 L54.6 319.2 L56.5 323.2 L58.4 327.2 L61.4 330.4 L64.4 333.6 L67.5 336.8 L70.7 338.7 L74.0 340.7 L77.3 342.7 L80.6 344.7 L83.9 346.7 L87.6 348.1 L91.3 349.6 L95.0 351.1 L98.7 352.6 L102.5 354.0 L106.3 355.5 L110.1 357.0 L113.9 358.5 L117.8 360.0 L121.7 361.5 L125.6 363.0 L129.5 364.5 L134.0 365.1 L138.5 365.6 L143.0 366.2 L147.7 367.6 L152.4 369.0 L157.1 370.4 L161.9 371.8 L166.7 373.2 L171.6 374.7 L176.6 376.1 L181.7 378.6 L186.8 381.2 L192.1 383.7 L196.0 387.1 L200.0 390.4 L204.0 393.8 L208.1 397.2 L212.3 400.7 L216.5 404.2 L218.8 408.5 L221.1 412.9 L223.5 417.4 L225.9 421.9 L228.3 426.5 L230.7 431.2 L231.6 436.6 L232.5 442.1 L233.4 447.7 L234.2 453.5 L233.8 461.2 L233.3 469.2 L232.9 477.6 L231.3 485.2 L229.9 493.1 L228.7 501.2 L227.9 509.4 L225.0 516.9 L222.4 524.1 L219.9 531.1 L215.5 536.4 L211.3 541.5 L207.1 546.5 L203.1 547.6 L197.0 546.6 L191.0 545.6 L185.1 544.7 L179.4 543.8 L175.5 539.1 L171.7 534.4 L167.9 529.8 L164.3 525.2 L160.7 520.7 L157.3 516.3 L153.8 511.9 L150.5 507.6 L147.1 503.3 L143.9 499.2 L140.5 499.2 L134.9 495.1 L129.4 494.5 L123.9 493.9 L118.4 495.5 L113.0 497.0 L108.6 499.8 L103.3 508.0 L102.2 513.4 L101.2 518.8 L100.2 524.2 L100.6 530.1 L100.9 536.1 L101.4 542.0 L101.8 547.8 L102.3 553.7 L104.0 559.1 L105.8 564.5 L107.6 569.9 L109.4 575.2 L111.3 580.6 L113.2 585.9 L115.1 591.2 L117.1 596.5 L119.1 601.7 L120.1 607.3 L121.1 612.8 L122.1 618.3 L123.2 623.8 L124.3 629.2 L124.8 634.0 L125.4 638.8 L126.0 643.5 L126.5 648.2 L127.1 652.8 L127.7 657.5 L128.2 662.0 L128.8 666.6 L129.4 671.1 L130.6 676.2 L131.8 681.3 L134.3 683.7 L135.3 691.4 L138.7 696.6 L142.2 701.7 L146.6 706.1 L150.9 710.3 L155.2 714.6 L160.2 717.2 L165.1 719.7 L170.1 722.2 L175.1 724.7 L180.5 725.3 L185.9 726.0 L191.4 726.6 L196.8 727.2 L202.4 727.7 L207.9 728.3 L212.9 727.6 L217.8 726.9 L222.9 726.2 L227.9 725.5 L233.0 724.7 L238.1 723.9 L243.2 723.1 L248.3 722.3 L253.5 721.4 L258.7 720.5 L263.9 719.6 L269.2 718.7 L274.4 717.7 L280.1 718.0 L285.8 718.1 L291.5 718.3 L297.2 718.4 L302.9 718.5 L307.9 720.4 L313.0 722.2 L317.9 724.0 L321.6 726.9 L325.2 729.7 L328.8 732.6 L331.7 736.4 L334.5 740.2 L336.1 743.8 L337.7 747.4 L339.3 751.0 L340.9 754.5 L341.2 759.3 L341.5 764.1 L340.6 768.7 L339.7 773.3 L338.9 777.8 L338.0 782.3 L335.7 786.3 L333.4 790.4 L331.0 794.4 L328.8 798.3 L326.5 802.3 L324.8 806.4 L323.2 810.6 L321.6 814.8 L320.0 818.9 L319.9 822.7 L319.8 826.5 L319.6 830.2 L319.5 834.0 L319.4 837.7 L321.2 841.2 L323.1 844.7 L324.9 848.2 L326.7 851.7 L330.0 854.2 L333.2 856.7 L336.4 859.2 L341.3 861.2 L346.2 863.2 L350.9 863.0 L355.7 862.8 L360.4 862.6 L365.2 862.4 L369.9 862.1 L374.6 861.8 L379.1 860.1 L383.6 858.3 L388.0 856.4 L392.5 854.6 L396.0 851.5 L399.5 848.3 L403.0 845.1 L406.5 842.0 L410.0 838.7 L413.5 835.5 L417.0 832.3 L419.9 828.7 L422.7 825.2 L425.6 821.6 L428.5 818.0 L431.3 814.3 L434.2 810.7 L438.2 807.4 L442.2 804.0 L446.2 800.6 L450.2 797.2 L454.1 793.8 L460.8 790.3 L465.9 789.3 L471.0 788.2 L476.0 787.2 L481.0 786.2 L485.1 786.7 L489.1 787.1 L494.8 790.3 L497.9 793.2 L501.1 796.2 L502.3 802.6 L501.8 806.8 L501.2 811.1 L499.6 815.0 L497.9 818.9 L496.2 822.7 L494.6 826.6 L492.9 830.4 L490.7 834.3 L488.5 838.1 L486.4 841.9 L484.2 845.8 L482.0 849.6 L479.9 853.4 L477.7 857.1 L475.0 863.6 L474.3 867.4 L473.6 871.2 L473.0 875.0 L472.3 878.8 L472.9 882.2 L473.6 885.6 L474.2 889.0 L475.9 892.0 L477.5 895.0 L479.2 898.0 L480.3 901.5 L481.4 905.1 L482.5 908.6 L483.6 912.1 L487.4 913.5"/>
+<g class="stadtkarte__orte">
+<a href="altstadt.html" class="stadtkarte__ort" data-ort="0" aria-label="Altstadt"><circle cx="249.1" cy="493.8" r="7.5"/></a>
+<a href="neue-mitte.html" class="stadtkarte__ort" data-ort="1" aria-label="Neue Mitte"><circle cx="289.7" cy="491.4" r="7.5"/></a>
+<a href="carlstadt.html" class="stadtkarte__ort" data-ort="2" aria-label="Carlstadt"><circle cx="245.0" cy="537.6" r="7.5"/></a>
+<a href="japanviertel.html" class="stadtkarte__ort" data-ort="3" aria-label="Japanisches Viertel"><circle cx="319.1" cy="512.6" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Luxus und Glamour rund um die Kö" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="4" aria-label="Luxus und Glamour rund um die Kö – auf Anfrage"><circle cx="286.9" cy="526.1" r="7.5"/></a>
+<a href="kunst-an-der-koe.html" class="stadtkarte__ort" data-ort="5" aria-label="Unterschätzte Kunstmeile Königsallee"><circle cx="282.8" cy="554.3" r="7.5"/></a>
+<a href="bahnhofsviertel.html" class="stadtkarte__ort" data-ort="6" aria-label="Bahnhofsviertel"><circle cx="343.5" cy="545.2" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Ehrenhof und Hofgarten" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="7" aria-label="Ehrenhof und Hofgarten – auf Anfrage"><circle cx="266.4" cy="459.0" r="7.5"/></a>
+<a href="pempelfort.html" class="stadtkarte__ort" data-ort="8" aria-label="Pempelfort"><circle cx="325.9" cy="430.8" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Golzheim" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="9" aria-label="Golzheim – auf Anfrage"><circle cx="250.5" cy="368.9" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Friedhof Golzheim" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="10" aria-label="Friedhof Golzheim – auf Anfrage"><circle cx="222.2" cy="397.7" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Nordfriedhof" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="11" aria-label="Nordfriedhof – auf Anfrage"><circle cx="281.8" cy="345.1" r="7.5"/></a>
+<a href="nordpark.html" class="stadtkarte__ort" data-ort="12" aria-label="Nordpark"><circle cx="199.7" cy="320.4" r="7.5"/></a>
+<a href="kaiserswerth.html" class="stadtkarte__ort" data-ort="13" aria-label="Kaiserswerth"><circle cx="156.7" cy="180.6" r="7.5"/></a>
+<a href="oberkassel.html" class="stadtkarte__ort" data-ort="14" aria-label="Oberkassel"><circle cx="180.3" cy="464.3" r="7.5"/></a>
+<a href="medienhafen.html" class="stadtkarte__ort" data-ort="15" aria-label="Medienhafen"><circle cx="182.1" cy="572.9" r="7.5"/></a>
+<a href="unterbilk.html" class="stadtkarte__ort" data-ort="16" aria-label="Unterbilk"><circle cx="224.7" cy="596.2" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Oberbilk" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="17" aria-label="Oberbilk – auf Anfrage"><circle cx="377.6" cy="603.6" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Volksgarten" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="18" aria-label="Volksgarten – auf Anfrage"><circle cx="355.1" cy="632.2" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Flingern" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="19" aria-label="Flingern – auf Anfrage"><circle cx="410.7" cy="497.6" r="7.5"/></a>
+<a href="grafenberg.html" class="stadtkarte__ort" data-ort="20" aria-label="Grafenberg"><circle cx="452.8" cy="432.8" r="7.5"/></a>
+<a href="anfrage.html" data-tour="Gerresheim" class="stadtkarte__ort stadtkarte__ort--anfrage" data-ort="21" aria-label="Gerresheim – auf Anfrage"><circle cx="530.2" cy="453.1" r="7.5"/></a>
+<a href="benrath.html" class="stadtkarte__ort" data-ort="22" aria-label="Benrath"><circle cx="533.1" cy="774.3" r="7.5"/></a>
+</g></svg>
+          <div class="stadtkarte__tipp" hidden></div>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== TOUREN AUSSERHALB AUF DER KARTE ======================== -->
+  <section class="band band--creme" id="ausserhalb">
+    <div class="huelle">
+      <div class="kartenbereich kartenbereich--umland">
+
+        <div class="kartenbereich__info">
+          <div class="themenblock__kopf">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-karte"/></svg>
+            <h2 class="kartenbereich__titel"><a href="touren-ausserhalb.html">Touren außerhalb von Düsseldorf</a></h2>
+          </div>
+          <p class="kartenbereich__text">Vom Niederrhein bis an den romantischen Mittelrhein – von Norden nach Süden.</p>
+          <ul class="ortsliste">
+<li><a class="ortsliste__eintrag" href="kloster-kamp.html">Kloster Kamp</a></li>
+<li><a class="ortsliste__eintrag" href="landschaftspark-duisburg-nord.html">Landschaftspark Duisburg-Nord</a></li>
+<li><a class="ortsliste__eintrag" href="essen.html">Essen</a></li>
+<li><a class="ortsliste__eintrag" href="muelheim.html">Mülheim a. d. Ruhr</a></li>
+<li><a class="ortsliste__eintrag" href="neuss.html">Neuss</a></li>
+<li><a class="ortsliste__eintrag" href="schloss-rheydt.html">Schloss Rheydt</a></li>
+<li><a class="ortsliste__eintrag" href="schloss-dyck.html">Schloss Dyck</a></li>
+<li><a class="ortsliste__eintrag" href="insel-hombroich.html">Museumsinsel Hombroich</a></li>
+<li><a class="ortsliste__eintrag" href="zons.html">Zons</a></li>
+<li><a class="ortsliste__eintrag" href="koeln-altstadt.html">Köln</a></li>
+<li><a class="ortsliste__eintrag" href="schloss-drachenburg.html">Königswinter &amp; Drachenfels</a></li>
+<li><a class="ortsliste__eintrag" href="bacharach.html">Bacharach</a></li>
+          </ul>
+        </div>
+
+        <figure class="landkarte">
+<svg class="landkarte__svg landkarte__svg--umland" viewBox="0 0 480 701" role="img" aria-labelledby="karte-umland-titel">
+<title id="karte-umland-titel">Karte: Ausflugsziele rund um Düsseldorf</title>
+<path class="landkarte__fluss" d="M173.4 -4.0 C177.2 2.0 189.8 22.0 196.1 32.0 C202.4 42.0 206.5 46.0 211.2 56.0 C215.9 66.0 221.9 82.0 224.4 92.0 C227.0 102.0 226.3 106.0 226.3 116.0 C226.3 126.0 225.1 140.0 224.4 152.0 C223.8 164.0 221.3 178.5 222.5 188.0 C223.8 197.5 229.6 202.5 232.0 209.0 C234.4 215.5 237.2 221.5 236.9 227.0 C236.6 232.5 232.2 236.5 230.1 242.0 C228.0 247.5 222.5 255.5 224.4 260.0 C226.3 264.5 234.2 267.0 241.4 269.0 C248.7 271.0 262.2 266.5 267.9 272.0 C273.6 277.5 270.4 292.0 275.5 302.0 C280.5 312.0 291.2 323.0 298.1 332.0 C305.1 341.0 314.5 344.0 317.0 356.0 C319.6 368.0 313.3 391.1 313.3 404.0 C313.3 417.0 312.0 424.9 317.0 433.7 C322.1 442.5 335.3 450.5 343.5 456.8 C351.7 463.1 358.0 465.6 366.2 471.6 C374.4 477.7 385.1 485.7 392.6 493.1 C400.2 500.5 406.5 510.4 411.5 516.2 C416.6 522.0 421.0 525.8 422.9 527.8"/>
+<path class="landkarte__fluss landkarte__fluss--klein" d="M228.2 98.0 C232.9 99.0 248.1 102.0 256.6 104.0 C265.1 106.0 272.3 104.0 279.2 110.0 C286.2 116.0 293.1 133.0 298.1 140.0 C303.2 147.0 303.2 154.0 309.5 152.0 C315.8 150.0 327.1 132.0 335.9 128.0 C344.8 124.0 352.9 129.0 362.4 128.0 C371.8 127.0 380.0 125.0 392.6 122.0 C405.2 119.0 430.4 112.0 438.0 110.0"/>
+<text class="landkarte__wasser" x="335.9" y="450.2" transform="rotate(62 335.9 450.2)">Rhein</text>
+<text class="landkarte__wasser" x="362.4" y="110.0">Ruhr</text>
+<path class="landkarte__fluss" d="M422.9 527.8 C428.9 547.8 426.9 557.8 424.9 567.8"/>
+<path class="landkarte__bruch" d="M413.9 577.8 l22 -8 M413.9 585.8 l22 -8"/>
+<text class="landkarte__hinweis" x="406.9" y="585.8" text-anchor="end">ca. 100 km rheinaufwärts</text>
+<path class="landkarte__fluss" d="M424.9 591.8 C426.2 595.9 429.2 607.6 432.9 616.8 C436.5 625.9 444.2 636.8 446.9 646.8 C449.5 656.8 446.9 666.8 448.9 676.8 C450.9 686.8 457.2 701.8 458.9 706.8"/>
+<a href="bacharach.html" class="landkarte__ort"><title>Bacharach</title><circle cx="454.9" cy="661.8" r="7" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="442.9" y="665.8" text-anchor="end">Bacharach</text></a>
+<text class="landkarte__region" x="440.9" y="681.8" text-anchor="end">Mittelrhein · UNESCO-Welterbe</text>
+<a href="kloster-kamp.html" class="landkarte__ort"><title>Kloster Kamp</title><circle cx="139.4" cy="68.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="129.4" y="72.0" text-anchor="end">Kloster Kamp</text></a>
+<a href="landschaftspark-duisburg-nord.html" class="landkarte__ort"><title>Landschaftspark Duisburg-Nord</title><circle cx="241.4" cy="80.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="241.4" y="56.0" text-anchor="middle">Landschaftspark</text><text class="landkarte__name" x="241.4" y="69.0" text-anchor="middle">Duisburg-Nord</text></a>
+<a href="muelheim.html" class="landkarte__ort"><title>Mülheim a. d. Ruhr</title><circle cx="279.2" cy="110.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="289.2" y="128.0" text-anchor="start">Mülheim a. d. Ruhr</text></a>
+<a href="essen.html" class="landkarte__ort"><title>Essen</title><circle cx="328.4" cy="95.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="338.4" y="99.0" text-anchor="start">Essen</text></a>
+<a href="neuss.html" class="landkarte__ort"><title>Neuss</title><circle cx="207.4" cy="248.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="197.4" y="242.0" text-anchor="end">Neuss</text></a>
+<a href="insel-hombroich.html" class="landkarte__ort"><title>Museumsinsel Hombroich</title><circle cx="196.1" cy="278.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="196.1" y="300.0" text-anchor="middle">Museumsinsel</text><text class="landkarte__name" x="196.1" y="313.0" text-anchor="middle">Hombroich</text></a>
+<a href="schloss-dyck.html" class="landkarte__ort"><title>Schloss Dyck</title><circle cx="148.8" cy="275.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="148.8" y="263.0" text-anchor="middle">Schloss Dyck</text></a>
+<a href="schloss-rheydt.html" class="landkarte__ort"><title>Schloss Rheydt</title><circle cx="122.4" cy="269.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="118.4" y="289.0" text-anchor="end">Schloss Rheydt</text></a>
+<a href="zons.html" class="landkarte__ort"><title>Zons</title><circle cx="267.9" cy="296.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="277.9" y="300.0" text-anchor="start">Zons</text></a>
+<a href="koeln-altstadt.html" class="landkarte__ort"><title>Köln</title><circle cx="309.5" cy="404.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="319.5" y="408.0" text-anchor="start">Köln</text></a>
+<a href="schloss-drachenburg.html" class="landkarte__ort"><title>Königswinter &amp; Drachenfels</title><circle cx="400.2" cy="489.8" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="390.2" y="493.8" text-anchor="end">Königswinter &amp; Drachenfels</text></a>
+<g class="landkarte__mitte"><rect x="234.4" y="226.0" width="14" height="14" rx="3" fill="#10263C" stroke="#fff" stroke-width="2" transform="rotate(45 241.4 233.0)"/><text class="landkarte__stadt" x="255.4" y="238.0">Düsseldorf</text></g>
+<g class="landkarte__nord" transform="translate(450 40)"><path d="M0 -14 L6 6 L0 2 L-6 6Z"/><text x="0" y="20">N</text></g>
+</svg>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2>Ihr Thema war nicht dabei?</h2>
+          <p>Wir passen jede Tour gerne an Ihre Wünsche an – fragen Sie einfach unverbindlich an.</p>
+        </div>
+
+        <a class="knopf knopf--umriss" href="anfrage.html">
+          Jetzt anfragen
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__rechts">
+      <!-- Mitgliedschaft im Berufsverband -->
+      <a class="fuss__bvgd" href="https://www.bvgd.org" target="_blank" rel="noopener noreferrer"
+         title="Bundesverband der Gästeführer in Deutschland e.&thinsp;V.">
+        <img src="bilder/bvgd-logo.png" alt="Mitglied im BVGD – Bundesverband der Gästeführer in Deutschland e.V." width="500" height="159" loading="lazy">
+      </a>
+
+      <div class="fuss__sozial">
+        <a href="https://www.facebook.com/Duesseldorf.TouristGuide/" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/duesseldorferstadtfuehrer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="flaggen.js"></script>
+<script src="touren-daten.js"></script>
+<script src="script.js"></script>
+<!-- Stadtkarte: Name beim Überfahren zeigen, Punkt und Chip gemeinsam hervorheben -->
+<script>
+document.querySelectorAll("[data-karte]").forEach(function (bereich) {
+  var figur = bereich.querySelector(".stadtkarte");
+  var tipp = bereich.querySelector(".stadtkarte__tipp");
+  var svg = figur.querySelector("svg");
+
+  function zeige(nr, an) {
+    bereich.querySelectorAll('[data-ort="' + nr + '"]').forEach(function (el) {
+      el.classList.toggle("ist-aktiv", an);
+    });
+    var punkt = svg.querySelector('a[data-ort="' + nr + '"]');
+    if (!an || !punkt) { tipp.hidden = true; return; }
+    var kreis = punkt.querySelector("circle").getBoundingClientRect();
+    var box = figur.getBoundingClientRect();
+    tipp.textContent = punkt.getAttribute("aria-label");
+    tipp.style.left = (kreis.left + kreis.width / 2 - box.left) + "px";
+    tipp.style.top = (kreis.top - box.top) + "px";
+    tipp.hidden = false;
+  }
+
+  bereich.querySelectorAll("[data-ort]").forEach(function (el) {
+    var nr = el.getAttribute("data-ort");
+    el.addEventListener("mouseenter", function () { zeige(nr, true); });
+    el.addEventListener("mouseleave", function () { zeige(nr, false); });
+    el.addEventListener("focus", function () { zeige(nr, true); });
+    el.addEventListener("blur", function () { zeige(nr, false); });
+  });
+});
+</script>
+<!-- Mosaik: alle 10 Sekunden eine neue Bildauswahl -->
+<script>
+(function () {
+  var MOSAIK_BILDER = [["kopfbild-bacharach.jpg", "Bacharach", "bacharach.html"], ["kunst-wehrhahnlinie.jpg", "Wehrhahnlinie", "wehrhahnlinie.html"], ["neuss-glockenspiel.jpg", "Neuss", "neuss.html"], ["benrath.jpg", "Benrath", "benrath.html"], ["kunst-street-art.jpg", "Street-Art", "street-art.html"], ["ausflug-koeln.jpg", "Köln", "koeln-altstadt.html"], ["ausflug-zons.jpg", "Zons", "zons.html"], ["kunst-joseph-beuys.jpg", "Joseph Beuys", "joseph-beuys.html"], ["ausflug-landschaftspark-duisburg-nord.jpg", "Landschaftspark", "landschaftspark-duisburg-nord.html"], ["oberkassel.jpg", "Oberkassel", "oberkassel.html"], ["geschichte-rathaus.jpg", "Rathaus", "lebendiges-rathaus.html"], ["nordpark.jpg", "Nordpark", "nordpark.html"], ["filmstadt.jpg", "Filmstadt", "filmstadt.html"], ["ausflug-schloss-dyck.jpg", "Schloss Dyck", "schloss-dyck.html"], ["kunst-musik.jpg", "Musik", "musik.html"], ["geschichte-weihnachtsmaerkte.jpg", "Weihnachtsmärkte", "weihnachtsmaerkte.html"], ["ausflug-koenigswinter-drachenfels.jpg", "Drachenfels", "schloss-drachenburg.html"], ["carlstadt.jpg", "Carlstadt", "carlstadt.html"], ["geschichte-sagen-legenden.jpg", "Sagen & Legenden", "sagen-legenden.html"], ["ausflug-essen.jpg", "Essen", "essen.html"], ["kunst-saeulenheilige.jpg", "Säulenheilige", "saeulenheilige.html"], ["ausflug-museumsinsel-hombroich.jpg", "Hombroich", "insel-hombroich.html"], ["pempelfort.jpg", "Pempelfort", "pempelfort.html"], ["geschichte-starke-frauen.jpg", "Starke Frauen", "beruehmte-frauen.html"]];
+  var mosaik = document.getElementById("mosaik");
+  if (!mosaik || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var kacheln = mosaik.querySelectorAll(".mosaik__kachel");
+  var n = kacheln.length, start = 0;
+
+  function vorladen(ab) {
+    for (var i = 0; i < n; i++) { new Image().src = "bilder/" + MOSAIK_BILDER[(ab + i) % MOSAIK_BILDER.length][0]; }
+  }
+  vorladen(n);
+
+  setInterval(function () {
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;   // Mosaik ist nur am Laptop sichtbar
+    start = (start + n) % MOSAIK_BILDER.length;
+    kacheln.forEach(function (k, i) {
+      setTimeout(function () {
+        k.classList.add("wechselt");
+        setTimeout(function () {
+          var b = MOSAIK_BILDER[(start + i) % MOSAIK_BILDER.length];
+          k.querySelector("img").src = "bilder/" + b[0];
+          k.querySelector("span").textContent = b[1];
+          k.href = b[2];
+          k.classList.remove("wechselt");
+        }, 700);
+      }, i * 150);
+    });
+    vorladen(start + n);
+  }, 10000);
+})();
+</script>
+</body>
+</html>
