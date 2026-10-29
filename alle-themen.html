@@ -250,7 +250,28 @@
     /* ---- Top 10 kompakt, Sprunglinks, Mosaik-Wechsel ------------ */
     .abschnittstitel { font-size: clamp(1.9rem, 7vw, 2.8rem) !important; margin: 0 0 1.25rem !important; }
     .seitenkopf { padding-bottom: 0.5rem; }
-    .tour--kompakt .tour__titel { padding: 0.75rem 0.9rem 0.9rem; }
+    /* Top 10 kompakt: flache Bildkacheln, Titel liegt auf dem Bild.
+       Beim Überfahren mit der Maus verschwindet der Titel –
+       dann ist das ganze Foto zu sehen. */
+    .tour--kompakt .tour__link { position: relative; }
+    .tour--kompakt .tour__bild { aspect-ratio: 16 / 9; }
+    .tour--kompakt .tour__titel {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 1.8rem 0.8rem 0.65rem;
+      color: #fff; font-size: 0.98rem; line-height: 1.2;
+      background: linear-gradient(to top, rgba(16, 38, 60, 0.85), rgba(16, 38, 60, 0));
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      transition: opacity .3s ease;
+    }
+    .tour--kompakt .tour__nr { transition: opacity .3s ease; }
+    .tour--kompakt:hover .tour__bild img { transform: none; }
+    .tour--kompakt:hover .tour__titel,
+    .tour--kompakt:hover .tour__nr { opacity: 0; }
+    .touren--kompakt { gap: 0.75rem !important; }
+    @media (max-width: 719px) {
+      .tour--kompakt .tour__bild { aspect-ratio: 4 / 3; }
+      .tour--kompakt .tour__titel { font-size: 0.86rem; padding: 1.4rem 0.6rem 0.55rem; }
+    }
     .sprunglinks { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
     .sprunglinks a {
       display: inline-flex; align-items: center; gap: 0.4rem;
@@ -428,7 +449,7 @@
 
       <h2 class="abschnittstitel">Unsere Top 10</h2>
 
-      <ul class="touren">
+      <ul class="touren touren--kompakt">
         <li class="tour tour--kompakt">
           <a class="tour__link" href="altstadt.html">
             <figure class="tour__bild">
@@ -886,31 +907,45 @@ document.querySelectorAll("[data-karte]").forEach(function (bereich) {
   var MOSAIK_BILDER = [["kopfbild-bacharach.jpg", "Bacharach", "bacharach.html"], ["kunst-wehrhahnlinie.jpg", "Wehrhahnlinie", "wehrhahnlinie.html"], ["neuss-glockenspiel.jpg", "Neuss", "neuss.html"], ["benrath.jpg", "Benrath", "benrath.html"], ["kunst-street-art.jpg", "Street-Art", "street-art.html"], ["ausflug-koeln.jpg", "Köln", "koeln-altstadt.html"], ["ausflug-zons.jpg", "Zons", "zons.html"], ["kunst-joseph-beuys.jpg", "Joseph Beuys", "joseph-beuys.html"], ["ausflug-landschaftspark-duisburg-nord.jpg", "Landschaftspark", "landschaftspark-duisburg-nord.html"], ["oberkassel.jpg", "Oberkassel", "oberkassel.html"], ["geschichte-rathaus.jpg", "Rathaus", "lebendiges-rathaus.html"], ["nordpark.jpg", "Nordpark", "nordpark.html"], ["filmstadt.jpg", "Filmstadt", "filmstadt.html"], ["ausflug-schloss-dyck.jpg", "Schloss Dyck", "schloss-dyck.html"], ["kunst-musik.jpg", "Musik", "musik.html"], ["geschichte-weihnachtsmaerkte.jpg", "Weihnachtsmärkte", "weihnachtsmaerkte.html"], ["ausflug-koenigswinter-drachenfels.jpg", "Drachenfels", "schloss-drachenburg.html"], ["carlstadt.jpg", "Carlstadt", "carlstadt.html"], ["geschichte-sagen-legenden.jpg", "Sagen & Legenden", "sagen-legenden.html"], ["ausflug-essen.jpg", "Essen", "essen.html"], ["kunst-saeulenheilige.jpg", "Säulenheilige", "saeulenheilige.html"], ["ausflug-museumsinsel-hombroich.jpg", "Hombroich", "insel-hombroich.html"], ["pempelfort.jpg", "Pempelfort", "pempelfort.html"], ["geschichte-starke-frauen.jpg", "Starke Frauen", "beruehmte-frauen.html"]];
   var mosaik = document.getElementById("mosaik");
   if (!mosaik || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var kacheln = mosaik.querySelectorAll(".mosaik__kachel");
-  var n = kacheln.length, start = 0;
+  var kacheln = Array.prototype.slice.call(mosaik.querySelectorAll(".mosaik__kachel"));
+  var TAKT = 5000;                       // jede Kachel wechselt etwa alle 5 Sekunden
+  var naechstes = kacheln.length;        // die ersten Bilder stehen schon im HTML
 
-  function vorladen(ab) {
-    for (var i = 0; i < n; i++) { new Image().src = "bilder/" + MOSAIK_BILDER[(ab + i) % MOSAIK_BILDER.length][0]; }
+  // Nächstes Bild aus der Liste, das gerade nicht zu sehen ist
+  function holeBild() {
+    var gezeigt = kacheln.map(function (k) { return k.getAttribute("href"); });
+    for (var v = 0; v < MOSAIK_BILDER.length; v++) {
+      var b = MOSAIK_BILDER[naechstes % MOSAIK_BILDER.length];
+      naechstes++;
+      if (gezeigt.indexOf(b[2]) === -1) return b;
+    }
+    return MOSAIK_BILDER[naechstes++ % MOSAIK_BILDER.length];
   }
-  vorladen(n);
 
-  setInterval(function () {
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;   // Mosaik ist nur am Laptop sichtbar
-    start = (start + n) % MOSAIK_BILDER.length;
-    kacheln.forEach(function (k, i) {
+  function wechsle(k) {
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;   // Mosaik nur am Laptop sichtbar
+    var b = holeBild();
+    var vorab = new Image();
+    vorab.onload = function () {
+      k.classList.add("wechselt");
       setTimeout(function () {
-        k.classList.add("wechselt");
-        setTimeout(function () {
-          var b = MOSAIK_BILDER[(start + i) % MOSAIK_BILDER.length];
-          k.querySelector("img").src = "bilder/" + b[0];
-          k.querySelector("span").textContent = b[1];
-          k.href = b[2];
-          k.classList.remove("wechselt");
-        }, 700);
-      }, i * 150);
-    });
-    vorladen(start + n);
-  }, 10000);
+        k.querySelector("img").src = vorab.src;
+        k.querySelector("span").textContent = b[1];
+        k.href = b[2];
+        k.classList.remove("wechselt");
+      }, 700);
+    };
+    vorab.src = "bilder/" + b[0];
+  }
+
+  // Versetzt starten: die Kacheln wechseln nacheinander, nicht alle zugleich
+  kacheln.forEach(function (k, i) {
+    var versatz = TAKT + i * (TAKT / kacheln.length);
+    setTimeout(function () {
+      wechsle(k);
+      setInterval(function () { wechsle(k); }, TAKT + Math.round(Math.random() * 600 - 300));
+    }, versatz);
+  });
 })();
 </script>
 </body>
