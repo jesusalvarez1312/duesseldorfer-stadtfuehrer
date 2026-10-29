@@ -246,6 +246,28 @@
     .kartenbereich__titel { font-size: clamp(1.9rem, 7vw, 2.8rem) !important; }
     .kartenbereich .themenblock__kopf .icon { width: 28px; height: 28px; }
     @media (min-width: 1024px) { #inhalt .band { padding-block: 2.75rem; } }
+
+    /* ---- Top 10 kompakt, Sprunglinks, Mosaik-Wechsel ------------ */
+    .abschnittstitel { font-size: clamp(1.9rem, 7vw, 2.8rem) !important; margin: 0 0 1.25rem !important; }
+    .seitenkopf { padding-bottom: 0.5rem; }
+    .tour--kompakt .tour__titel { padding: 0.75rem 0.9rem 0.9rem; }
+    .sprunglinks { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+    .sprunglinks a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.9rem; border: 1px solid var(--linie); border-radius: 999px;
+      background: var(--weiss); color: var(--text); text-decoration: none;
+      font-size: 0.9rem; font-weight: 600;
+    }
+    .sprunglinks a::after { content: "↓"; color: var(--rot); font-weight: 700; }
+    .sprunglinks a:hover { border-color: var(--rot); color: var(--rot); }
+    #top10, #spezialfuehrungen, #stadtviertel, #ausserhalb { scroll-margin-top: 80px; }
+    html { scroll-behavior: smooth; }
+    .mosaik__kachel img, .mosaik__kachel span { transition: opacity .7s ease; }
+    .mosaik__kachel.wechselt img, .mosaik__kachel.wechselt span { opacity: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .mosaik__kachel img, .mosaik__kachel span { transition: none; }
+    }
   </style>
 </head>
 
@@ -363,49 +385,151 @@
         <p class="augenbraue">Der schnelle Überblick</p>
         <h1 class="titel-strich">Alle Touren</h1>
         <p class="lead">
-          Von unseren Top 10 bis zu allen Spezialführungen – hier finden Sie jedes Thema auf einen Blick, Stadtviertel und Ausflugsziele sogar auf der Karte.
+          Von unseren Top 10 bis zu allen Spezialführungen – hier finden Sie jedes Thema auf einen Blick.
+          Und unsere Expertise endet nicht an der Stadtgrenze: Auch am Niederrhein, im Ruhrgebiet,
+          in Köln und bis an den Mittelrhein führen wir Sie mit demselben Wissen und derselben Begeisterung.
         </p>
+
+        <!-- Sprunglinks zu den Abschnitten weiter unten -->
+        <nav class="sprunglinks" aria-label="Auf dieser Seite">
+          <a href="#spezialfuehrungen">Spezialführungen</a>
+          <a href="#stadtviertel">Stadtviertel &amp; Parks</a>
+          <a href="#ausserhalb">Außerhalb von Düsseldorf</a>
+        </nav>
 
       </div>
 
       <!-- Bilder-Mosaik: zeigt die Vielfalt (nur ab Laptop sichtbar).
            Ein Bild tauschen: Link, Bilddatei und Text ändern. -->
-      <div class="mosaik" aria-label="Eine Auswahl unserer Touren">
-        <a class="mosaik__kachel mosaik__kachel--gross" href="altstadt.html"><img src="bilder/tour-01-altstadt.jpg" alt="" loading="lazy"><span>Altstadt</span></a>
-        <a class="mosaik__kachel" href="altbier.html"><img src="bilder/tour-06-altbier.jpg" alt="" loading="lazy"><span>Altbier</span></a>
+      <!-- Bilder-Mosaik (nur ab Laptop): wechselt alle 10 Sekunden.
+           Weitere Bilder: in der Liste MOSAIK_BILDER unten im Script
+           eine Zeile ergänzen (Datei, Beschriftung, Link). -->
+      <div class="mosaik" id="mosaik" aria-label="Eine Auswahl unserer Touren">
+        <a class="mosaik__kachel mosaik__kachel--gross" href="bacharach.html"><img src="bilder/kopfbild-bacharach.jpg" alt="" loading="lazy"><span>Bacharach</span></a>
+        <a class="mosaik__kachel" href="wehrhahnlinie.html"><img src="bilder/kunst-wehrhahnlinie.jpg" alt="" loading="lazy"><span>Wehrhahnlinie</span></a>
         <a class="mosaik__kachel mosaik__kachel--hoch" href="neuss.html"><img src="bilder/neuss-glockenspiel.jpg" alt="" loading="lazy"><span>Neuss</span></a>
-        <a class="mosaik__kachel" href="japanviertel.html"><img src="bilder/tour-07-klein-tokio.jpg" alt="" loading="lazy"><span>Klein-Tokio</span></a>
-        <a class="mosaik__kachel" href="medienhafen.html"><img src="bilder/tour-03-medienhafen.jpg" alt="" loading="lazy"><span>MedienHafen</span></a>
-        <a class="mosaik__kachel" href="sportlich.html"><img src="bilder/tour-10-radtouren.jpg" alt="" loading="lazy"><span>Radtouren</span></a>
-        <a class="mosaik__kachel" href="nachtwaechter.html"><img src="bilder/tour-09-nachtwaechter.jpg" alt="" loading="lazy"><span>Nachtwächter</span></a>
-        <a class="mosaik__kachel" href="kaiserswerth.html"><img src="bilder/tour-08-kaiserswerth.jpg" alt="" loading="lazy"><span>Kaiserswerth</span></a>
+        <a class="mosaik__kachel" href="benrath.html"><img src="bilder/benrath.jpg" alt="" loading="lazy"><span>Benrath</span></a>
+        <a class="mosaik__kachel" href="street-art.html"><img src="bilder/kunst-street-art.jpg" alt="" loading="lazy"><span>Street-Art</span></a>
+        <a class="mosaik__kachel" href="koeln-altstadt.html"><img src="bilder/ausflug-koeln.jpg" alt="" loading="lazy"><span>Köln</span></a>
+        <a class="mosaik__kachel" href="zons.html"><img src="bilder/ausflug-zons.jpg" alt="" loading="lazy"><span>Zons</span></a>
+        <a class="mosaik__kachel" href="joseph-beuys.html"><img src="bilder/kunst-joseph-beuys.jpg" alt="" loading="lazy"><span>Joseph Beuys</span></a>
       </div>
 
     </div>
   </section>
 
 
-  <!-- ===== UNSERE TOP 10 ========================================= -->
-  <section class="band">
+  <!-- ===== UNSERE TOP 10 =========================================
+       Dieselben Kacheln wie auf der Startseite – hier kompakt:
+       nur Bild und Titel, ohne Beschreibung und ohne Anfrage-Knopf.
+  ============================================================ -->
+  <section class="band" id="top10">
     <div class="huelle">
-      <div class="rechtstext" style="max-width: none;">
 
-        <h2>Unsere Top 10</h2>
+      <h2 class="abschnittstitel">Unsere Top 10</h2>
 
-        <ol class="top10-liste">
-          <li><span class="top10-liste__nr">01</span> <a href="altstadt.html">Altstadt</a></li>
-          <li><span class="top10-liste__nr">02</span> <a href="neue-mitte.html">Neue Mitte</a></li>
-          <li><span class="top10-liste__nr">03</span> <a href="medienhafen.html">MedienHafen</a></li>
-          <li><span class="top10-liste__nr">04</span> <a href="highlights.html">Das Beste von Düsseldorf</a></li>
-          <li><span class="top10-liste__nr">05</span> <a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></li>
-          <li><span class="top10-liste__nr">06</span> <a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></li>
-          <li><span class="top10-liste__nr">07</span> <a href="japanviertel.html">Klein-Tokio</a></li>
-          <li><span class="top10-liste__nr">08</span> <a href="kaiserswerth.html">Kaiserswerth</a></li>
-          <li><span class="top10-liste__nr">09</span> <a href="nachtwaechter.html">Mit dem Nachtwächter unterwegs</a></li>
-          <li><span class="top10-liste__nr">10</span> <span class="ohne-seite">Radtouren</span></li>
-        </ol>
+      <ul class="touren">
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="altstadt.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">01</span>
+              <img src="bilder/tour-01-altstadt.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Altstadt</span>
+          </a>
+        </li>
 
-      </div>
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="neue-mitte.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">02</span>
+              <img src="bilder/tour-02-neue-mitte.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Neue Mitte</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="medienhafen.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">03</span>
+              <img src="bilder/tour-03-medienhafen.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">MedienHafen</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="highlights.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">04</span>
+              <img src="bilder/tour-04-highlights.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Das Beste von Düsseldorf</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="kulinarische-tour.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">05</span>
+              <img src="bilder/tour-05-kulinarisch.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Kulinarisches Düsseldorf</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="altbier.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">06</span>
+              <img src="bilder/tour-06-altbier.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Altbier &amp; die längste Theke der Welt</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="japanviertel.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">07</span>
+              <img src="bilder/tour-07-klein-tokio.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Klein-Tokio</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="kaiserswerth.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">08</span>
+              <img src="bilder/tour-08-kaiserswerth.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Kaiserswerth</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="nachtwaechter.html">
+            <figure class="tour__bild">
+              <span class="tour__nr">09</span>
+              <img src="bilder/tour-09-nachtwaechter.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Mit dem Nachtwächter unterwegs</span>
+          </a>
+        </li>
+
+        <li class="tour tour--kompakt">
+          <a class="tour__link" href="anfrage.html" data-tour="Radtouren">
+            <figure class="tour__bild">
+              <span class="tour__nr">10</span>
+              <img src="bilder/tour-10-radtouren.jpg" alt="" loading="lazy">
+            </figure>
+            <span class="tour__titel">Radtouren</span>
+          </a>
+        </li>
+      </ul>
+
     </div>
   </section>
 
@@ -415,7 +539,7 @@
        Führungen ohne eigene Infoseite verlinken auf das Anfrageformular –
        data-tour="…" trägt den Namen gleich ins Formular ein.
   ============================================================ -->
-  <section class="band band--creme">
+  <section class="band band--creme" id="spezialfuehrungen">
     <div class="huelle">
 
       <div class="spezialkopf">
@@ -513,7 +637,7 @@
        Volle Punkte: eigene Seite. Ringe: auf Anfrage (öffnet das
        Anfrageformular mit dem Namen der Führung).
   ============================================================== -->
-  <section class="band">
+  <section class="band" id="stadtviertel">
     <div class="huelle">
       <div class="kartenbereich" data-karte>
 
@@ -601,7 +725,7 @@
 
 
   <!-- ===== TOUREN AUSSERHALB AUF DER KARTE ======================== -->
-  <section class="band band--creme">
+  <section class="band band--creme" id="ausserhalb">
     <div class="huelle">
       <div class="kartenbereich kartenbereich--umland">
 
@@ -755,6 +879,39 @@ document.querySelectorAll("[data-karte]").forEach(function (bereich) {
     el.addEventListener("blur", function () { zeige(nr, false); });
   });
 });
+</script>
+<!-- Mosaik: alle 10 Sekunden eine neue Bildauswahl -->
+<script>
+(function () {
+  var MOSAIK_BILDER = [["kopfbild-bacharach.jpg", "Bacharach", "bacharach.html"], ["kunst-wehrhahnlinie.jpg", "Wehrhahnlinie", "wehrhahnlinie.html"], ["neuss-glockenspiel.jpg", "Neuss", "neuss.html"], ["benrath.jpg", "Benrath", "benrath.html"], ["kunst-street-art.jpg", "Street-Art", "street-art.html"], ["ausflug-koeln.jpg", "Köln", "koeln-altstadt.html"], ["ausflug-zons.jpg", "Zons", "zons.html"], ["kunst-joseph-beuys.jpg", "Joseph Beuys", "joseph-beuys.html"], ["ausflug-landschaftspark-duisburg-nord.jpg", "Landschaftspark", "landschaftspark-duisburg-nord.html"], ["oberkassel.jpg", "Oberkassel", "oberkassel.html"], ["geschichte-rathaus.jpg", "Rathaus", "lebendiges-rathaus.html"], ["nordpark.jpg", "Nordpark", "nordpark.html"], ["filmstadt.jpg", "Filmstadt", "filmstadt.html"], ["ausflug-schloss-dyck.jpg", "Schloss Dyck", "schloss-dyck.html"], ["kunst-musik.jpg", "Musik", "musik.html"], ["geschichte-weihnachtsmaerkte.jpg", "Weihnachtsmärkte", "weihnachtsmaerkte.html"], ["ausflug-koenigswinter-drachenfels.jpg", "Drachenfels", "schloss-drachenburg.html"], ["carlstadt.jpg", "Carlstadt", "carlstadt.html"], ["geschichte-sagen-legenden.jpg", "Sagen & Legenden", "sagen-legenden.html"], ["ausflug-essen.jpg", "Essen", "essen.html"], ["kunst-saeulenheilige.jpg", "Säulenheilige", "saeulenheilige.html"], ["ausflug-museumsinsel-hombroich.jpg", "Hombroich", "insel-hombroich.html"], ["pempelfort.jpg", "Pempelfort", "pempelfort.html"], ["geschichte-starke-frauen.jpg", "Starke Frauen", "beruehmte-frauen.html"]];
+  var mosaik = document.getElementById("mosaik");
+  if (!mosaik || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var kacheln = mosaik.querySelectorAll(".mosaik__kachel");
+  var n = kacheln.length, start = 0;
+
+  function vorladen(ab) {
+    for (var i = 0; i < n; i++) { new Image().src = "bilder/" + MOSAIK_BILDER[(ab + i) % MOSAIK_BILDER.length][0]; }
+  }
+  vorladen(n);
+
+  setInterval(function () {
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;   // Mosaik ist nur am Laptop sichtbar
+    start = (start + n) % MOSAIK_BILDER.length;
+    kacheln.forEach(function (k, i) {
+      setTimeout(function () {
+        k.classList.add("wechselt");
+        setTimeout(function () {
+          var b = MOSAIK_BILDER[(start + i) % MOSAIK_BILDER.length];
+          k.querySelector("img").src = "bilder/" + b[0];
+          k.querySelector("span").textContent = b[1];
+          k.href = b[2];
+          k.classList.remove("wechselt");
+        }, 700);
+      }, i * 150);
+    });
+    vorladen(start + n);
+  }, 10000);
+})();
 </script>
 </body>
 </html>
