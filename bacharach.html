@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bacharach – Düsseldorfer Stadtführer e.V.</title>
+  <meta name="description" content="Rheinromantik, Weinbau und Stadttürme: Tagesausflug nach Bacharach im UNESCO-Welterbe Oberes Mittelrheintal – auf Deutsch oder Spanisch, auf Wunsch mit Schifffahrt und Mittagessen.">
+  <meta name="theme-color" content="#B4131C">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="unterseiten.css">
+
+  <!-- Seiteneigene Zusätze: Sprachumschalter und „Ihr Tag am Rhein“ -->
+  <style>
+    /* Zweisprachigkeit: Standard Deutsch, Spanisch ausgeblendet */
+    .zweisprachig [lang="es"] { display: none; }
+    html[lang="es"] .zweisprachig [lang="de"] { display: none; }
+    html[lang="es"] .zweisprachig [lang="es"] { display: revert; }
+
+    .sprachwahl {
+      display: inline-flex;
+      width: fit-content;
+      align-self: flex-start;
+      gap: 4px;
+      padding: 4px;
+      margin: 0 0 1.1rem;
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: 999px;
+    }
+    .sprachwahl[hidden] { display: none; }
+    .sprachwahl button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.9rem 0.4rem 0.45rem;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      font: 600 0.9rem/1 var(--textschrift);
+      cursor: pointer;
+    }
+    .sprachwahl button:hover { color: var(--rot); }
+    .sprachwahl button[aria-pressed="true"] { background: var(--nacht); color: #fff; }
+    .sprachwahl button:focus-visible { outline: 2px solid var(--rot); outline-offset: 2px; }
+
+    .tagesbausteine {
+      list-style: none;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+    .tagesbausteine li {
+      background: var(--weiss);
+      border-radius: var(--rund);
+      padding: 1.25rem 1.25rem 1.1rem;
+    }
+    .tagesbausteine .icon { width: 28px; height: 28px; color: var(--rot); }
+    .tagesbausteine h3 {
+      font-family: var(--titelschrift);
+      font-size: 1.15rem;
+      line-height: 1.25;
+      margin: 0.6rem 0 0.4rem;
+    }
+    .tagesbausteine p { margin: 0; color: var(--text-leise); font-size: 0.95rem; }
+    @media (min-width: 720px)  { .tagesbausteine { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .tagesbausteine { grid-template-columns: repeat(4, 1fr); } }
+  </style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+
+<!-- ==================================================================
+     ICON-SAMMLUNG
+     Steht unsichtbar am Anfang und wird unten per use-Verweis
+     beliebig oft eingesetzt. Nicht mit display:none verstecken.
+=================================================================== -->
+<svg class="icon-lager" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="i-pfeil"><path d="M4 12h15m-6-6 6 6-6 6"/></g>
+    <g id="i-kompass"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5.2-5.2 2 2-5.2 5.2-2Z"/></g>
+    <g id="i-bus"><rect x="4" y="3.5" width="16" height="14" rx="2.5"/><path d="M4 11h16M8 17.5V20M16 17.5V20"/><circle cx="8" cy="14.3" r=".6"/><circle cx="16" cy="14.3" r=".6"/></g>
+    <g id="i-schiff"><path d="M3 15.5h18l-2.5 4H5.5Z"/><path d="M6 15.5V11h12v4.5M9 11V7.5h6V11M12 7.5V4"/></g>
+    <g id="i-teller"><circle cx="12" cy="12.5" r="6"/><path d="M3 5v5a2 2 0 0 0 2 2v8M5 5v4M21 5c-1.5 0-2 2-2 4.5s.5 3 2 3V20"/></g>
+    <g id="i-sprache"><path d="M4 5h16v11H11l-4.5 3.5V16H4Z"/><path d="M8.5 10.5h7"/></g>
+  </defs>
+</svg>
+
+
+<!-- ===== KOPFBEREICH =============================================
+     Auf einer Unterseite müssen die Menülinks auf index.html zeigen,
+     sonst suchen sie die Abschnitte auf DIESER Seite und finden nichts.
+================================================================ -->
+<header class="kopf zweisprachig">
+  <div class="huelle kopf__zeile">
+
+    <a class="logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="230" height="52">
+    </a>
+
+    <nav class="navi" id="hauptmenue" aria-label="Hauptnavigation">
+      <a href="index.html#touren"><span lang="de">Touren</span><span lang="es">Visitas</span></a>
+      <a href="index.html#verein"><span lang="de">Über uns</span><span lang="es">Quiénes somos</span></a>
+      <a href="index.html#sprachen"><span lang="de">Sprachen</span><span lang="es">Idiomas</span></a>
+      <a href="index.html#buchung"><span lang="de">Anfrage</span><span lang="es">Solicitud</span></a>
+      <a href="index.html#kontakt"><span lang="de">Kontakt</span><span lang="es">Contacto</span></a>
+    </nav>
+
+    <!-- Suche: oeffnet das Feld darunter. Der Knopf steht mit "hidden"
+         im HTML und wird von script.js eingeblendet – ohne
+         JavaScript gaebe es sonst einen Knopf ohne Wirkung. -->
+    <button class="suchknopf" id="suchknopf" type="button" hidden
+            aria-expanded="false" aria-controls="suchbereich">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      <span class="nur-fuer-screenreader">Touren durchsuchen</span>
+    </button>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="hauptmenue">
+      <span class="burger__striche" aria-hidden="true"></span>
+      <span class="nur-fuer-screenreader">Menü öffnen</span>
+    </button>
+
+  </div>
+
+  <!-- ===== SUCHFELD ==============================================
+       Klappt unter der Kopfleiste auf. Durchsucht die Liste in
+       touren-daten.js – dort stehen alle Führungen.
+  ============================================================== -->
+  <div class="suche" id="suchbereich" hidden>
+    <div class="huelle">
+
+      <div class="suche__zeile">
+        <svg class="icon suche__lupe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+
+        <label class="nur-fuer-screenreader" for="sucheingabe">Suchbegriff</label>
+        <input class="suche__feld" id="sucheingabe" type="search"
+               autocomplete="off" enterkeyhint="search"
+               placeholder="Wonach suchen Sie? z. B. Altbier, Kinder, Architektur">
+
+        <button class="suche__zu" id="suchezu" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          <span class="nur-fuer-screenreader">Suche schließen</span>
+        </button>
+      </div>
+
+      <p class="suche__hinweis" id="suchehinweis">
+        Tippen Sie einen Begriff ein – wir zeigen Ihnen passende Führungen.
+      </p>
+
+      <ul class="suche__treffer" id="suchetreffer"></ul>
+
+    </div>
+  </div>
+
+</header>
+
+
+<main id="inhalt" class="zweisprachig">
+
+  <!-- ===== SEITENKOPF ===========================================
+       ZWEISPRACHIG (Deutsch / Spanisch)
+       Jeder Text steht zweimal da: einmal mit lang="de", einmal
+       mit lang="es". Der Umschalter blendet die jeweils andere
+       Sprache aus. Text ändern: beide Fassungen anpassen.
+  ============================================================ -->
+  <section class="seitenkopf seitenkopf--knapp">
+    <div class="huelle seitenkopf__raster">
+
+      <div class="seitenkopf__text">
+
+        <nav class="brotkrumen" aria-label="Sie sind hier">
+          <a href="index.html"><span lang="de">Start</span><span lang="es">Inicio</span></a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="index.html#touren"><span lang="de">Touren</span><span lang="es">Visitas guiadas</span></a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <a href="touren-ausserhalb.html"><span lang="de">Touren außerhalb</span><span lang="es">Excursiones</span></a>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span aria-current="page">Bacharach</span>
+        </nav>
+
+        <!-- Sprachumschalter: wird von JavaScript eingeblendet -->
+        <div class="sprachwahl" id="sprachwahl" role="group" aria-label="Sprache / Idioma" hidden>
+          <button type="button" data-wahl="de" aria-pressed="true">
+            <span class="flagge" data-code="de" aria-hidden="true">🇩🇪</span> Deutsch
+          </button>
+          <button type="button" data-wahl="es" aria-pressed="false">
+            <span class="flagge" data-code="es" aria-hidden="true">🇪🇸</span> Español
+          </button>
+        </div>
+
+        <p class="augenbraue"><span lang="de">Bacharach am Mittelrhein</span><span lang="es">Bacharach, en el Rin Medio</span></p>
+        <h1 class="titel-strich">
+          <span lang="de">Wein, Türme und Rheinromantik</span>
+          <span lang="es">Vino, torres y romanticismo a orillas del Rin</span>
+        </h1>
+        <p class="lead" lang="de">
+          Fachwerkgassen, eine fast vollständig erhaltene Stadtmauer und Weinberge
+          bis an die Häuser: Bacharach ist der Inbegriff der Rheinromantik –
+          und ein wunderbarer Tagesausflug ab Düsseldorf oder Neuss.
+        </p>
+        <p class="lead" lang="es">
+          Callejuelas con casas de entramado, una muralla casi intacta y viñedos
+          que llegan hasta las casas: Bacharach es la esencia del Rin romántico –
+          y una excursión de un día perfecta desde Düsseldorf o Neuss.
+        </p>
+
+        <img class="seitenkopf__skyline" src="bilder/skyline-klar.png"
+             alt="" aria-hidden="true" loading="lazy" width="680" height="490">
+      </div>
+
+      <div class="einzelbild">
+        <figure class="einzelbild__foto">
+          <img src="bilder/kopfbild-bacharach.jpg"
+               alt="Blick über Bacharach mit Peterskirche, Wernerkapelle und Rhein"
+               width="1000" height="750">
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== DAS ERWARTET SIE ====================================== -->
+  <section class="band">
+    <div class="huelle">
+      <div class="rechtstext rechtstext--breit">
+
+        <h2 lang="de">Wo die Loreley zu Hause war</h2>
+        <h2 lang="es">Donde vivía la Loreley</h2>
+
+        <p lang="de">Bacharach liegt mitten im UNESCO-Welterbe Oberes Mittelrheintal. Schon die Dichter der Romantik – Victor Hugo, Heinrich Heine, Clemens Brentano – waren von dem kleinen Weinort verzaubert. Brentano ließ hier seine Zauberin „Lore Lay“ wohnen; aus ihr wurde später die berühmte Loreley.</p>
+        <p lang="es">Bacharach se encuentra en pleno corazón del Valle del Alto Rin Medio, Patrimonio Mundial de la UNESCO. Los poetas del Romanticismo – Victor Hugo, Heinrich Heine, Clemens Brentano – quedaron fascinados por este pequeño pueblo vinícola. Brentano situó aquí a su hechicera «Lore Lay», que más tarde se convertiría en la famosa Loreley.</p>
+
+        <p lang="de">Auf unserem Rundgang folgen wir der Stadtmauer mit ihren Türmen, schlendern durch Gassen voller Fachwerk und schauen hinauf zur Burg Stahleck. Wir erzählen, warum die Ruine der Wernerkapelle so berühmt ist und wie der Wein die kleine Stadt einst reich gemacht hat.</p>
+        <p lang="es">En nuestro recorrido seguimos la muralla con sus torres, paseamos por callejuelas llenas de casas de entramado y contemplamos el castillo de Stahleck. Le contamos por qué las ruinas de la capilla de Werner son tan famosas y cómo el vino hizo rica a esta pequeña ciudad.</p>
+
+        <h2 lang="de">Stationen der Führung</h2>
+        <h2 lang="es">Paradas del recorrido</h2>
+
+        <ul class="stationen" lang="de">
+          <li><strong>Stadtmauer &amp; Türme:</strong> Ein großer Teil der mittelalterlichen Befestigung ist erhalten – vom Mauerweg öffnen sich herrliche Blicke über Dächer und Rhein.</li>
+          <li><strong>Fachwerk &amp; Schiefer:</strong> Rund um den Marktplatz stehen einige der schönsten Fachwerkhäuser am Rhein.</li>
+          <li><strong>Peterskirche &amp; Wernerkapelle:</strong> die spätromanische Kirche und die gotische Kapellenruine – Wahrzeichen der Stadt.</li>
+          <li><strong>Burg Stahleck:</strong> Die Burg aus dem 12. Jahrhundert thront über den Dächern; heute ist sie eine Jugendherberge.</li>
+          <li><strong>Weinbau:</strong> Riesling aus steilen Schieferlagen – seit Jahrhunderten prägt der Wein Landschaft und Leben.</li>
+        </ul>
+        <ul class="stationen" lang="es">
+          <li><strong>Muralla y torres:</strong> Gran parte de la fortificación medieval se conserva – desde el camino de ronda se disfrutan vistas magníficas sobre los tejados y el Rin.</li>
+          <li><strong>Entramado y pizarra:</strong> En torno a la plaza del mercado se encuentran algunas de las casas de entramado más bonitas del Rin.</li>
+          <li><strong>Iglesia de San Pedro y capilla de Werner:</strong> la iglesia románica tardía y las ruinas góticas de la capilla – símbolos de la ciudad.</li>
+          <li><strong>Castillo de Stahleck:</strong> El castillo del siglo XII domina el pueblo desde lo alto; hoy es un albergue juvenil.</li>
+          <li><strong>Viticultura:</strong> Riesling de empinadas laderas de pizarra – desde hace siglos el vino marca el paisaje y la vida.</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== IHR TAG AM RHEIN ====================================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <h2 lang="de">Ihr Tag am Rhein</h2>
+      <h2 lang="es">Su día en el Rin</h2>
+
+      <ul class="tagesbausteine">
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bus"/></svg>
+          <h3 lang="de">Tagesausflug ab Düsseldorf oder Neuss</h3>
+          <h3 lang="es">Excursión de un día desde Düsseldorf o Neuss</h3>
+          <p lang="de">Wir planen den Tag mit Ihnen – von der Abfahrt bis zur Rückkehr am Abend.</p>
+          <p lang="es">Planificamos el día con usted – desde la salida hasta el regreso por la tarde.</p>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-schiff"/></svg>
+          <h3 lang="de">Mit dem Schiff durchs Welterbe</h3>
+          <h3 lang="es">En barco por el Patrimonio Mundial</h3>
+          <p lang="de">Auf Wunsch verbinden wir die Führung mit einer Schifffahrt – vorbei an Burgen, Weinbergen und dem Loreley-Felsen.</p>
+          <p lang="es">Si lo desea, combinamos la visita con un paseo en barco – entre castillos, viñedos y la roca de la Loreley.</p>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-teller"/></svg>
+          <h3 lang="de">Mittagessen nach Ihrem Geschmack</h3>
+          <h3 lang="es">Almuerzo a su gusto</h3>
+          <p lang="de">Gerne gehört eine gemütliche Mittagspause mit regionaler Küche zum Programm – ganz wie es Ihnen gefällt.</p>
+          <p lang="es">Con mucho gusto incluimos una agradable pausa para comer con cocina regional – tal y como usted prefiera.</p>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sprache"/></svg>
+          <h3 lang="de">Auf Deutsch oder Spanisch</h3>
+          <h3 lang="es">En alemán o en español</h3>
+          <p lang="de">Diese Führung bieten wir in beiden Sprachen an.</p>
+          <p lang="es">Ofrecemos esta visita guiada en ambos idiomas.</p>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ===== EINDRÜCKE =============================================
+       Weitere Fotos: Datei in "bilder" legen und einen
+       <figure>-Block nach demselben Muster kopieren.
+  ============================================================== -->
+  <section class="band">
+    <div class="huelle">
+      <h2 lang="de">Eindrücke aus Bacharach</h2>
+      <h2 lang="es">Impresiones de Bacharach</h2>
+
+      <div class="galerie">
+        <figure>
+          <img src="bilder/bacharach-fachwerk.jpg" alt="Prächtiges Fachwerkhaus in Bacharach" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Fachwerk wie aus dem Bilderbuch</span><span lang="es">Entramado de cuento</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-rheintal.jpg" alt="Blick von oben ins Rheintal bei Bacharach" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Blick ins Mittelrheintal</span><span lang="es">Vista del valle del Rin</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-turm.jpg" alt="Runder Turm der Stadtmauer von Bacharach" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Einer der Türme der Stadtmauer</span><span lang="es">Una de las torres de la muralla</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-weinberg.jpg" alt="Rebstöcke in einem Weinberg oberhalb von Bacharach" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Mitten im Weinberg</span><span lang="es">En medio de los viñedos</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-treppe.jpg" alt="Steile Treppengasse in Bacharach" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Treppen und verwinkelte Gassen</span><span lang="es">Escaleras y callejuelas</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-schiefer.jpg" alt="Fachwerkhaus mit Schieferfassade" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Fachwerk und Schiefer</span><span lang="es">Entramado y pizarra</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-steillagen.jpg" alt="Weinbergterrassen an den steilen Hängen über dem Rhein" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Steillagen über dem Rhein</span><span lang="es">Viñedos en pendiente sobre el Rin</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-markt.jpg" alt="Fachwerkhäuser am Markt von Bacharach" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Am Marktplatz</span><span lang="es">En la plaza del mercado</span></figcaption>
+        </figure>
+        <figure>
+          <img src="bilder/bacharach-gasse.jpg" alt="Häuser mit Erkern an einem Bach in der Altstadt" width="800" height="600" loading="lazy">
+          <figcaption><span lang="de">Verborgene Winkel</span><span lang="es">Rincones escondidos</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== HINWEIS AM ENDE ====================================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <div class="hinweis">
+        <span class="hinweis__symbol" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kompass"/></svg>
+        </span>
+
+        <div class="hinweis__text">
+          <h2 lang="de">Interesse an dieser Tour?</h2>
+          <h2 lang="es">¿Le interesa esta excursión?</h2>
+          <p lang="de">Stellen Sie unverbindlich Ihre Anfrage für „Bacharach“.</p>
+          <p lang="es">Envíenos su solicitud sin compromiso – puede escribirnos en español.</p>
+        </div>
+
+        <a class="knopf knopf--umriss" id="anfrageknopf" href="anfrage.html" data-tour="Bacharach">
+          <span lang="de">Tour anfragen</span><span lang="es">Solicitar visita</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+
+<!-- ===== FUSSBEREICH ============================================= -->
+<footer class="fuss">
+  <div class="huelle fuss__zeile">
+
+    <a class="fuss__logo" href="index.html">
+      <img src="bilder/logo.png" alt="Düsseldorfer Stadtführer e.V." width="180" height="41" loading="lazy">
+    </a>
+
+    <div class="fuss__mitte">
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <p>&copy; 1997&ndash;2026 Düsseldorfer Stadtführer e.&thinsp;V.</p>
+    </div>
+
+    <div class="fuss__rechts">
+      <!-- Mitgliedschaft im Berufsverband -->
+      <a class="fuss__bvgd" href="https://www.bvgd.org" target="_blank" rel="noopener noreferrer"
+         title="Bundesverband der Gästeführer in Deutschland e.&thinsp;V.">
+        <img src="bilder/bvgd-logo.png" alt="Mitglied im BVGD – Bundesverband der Gästeführer in Deutschland e.V." width="500" height="159" loading="lazy">
+      </a>
+
+      <div class="fuss__sozial">
+        <a href="https://www.facebook.com/Duesseldorf.TouristGuide/" target="_blank" rel="noopener noreferrer" aria-label="Facebook: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/duesseldorferstadtfuehrer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: Düsseldorfer Stadtführer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="flaggen.js"></script>
+<script src="touren-daten.js"></script>
+<script src="script.js"></script>
+
+<!-- ===== SPRACHUMSCHALTER DEUTSCH / ESPAÑOL ======================
+     Merkt sich die Wahl im Browser und versteht auch Links mit
+     ?lang=es (z. B. bacharach.html?lang=es für spanische Gäste).
+================================================================ -->
+<script>
+(function () {
+  "use strict";
+  var wahl = document.getElementById("sprachwahl");
+  var knopf = document.getElementById("anfrageknopf");
+  var titel = {
+    de: "Bacharach – Düsseldorfer Stadtführer e.V.",
+    es: "Bacharach – Visita guiada en español | Düsseldorfer Stadtführer"
+  };
+
+  function setze(sprache) {
+    if (sprache !== "es") sprache = "de";
+    document.documentElement.lang = sprache;
+    document.title = titel[sprache];
+    wahl.querySelectorAll("button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.wahl === sprache ? "true" : "false");
+    });
+    // Anfrage: bei Spanisch steht der Sprachwunsch gleich mit im Formular
+    var tour = sprache === "es" ? "Bacharach (auf Spanisch)" : "Bacharach";
+    knopf.setAttribute("href", "anfrage.html?tour=" + encodeURIComponent(tour));
+    try { localStorage.setItem("sprache-bacharach", sprache); } catch (e) {}
+  }
+
+  var start = new URLSearchParams(location.search).get("lang");
+  if (!start) { try { start = localStorage.getItem("sprache-bacharach"); } catch (e) {} }
+
+  wahl.hidden = false;
+  wahl.addEventListener("click", function (ev) {
+    var b = ev.target.closest("button[data-wahl]");
+    if (b) setze(b.dataset.wahl);
+  });
+  setze(start || "de");
+})();
+</script>
+
+</body>
+</html>

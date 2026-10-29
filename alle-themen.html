@@ -121,6 +121,86 @@
     @media (min-width: 1024px) {
       .themenraster { grid-template-columns: repeat(3, 1fr); }
     }
+
+    /* ---- Karten: Stadtviertel & Parks / Touren außerhalb -------- */
+    .kartenbereich__titel {
+      margin: 0;
+      font-family: var(--titelschrift);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+    }
+    .kartenbereich__titel a { color: var(--text); text-decoration: none; }
+    .kartenbereich__titel a:hover { color: var(--rot); }
+    .kartenbereich__text { margin: 0 0 1.25rem; color: var(--text-leise); }
+    .kartenbereich {
+      display: grid;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .landkarte {
+      margin: 0;
+      background: var(--weiss);
+      border: 1px solid var(--linie);
+      border-radius: var(--rund);
+      padding: 0.75rem;
+    }
+    .band--creme .landkarte { border-color: transparent; }
+    .landkarte__svg { display: block; width: 100%; height: auto; }
+    .landkarte__svg--umland { max-width: 560px; margin: 0 auto; }
+    .landkarte__svg--umland .landkarte__name { font-size: 14px; }
+    .landkarte__svg--umland .landkarte__region,
+    .landkarte__svg--umland .landkarte__hinweis { font-size: 12px; }
+    .landkarte__fluss { fill: none; stroke: #BFD6E6; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .landkarte__fluss--klein { stroke-width: 3.5; }
+    .landkarte__fluss--breit { stroke-width: 14; }
+    .landkarte__bruch { stroke: var(--text-leise); stroke-width: 2; }
+    .landkarte__wasser { fill: #6F9AB8; font: italic 600 12px var(--textschrift); letter-spacing: 1px; }
+    .landkarte__region, .landkarte__hinweis { fill: var(--text-leise); font: 500 11px var(--textschrift); }
+    .landkarte__hinweis { font-style: italic; }
+    .landkarte__stadt { fill: var(--nacht); font: 700 15px var(--titelschrift); }
+    .landkarte__name { fill: var(--text); font: 600 12.5px var(--textschrift); paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+    .landkarte__name--leise { fill: var(--text-leise); font-weight: 500; }
+    .landkarte__nr { fill: #fff; font: 700 10.5px var(--textschrift); text-anchor: middle; pointer-events: none; }
+    .landkarte__nord path { fill: var(--text-leise); }
+    .landkarte__nord text { fill: var(--text-leise); font: 600 10px var(--textschrift); text-anchor: middle; }
+    .landkarte__ort circle { transition: transform .15s ease; transform-box: fill-box; transform-origin: center; }
+    a.landkarte__ort:hover circle, a.landkarte__ort:focus-visible circle,
+    .landkarte__ort.ist-aktiv circle { transform: scale(1.35); }
+    a.landkarte__ort:hover .landkarte__name, .landkarte__ort.ist-aktiv .landkarte__name { fill: var(--rot); }
+    .landkarte__ort--leise.ist-aktiv circle { fill: var(--text-leise); }
+    a.landkarte__ort:focus-visible { outline: none; }
+    a.landkarte__ort:focus-visible circle { stroke: var(--nacht); stroke-width: 3; }
+
+    .landkarte__legende-mini {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.9rem;
+      margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-leise);
+    }
+    .punkt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: -0.5rem; }
+    .punkt--rot { background: var(--rot); }
+    .punkt--grau { background: #9AA3AD; }
+    .punkt--blau { background: var(--nacht); border-radius: 2px; transform: rotate(45deg) scale(.85); }
+
+    .kartenliste { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+    .kartenliste li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; line-height: 1.3; padding: 0.3rem 0.4rem; border-radius: 8px; }
+    .kartenliste li.ist-aktiv { background: var(--beige); }
+    .kartenliste a { color: var(--text); text-decoration: none; }
+    .kartenliste a:hover { color: var(--rot); text-decoration: underline; }
+    .kartenliste .ohne-seite { color: var(--text-leise); }
+    .kartenliste__nr {
+      flex: none; display: grid; place-items: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--rot); color: #fff; font-size: 0.72rem; font-weight: 700;
+    }
+    .ohne-seite .kartenliste__nr { background: #9AA3AD; }
+    .kartenliste__punkt { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--rot); }
+    .ohne-seite .kartenliste__punkt { background: #9AA3AD; }
+
+    @media (min-width: 720px) {
+      .kartenliste--spalten { grid-template-columns: repeat(2, 1fr); column-gap: 1rem; }
+    }
+    @media (min-width: 1024px) {
+      .kartenbereich { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 2.5rem; }
+      .kartenliste--spalten { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -238,7 +318,7 @@
         <p class="augenbraue">Der schnelle Überblick</p>
         <h1 class="titel-strich">Alle Touren</h1>
         <p class="lead">
-          Von unseren Top 10 bis zu allen Spezialführungen – hier finden Sie jedes Thema auf einen Blick.
+          Von unseren Top 10 bis zu allen Spezialführungen – hier finden Sie jedes Thema auf einen Blick, Stadtviertel und Ausflugsziele sogar auf der Karte.
         </p>
 
       </div>
@@ -346,41 +426,11 @@
             <li class="ohne-seite">Die Skulpturen von Bert Gerresheim</li>
             <li class="ohne-seite">Kunst rund um den Nationalsozialismus</li>
             <li><a href="street-art.html">Street-Art</a></li>
+            <li><a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></li>
+            <li><a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></li>
           </ul>
         </div>
 
-        <div class="themenblock">
-          <div class="themenblock__kopf">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-viertel"/></svg>
-            <h3><a href="stadtviertel.html">Stadtviertel</a></h3>
-          </div>
-          <ul>
-            <li><a href="altstadt.html">Altstadt</a></li>
-            <li><a href="altbier.html">Altbier &amp; die längste Theke der Welt</a></li>
-            <li><a href="bahnhofsviertel.html">Bahnhofsviertel</a></li>
-            <li class="ohne-seite">Benrath</li>
-            <li class="ohne-seite">Carlstadt</li>
-            <li><a href="kulinarische-tour.html">Kulinarisches Düsseldorf</a></li>
-            <li><a href="medienhafen.html">Medienhafen</a></li>
-            <li><a href="kaiserswerth.html">Kaiserswerth</a></li>
-            <li class="ohne-seite">Flingern</li>
-            <li class="ohne-seite">Gerresheim</li>
-            <li class="ohne-seite">Golzheim</li>
-            <li class="ohne-seite">Grafenberg</li>
-            <li><a href="japanviertel.html">Japanisches Viertel</a></li>
-            <li class="ohne-seite">Oberbilk</li>
-            <li><a href="oberkassel.html">Oberkassel</a></li>
-            <li class="ohne-seite">Pempelfort</li>
-            <li class="ohne-seite">Unterbilk</li>
-            <li class="ohne-seite">Luxus und Glamour rund um die Kö</li>
-            <li class="ohne-seite">Unterschätzte Kunstmeile Königsallee</li>
-            <li class="ohne-seite">Ehrenhof und Hofgarten</li>
-            <li><a href="nordpark.html">Nordpark</a></li>
-            <li class="ohne-seite">Volksgarten</li>
-            <li class="ohne-seite">Nordfriedhof</li>
-            <li class="ohne-seite">Friedhof Golzheim</li>
-          </ul>
-        </div>
 
         <div class="themenblock">
           <div class="themenblock__kopf">
@@ -409,31 +459,153 @@
           </ul>
         </div>
 
-        <div class="themenblock">
-          <div class="themenblock__kopf">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-karte"/></svg>
-            <h3><a href="touren-ausserhalb.html">Touren außerhalb von Düsseldorf</a></h3>
-          </div>
-          <ul>
-            <li><a href="koeln-altstadt.html">Köln</a></li>
-            <li class="ohne-seite">Königswinter + Drachenfels</li>
-            <li><a href="zons.html">Zons</a></li>
-            <li class="ohne-seite">Mülheim a. d. Ruhr</li>
-            <li class="ohne-seite">Essen</li>
-            <li><a href="landschaftspark-duisburg-nord.html">Landschaftspark Duisburg-Nord</a></li>
-            <li class="ohne-seite">Kloster Kamp</li>
-            <li><a href="neuss.html">Neuss</a></li>
-            <li class="ohne-seite">Museumsinsel Hombroich</li>
-            <li class="ohne-seite">Schloss Dyck</li>
-            <li class="ohne-seite">Schloss Rheydt</li>
-          </ul>
-        </div>
 
       </div>
 
     </div>
   </section>
 
+
+
+  <!-- ===== STADTVIERTEL & PARKS AUF DER KARTE ======================
+       Die Karte ist schematisch gezeichnet (keine echten Straßen):
+       Die Innenstadt ist vergrößert, die Ränder sind gestaucht.
+       Rote Punkte führen zu einer eigenen Seite, graue noch nicht.
+       NEUE SEITE VERLINKEN: in der Karte den <g class="landkarte__ort
+       landkarte__ort--leise"> in <a href="seite.html" class="landkarte__ort">
+       ändern (Farbe fill="#9AA3AD" -> "#B4131C") und in der Liste darunter
+       den Namen in einen Link setzen.
+  ============================================================== -->
+  <section class="band">
+    <div class="huelle">
+
+      <div class="themenblock__kopf">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-viertel"/></svg>
+        <h2 class="kartenbereich__titel"><a href="stadtviertel.html">Stadtviertel &amp; Parks</a></h2>
+      </div>
+      <p class="kartenbereich__text">Klicken Sie auf einen roten Punkt oder einen Namen in der Liste.</p>
+
+      <div class="kartenbereich" data-karte>
+        <figure class="landkarte">
+<svg class="landkarte__svg" viewBox="0 0 468 538" role="img" aria-labelledby="karte-stadt-titel">
+<title id="karte-stadt-titel">Karte: Stadtviertel und Parks in Düsseldorf</title>
+<path class="landkarte__fluss landkarte__fluss--breit" d="M362.6 575.6 L362.1 572.8 L361.6 570.0 L361.1 567.2 L360.6 564.3 L360.2 561.4 L359.7 558.5 L359.2 555.5 L358.7 552.5 L358.3 549.5 L357.8 546.4 L357.3 543.3 L356.9 540.1 L355.8 537.4 L354.8 534.6 L353.7 531.8 L352.7 529.0 L351.6 526.1 L350.6 523.2 L349.5 520.3 L348.4 517.3 L347.3 514.3 L346.3 511.2 L345.2 508.1 L342.1 507.7 L338.9 507.4 L335.7 507.0 L332.4 506.6 L329.1 506.2 L325.8 505.9 L322.4 505.5 L318.9 505.1 L315.4 504.7 L311.8 504.4 L308.1 504.0 L304.4 503.6 L300.7 503.2 L296.8 502.8 L292.9 502.3 L288.1 504.3 L283.3 506.2 L278.5 508.0 L273.6 509.8 L268.7 511.6 L263.7 513.2 L258.8 514.9 L253.8 516.5 L248.8 518.0 L243.8 519.5 L238.8 520.9 L233.8 522.3 L228.7 523.6 L223.7 524.8 L218.7 526.0 L213.7 526.5 L208.6 526.9 L203.5 527.2 L198.4 527.5 L193.3 527.8 L188.2 527.9 L183.1 528.1 L178.0 528.2 L172.9 528.2 L167.8 528.1 L162.8 528.1 L157.7 527.9 L152.7 527.7 L147.7 527.5 L142.7 527.2 L137.8 526.9 L132.9 526.5 L128.1 523.6 L123.2 520.6 L118.2 517.6 L113.2 514.4 L108.2 511.1 L103.1 507.7 L97.9 504.2 L92.8 500.6 L87.6 496.9 L82.3 493.1 L77.1 489.2 L76.1 484.2 L74.9 479.0 L73.7 473.8 L72.5 468.3 L71.2 462.7 L69.8 456.9 L68.3 450.8 L66.8 444.6 L65.1 438.1 L63.4 431.3 L65.0 426.5 L66.5 421.6 L68.0 416.6 L69.5 411.3 L71.1 405.8 L72.6 400.0 L74.2 394.0 L75.7 387.6 L77.3 380.8 L78.8 373.5 L80.9 366.1 L83.0 358.1 L85.2 349.4 L87.5 339.6 L90.0 328.6 L92.9 316.1 L96.5 301.5 L101.6 284.6 L109.1 265.7 L113.8 243.5 L119.4 225.2 L124.6 210.2 L129.0 197.5 L132.8 186.5 L136.0 176.6 L138.7 167.6 L141.1 159.3 L138.1 153.9 L135.2 148.7 L132.6 143.7 L130.0 138.8 L127.6 134.1 L125.2 129.6 L122.9 125.1 L120.7 120.8 L118.6 116.6 L116.6 112.5 L114.6 108.5 L112.6 104.6 L110.2 101.1 L107.9 97.8 L105.7 94.5 L103.5 91.2 L101.3 88.0 L99.2 84.8 L97.2 81.7 L95.2 78.7 L93.2 75.7 L91.3 72.7 L89.4 69.8 L87.5 66.9 L85.7 64.0 L85.3 60.0 L84.9 56.0 L84.5 52.1 L84.1 48.3 L83.7 44.5 L83.3 40.7 L82.9 37.1 L82.5 33.5 L82.1 29.9 L81.6 26.4 L81.6 22.7 L81.7 19.1 L81.7 15.5 L81.6 11.9 L81.6 8.4 L81.6 5.0 L81.5 1.6 L81.5 -1.8 L81.4 -5.1 L81.3 -8.4 L81.3 -11.7 L81.2 -14.9"/>
+<text class="landkarte__wasser" x="56.6" y="451.5" text-anchor="end">Rhein</text>
+<text class="landkarte__region" x="12.0" y="165.5">linksrheinisch</text>
+<a href="altstadt.html" class="landkarte__ort" data-nr="1"><title>Altstadt</title><circle cx="140.0" cy="273.6" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="140.0" y="277.2">1</text></a>
+<a href="bahnhofsviertel.html" class="landkarte__ort" data-nr="2"><title>Bahnhofsviertel</title><circle cx="281.0" cy="341.1" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="281.0" y="344.7">2</text></a>
+<a href="benrath.html" class="landkarte__ort" data-nr="3"><title>Benrath</title><circle cx="382.8" cy="498.5" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="382.8" y="502.1">3</text></a>
+<a href="carlstadt.html" class="landkarte__ort" data-nr="4"><title>Carlstadt</title><circle cx="145.3" cy="351.5" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="145.3" y="355.1">4</text></a>
+<a href="medienhafen.html" class="landkarte__ort" data-nr="5"><title>Medienhafen</title><circle cx="78.8" cy="373.5" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="78.8" y="377.1">5</text></a>
+<a href="kaiserswerth.html" class="landkarte__ort" data-nr="6"><title>Kaiserswerth</title><circle cx="91.9" cy="30.0" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="91.9" y="33.6">6</text></a>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="7"><title>Flingern (ohne eigene Seite)</title><circle cx="335.8" cy="283.4" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="335.8" y="287.0">7</text></g>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="8"><title>Gerresheim (ohne eigene Seite)</title><circle cx="408.6" cy="244.4" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="408.6" y="248.0">8</text></g>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="9"><title>Golzheim (ohne eigene Seite)</title><circle cx="153.3" cy="139.3" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="153.3" y="142.9">9</text></g>
+<a href="grafenberg.html" class="landkarte__ort" data-nr="10"><title>Grafenberg</title><circle cx="359.4" cy="219.8" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="359.4" y="223.4">10</text></a>
+<a href="japanviertel.html" class="landkarte__ort" data-nr="11"><title>Japanisches Viertel</title><circle cx="258.9" cy="295.9" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="258.9" y="299.5">11</text></a>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="12"><title>Oberbilk (ohne eigene Seite)</title><circle cx="297.3" cy="397.8" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="297.3" y="401.4">12</text></g>
+<a href="oberkassel.html" class="landkarte__ort" data-nr="13"><title>Oberkassel</title><circle cx="70.0" cy="240.4" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="70.0" y="244.0">13</text></a>
+<a href="pempelfort.html" class="landkarte__ort" data-nr="14"><title>Pempelfort</title><circle cx="256.0" cy="199.7" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="256.0" y="203.3">14</text></a>
+<a href="unterbilk.html" class="landkarte__ort" data-nr="15"><title>Unterbilk</title><circle cx="128.4" cy="404.2" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="128.4" y="407.8">15</text></a>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="16"><title>Luxus und Glamour rund um die Kö (ohne eigene Seite)</title><circle cx="219.8" cy="335.2" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="219.8" y="338.8">16</text></g>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="17"><title>Unterschätzte Kunstmeile Königsallee (ohne eigene Seite)</title><circle cx="209.8" cy="365.8" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="209.8" y="369.4">17</text></g>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="18"><title>Ehrenhof und Hofgarten (ohne eigene Seite)</title><circle cx="192.3" cy="217.9" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="192.3" y="221.5">18</text></g>
+<a href="nordpark.html" class="landkarte__ort" data-nr="19"><title>Nordpark</title><circle cx="113.8" cy="109.5" r="10" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="113.8" y="113.1">19</text></a>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="20"><title>Volksgarten (ohne eigene Seite)</title><circle cx="271.6" cy="426.1" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="271.6" y="429.7">20</text></g>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="21"><title>Nordfriedhof (ohne eigene Seite)</title><circle cx="191.1" cy="121.7" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="191.1" y="125.3">21</text></g>
+<g class="landkarte__ort landkarte__ort--leise" data-nr="22"><title>Friedhof Golzheim (ohne eigene Seite)</title><circle cx="125.1" cy="156.8" r="10" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__nr" x="125.1" y="160.4">22</text></g>
+<g class="landkarte__nord" transform="translate(442 34)"><path d="M0 -14 L6 6 L0 2 L-6 6Z"/><text x="0" y="20">N</text></g>
+</svg>
+          <figcaption class="landkarte__legende-mini"><span class="punkt punkt--rot"></span> mit eigener Seite <span class="punkt punkt--grau"></span> auf Anfrage</figcaption>
+        </figure>
+        <ol class="kartenliste kartenliste--spalten">
+<li data-nr="1"><span class="kartenliste__nr" aria-hidden="true">1</span><a href="altstadt.html">Altstadt</a></li>
+<li data-nr="2"><span class="kartenliste__nr" aria-hidden="true">2</span><a href="bahnhofsviertel.html">Bahnhofsviertel</a></li>
+<li data-nr="3"><span class="kartenliste__nr" aria-hidden="true">3</span><a href="benrath.html">Benrath</a></li>
+<li data-nr="4"><span class="kartenliste__nr" aria-hidden="true">4</span><a href="carlstadt.html">Carlstadt</a></li>
+<li data-nr="5"><span class="kartenliste__nr" aria-hidden="true">5</span><a href="medienhafen.html">Medienhafen</a></li>
+<li data-nr="6"><span class="kartenliste__nr" aria-hidden="true">6</span><a href="kaiserswerth.html">Kaiserswerth</a></li>
+<li data-nr="7" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">7</span><span>Flingern</span></li>
+<li data-nr="8" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">8</span><span>Gerresheim</span></li>
+<li data-nr="9" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">9</span><span>Golzheim</span></li>
+<li data-nr="10"><span class="kartenliste__nr" aria-hidden="true">10</span><a href="grafenberg.html">Grafenberg</a></li>
+<li data-nr="11"><span class="kartenliste__nr" aria-hidden="true">11</span><a href="japanviertel.html">Japanisches Viertel</a></li>
+<li data-nr="12" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">12</span><span>Oberbilk</span></li>
+<li data-nr="13"><span class="kartenliste__nr" aria-hidden="true">13</span><a href="oberkassel.html">Oberkassel</a></li>
+<li data-nr="14"><span class="kartenliste__nr" aria-hidden="true">14</span><a href="pempelfort.html">Pempelfort</a></li>
+<li data-nr="15"><span class="kartenliste__nr" aria-hidden="true">15</span><a href="unterbilk.html">Unterbilk</a></li>
+<li data-nr="16" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">16</span><span>Luxus und Glamour rund um die Kö</span></li>
+<li data-nr="17" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">17</span><span>Unterschätzte Kunstmeile Königsallee</span></li>
+<li data-nr="18" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">18</span><span>Ehrenhof und Hofgarten</span></li>
+<li data-nr="19"><span class="kartenliste__nr" aria-hidden="true">19</span><a href="nordpark.html">Nordpark</a></li>
+<li data-nr="20" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">20</span><span>Volksgarten</span></li>
+<li data-nr="21" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">21</span><span>Nordfriedhof</span></li>
+<li data-nr="22" class="ohne-seite"><span class="kartenliste__nr" aria-hidden="true">22</span><span>Friedhof Golzheim</span></li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== TOUREN AUSSERHALB AUF DER KARTE ======================== -->
+  <section class="band band--creme">
+    <div class="huelle">
+
+      <div class="themenblock__kopf">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-karte"/></svg>
+        <h2 class="kartenbereich__titel"><a href="touren-ausserhalb.html">Touren außerhalb von Düsseldorf</a></h2>
+      </div>
+      <p class="kartenbereich__text">Vom Niederrhein bis an den romantischen Mittelrhein – alle Ziele auf einen Blick.</p>
+
+      <div class="kartenbereich">
+        <figure class="landkarte">
+<svg class="landkarte__svg landkarte__svg--umland" viewBox="0 0 480 701" role="img" aria-labelledby="karte-umland-titel">
+<title id="karte-umland-titel">Karte: Ausflugsziele rund um Düsseldorf</title>
+<path class="landkarte__fluss" d="M173.4 -4.0 C177.2 2.0 189.8 22.0 196.1 32.0 C202.4 42.0 206.5 46.0 211.2 56.0 C215.9 66.0 221.9 82.0 224.4 92.0 C227.0 102.0 226.3 106.0 226.3 116.0 C226.3 126.0 225.1 140.0 224.4 152.0 C223.8 164.0 221.3 178.5 222.5 188.0 C223.8 197.5 229.6 202.5 232.0 209.0 C234.4 215.5 237.2 221.5 236.9 227.0 C236.6 232.5 232.2 236.5 230.1 242.0 C228.0 247.5 222.5 255.5 224.4 260.0 C226.3 264.5 234.2 267.0 241.4 269.0 C248.7 271.0 262.2 266.5 267.9 272.0 C273.6 277.5 270.4 292.0 275.5 302.0 C280.5 312.0 291.2 323.0 298.1 332.0 C305.1 341.0 314.5 344.0 317.0 356.0 C319.6 368.0 313.3 391.1 313.3 404.0 C313.3 417.0 312.0 424.9 317.0 433.7 C322.1 442.5 335.3 450.5 343.5 456.8 C351.7 463.1 358.0 465.6 366.2 471.6 C374.4 477.7 385.1 485.7 392.6 493.1 C400.2 500.5 406.5 510.4 411.5 516.2 C416.6 522.0 421.0 525.8 422.9 527.8"/>
+<path class="landkarte__fluss landkarte__fluss--klein" d="M228.2 98.0 C232.9 99.0 248.1 102.0 256.6 104.0 C265.1 106.0 272.3 104.0 279.2 110.0 C286.2 116.0 293.1 133.0 298.1 140.0 C303.2 147.0 303.2 154.0 309.5 152.0 C315.8 150.0 327.1 132.0 335.9 128.0 C344.8 124.0 352.9 129.0 362.4 128.0 C371.8 127.0 380.0 125.0 392.6 122.0 C405.2 119.0 430.4 112.0 438.0 110.0"/>
+<text class="landkarte__wasser" x="335.9" y="450.2" transform="rotate(62 335.9 450.2)">Rhein</text>
+<text class="landkarte__wasser" x="362.4" y="110.0">Ruhr</text>
+<path class="landkarte__fluss" d="M422.9 527.8 C428.9 547.8 426.9 557.8 424.9 567.8"/>
+<path class="landkarte__bruch" d="M413.9 577.8 l22 -8 M413.9 585.8 l22 -8"/>
+<text class="landkarte__hinweis" x="406.9" y="585.8" text-anchor="end">ca. 100 km rheinaufwärts</text>
+<path class="landkarte__fluss" d="M424.9 591.8 C426.2 595.9 429.2 607.6 432.9 616.8 C436.5 625.9 444.2 636.8 446.9 646.8 C449.5 656.8 446.9 666.8 448.9 676.8 C450.9 686.8 457.2 701.8 458.9 706.8"/>
+<a href="bacharach.html" class="landkarte__ort"><title>Bacharach</title><circle cx="454.9" cy="661.8" r="7" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="442.9" y="665.8" text-anchor="end">Bacharach</text></a>
+<text class="landkarte__region" x="440.9" y="681.8" text-anchor="end">Mittelrhein · UNESCO-Welterbe</text>
+<g class="landkarte__ort landkarte__ort--leise"><title>Kloster Kamp (ohne eigene Seite)</title><circle cx="139.4" cy="68.0" r="6" fill="#9AA3AD" stroke="#fff" stroke-width="2"/><text class="landkarte__name landkarte__name--leise" x="129.4" y="72.0" text-anchor="end">Kloster Kamp</text></g>
+<a href="landschaftspark-duisburg-nord.html" class="landkarte__ort"><title>Landschaftspark Duisburg-Nord</title><circle cx="241.4" cy="80.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="241.4" y="56.0" text-anchor="middle">Landschaftspark</text><text class="landkarte__name" x="241.4" y="69.0" text-anchor="middle">Duisburg-Nord</text></a>
+<a href="muelheim.html" class="landkarte__ort"><title>Mülheim a. d. Ruhr</title><circle cx="279.2" cy="110.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="289.2" y="128.0" text-anchor="start">Mülheim a. d. Ruhr</text></a>
+<a href="essen.html" class="landkarte__ort"><title>Essen</title><circle cx="328.4" cy="95.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="338.4" y="99.0" text-anchor="start">Essen</text></a>
+<a href="neuss.html" class="landkarte__ort"><title>Neuss</title><circle cx="207.4" cy="248.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="197.4" y="242.0" text-anchor="end">Neuss</text></a>
+<a href="insel-hombroich.html" class="landkarte__ort"><title>Museumsinsel Hombroich</title><circle cx="196.1" cy="278.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="196.1" y="300.0" text-anchor="middle">Museumsinsel</text><text class="landkarte__name" x="196.1" y="313.0" text-anchor="middle">Hombroich</text></a>
+<a href="schloss-dyck.html" class="landkarte__ort"><title>Schloss Dyck</title><circle cx="148.8" cy="275.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="148.8" y="263.0" text-anchor="middle">Schloss Dyck</text></a>
+<a href="schloss-rheydt.html" class="landkarte__ort"><title>Schloss Rheydt</title><circle cx="122.4" cy="269.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="118.4" y="289.0" text-anchor="end">Schloss Rheydt</text></a>
+<a href="zons.html" class="landkarte__ort"><title>Zons</title><circle cx="267.9" cy="296.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="277.9" y="300.0" text-anchor="start">Zons</text></a>
+<a href="koeln-altstadt.html" class="landkarte__ort"><title>Köln</title><circle cx="309.5" cy="404.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="319.5" y="408.0" text-anchor="start">Köln</text></a>
+<a href="schloss-drachenburg.html" class="landkarte__ort"><title>Königswinter &amp; Drachenfels</title><circle cx="400.2" cy="489.8" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="390.2" y="493.8" text-anchor="end">Königswinter &amp; Drachenfels</text></a>
+<g class="landkarte__mitte"><rect x="234.4" y="226.0" width="14" height="14" rx="3" fill="#10263C" stroke="#fff" stroke-width="2" transform="rotate(45 241.4 233.0)"/><text class="landkarte__stadt" x="255.4" y="238.0">Düsseldorf</text></g>
+<g class="landkarte__nord" transform="translate(450 40)"><path d="M0 -14 L6 6 L0 2 L-6 6Z"/><text x="0" y="20">N</text></g>
+</svg>
+          <figcaption class="landkarte__legende-mini"><span class="punkt punkt--rot"></span> mit eigener Seite <span class="punkt punkt--grau"></span> auf Anfrage <span class="punkt punkt--blau"></span> Düsseldorf</figcaption>
+        </figure>
+        <ul class="kartenliste">
+<li data-nr="1"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="bacharach.html">Bacharach</a></li>
+<li data-nr="2"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="essen.html">Essen</a></li>
+<li data-nr="3" class="ohne-seite"><span class="kartenliste__punkt" aria-hidden="true"></span><span>Kloster Kamp</span></li>
+<li data-nr="4"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="koeln-altstadt.html">Köln</a></li>
+<li data-nr="5"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="schloss-drachenburg.html">Königswinter &amp; Drachenfels</a></li>
+<li data-nr="6"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="landschaftspark-duisburg-nord.html">Landschaftspark Duisburg-Nord</a></li>
+<li data-nr="7"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="insel-hombroich.html">Museumsinsel Hombroich</a></li>
+<li data-nr="8"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="muelheim.html">Mülheim a. d. Ruhr</a></li>
+<li data-nr="9"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="neuss.html">Neuss</a></li>
+<li data-nr="10"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="schloss-dyck.html">Schloss Dyck</a></li>
+<li data-nr="11"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="schloss-rheydt.html">Schloss Rheydt</a></li>
+<li data-nr="12"><span class="kartenliste__punkt" aria-hidden="true"></span><a href="zons.html">Zons</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
 
   <!-- ===== HINWEIS AM ENDE ====================================== -->
   <section class="band">
@@ -499,5 +671,22 @@
 
 <script src="touren-daten.js"></script>
 <script src="script.js"></script>
+<!-- Liste und Karte gegenseitig hervorheben -->
+<script>
+document.querySelectorAll("[data-karte]").forEach(function (bereich) {
+  function an(nr, wert) {
+    bereich.querySelectorAll('[data-nr="' + nr + '"]').forEach(function (el) {
+      el.classList.toggle("ist-aktiv", wert);
+    });
+  }
+  bereich.querySelectorAll("[data-nr]").forEach(function (el) {
+    var nr = el.getAttribute("data-nr");
+    el.addEventListener("mouseenter", function () { an(nr, true); });
+    el.addEventListener("mouseleave", function () { an(nr, false); });
+    el.addEventListener("focusin", function () { an(nr, true); });
+    el.addEventListener("focusout", function () { an(nr, false); });
+  });
+});
+</script>
 </body>
 </html>
