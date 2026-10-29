@@ -33,6 +33,58 @@
     .viertel__titel a:hover,
     .viertel__titel a:focus-visible,
     .viertel:has(.viertel__bildlink:hover) .viertel__titel a { color: #B4131C; }
+
+    /* ---- Kopf: Karte statt Skyline, wechselndes Bilder-Mosaik ---- */
+    .kopfkarte { margin: 1.5rem auto 0; width: 100%; max-width: 440px; }
+    .kopfkarte .landkarte__svg { display: block; width: 100%; height: auto; }
+    .landkarte__fluss { fill: none; stroke: #BFD6E6; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .landkarte__fluss--klein { stroke-width: 3; }
+    .landkarte__bruch { stroke: #5B6773; stroke-width: 1.5; }
+    .landkarte__wasser { fill: #7FA3BE; font: italic 600 12px "Inter", system-ui, sans-serif; letter-spacing: 1px; }
+    .landkarte__region, .landkarte__hinweis { fill: #5B6773; font: 500 12px "Inter", system-ui, sans-serif; }
+    .landkarte__hinweis { font-style: italic; }
+    .landkarte__stadt { fill: #10263C; font: 700 16px "Playfair Display", Georgia, serif; }
+    .landkarte__name { fill: #16191D; font: 600 14px "Inter", system-ui, sans-serif; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+    .landkarte__nord path { fill: #5B6773; }
+    .landkarte__nord text { fill: #5B6773; font: 600 10px "Inter", system-ui, sans-serif; text-anchor: middle; }
+    .landkarte__ort circle { transition: transform .15s ease; transform-box: fill-box; transform-origin: center; }
+    a.landkarte__ort:hover circle { transform: scale(1.4); }
+    a.landkarte__ort:hover .landkarte__name { fill: #B4131C; }
+
+    .kopfmosaik {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .kopfmosaik__kachel {
+      position: relative; display: block; overflow: hidden;
+      border-radius: 10px; background: #F7F5F1; aspect-ratio: 4 / 3;
+    }
+    .kopfmosaik__kachel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .7s ease, transform .4s ease; }
+    .kopfmosaik__kachel span {
+      position: absolute; left: 0.5rem; bottom: 0.4rem; right: 0.5rem;
+      color: #fff; font-size: 0.75rem; font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); transition: opacity .7s ease;
+    }
+    .kopfmosaik__kachel:hover img { transform: scale(1.05); }
+    .kopfmosaik__kachel.wechselt img, .kopfmosaik__kachel.wechselt span { opacity: 0; }
+
+    @media (min-width: 1024px) {
+      /* Text und Bilder links, Karte rechts */
+      .seitenkopf__raster.mit-karte {
+        grid-template-columns: 1fr 0.8fr;
+        grid-template-areas: "text karte" "mosaik karte";
+        row-gap: 1.6rem; align-items: start;
+      }
+      .mit-karte .seitenkopf__text { grid-area: text; }
+      .mit-karte .kopfkarte { grid-area: karte; margin: 0 auto; align-self: center; }
+      .mit-karte .kopfmosaik { grid-area: mosaik; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 0; }
+      .kopfmosaik__kachel span { font-size: 0.85rem; left: 0.7rem; bottom: 0.55rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .kopfmosaik__kachel img, .kopfmosaik__kachel span { transition: none; }
+    }
   </style>
 </head>
 
@@ -132,7 +184,7 @@
        Auf dem Smartphone steht die Collage unter dem Text.
   ============================================================ -->
   <section class="seitenkopf">
-    <div class="huelle seitenkopf__raster">
+    <div class="huelle seitenkopf__raster mit-karte">
 
       <div class="seitenkopf__text">
 
@@ -152,32 +204,49 @@
           nehmen Sie mit auf Entdeckungen im Umland.
         </p>
 
-        <!-- Skyline als leise Dekoration. Dieselbe Datei wie auf der
-             Startseite, hier per CSS-Filter ins Dunkle gedreht. -->
-        <img class="seitenkopf__skyline" src="bilder/skyline-klar.png"
-             alt="" aria-hidden="true" loading="lazy" width="680" height="490">
       </div>
 
-      <div class="collage">
+      <!-- Karte der Ausflugsziele (statt der Skyline). Alle Punkte sind
+           anklickbar und führen zur jeweiligen Infoseite. -->
+      <figure class="kopfkarte">
+<svg class="landkarte__svg landkarte__svg--umland" viewBox="0 0 480 701" role="img" aria-labelledby="karte-umland-titel">
+<title id="karte-umland-titel">Karte: Ausflugsziele rund um Düsseldorf</title>
+<path class="landkarte__fluss" d="M173.4 -4.0 C177.2 2.0 189.8 22.0 196.1 32.0 C202.4 42.0 206.5 46.0 211.2 56.0 C215.9 66.0 221.9 82.0 224.4 92.0 C227.0 102.0 226.3 106.0 226.3 116.0 C226.3 126.0 225.1 140.0 224.4 152.0 C223.8 164.0 221.3 178.5 222.5 188.0 C223.8 197.5 229.6 202.5 232.0 209.0 C234.4 215.5 237.2 221.5 236.9 227.0 C236.6 232.5 232.2 236.5 230.1 242.0 C228.0 247.5 222.5 255.5 224.4 260.0 C226.3 264.5 234.2 267.0 241.4 269.0 C248.7 271.0 262.2 266.5 267.9 272.0 C273.6 277.5 270.4 292.0 275.5 302.0 C280.5 312.0 291.2 323.0 298.1 332.0 C305.1 341.0 314.5 344.0 317.0 356.0 C319.6 368.0 313.3 391.1 313.3 404.0 C313.3 417.0 312.0 424.9 317.0 433.7 C322.1 442.5 335.3 450.5 343.5 456.8 C351.7 463.1 358.0 465.6 366.2 471.6 C374.4 477.7 385.1 485.7 392.6 493.1 C400.2 500.5 406.5 510.4 411.5 516.2 C416.6 522.0 421.0 525.8 422.9 527.8"/>
+<path class="landkarte__fluss landkarte__fluss--klein" d="M228.2 98.0 C232.9 99.0 248.1 102.0 256.6 104.0 C265.1 106.0 272.3 104.0 279.2 110.0 C286.2 116.0 293.1 133.0 298.1 140.0 C303.2 147.0 303.2 154.0 309.5 152.0 C315.8 150.0 327.1 132.0 335.9 128.0 C344.8 124.0 352.9 129.0 362.4 128.0 C371.8 127.0 380.0 125.0 392.6 122.0 C405.2 119.0 430.4 112.0 438.0 110.0"/>
+<text class="landkarte__wasser" x="335.9" y="450.2" transform="rotate(62 335.9 450.2)">Rhein</text>
+<text class="landkarte__wasser" x="362.4" y="110.0">Ruhr</text>
+<path class="landkarte__fluss" d="M422.9 527.8 C428.9 547.8 426.9 557.8 424.9 567.8"/>
+<path class="landkarte__bruch" d="M413.9 577.8 l22 -8 M413.9 585.8 l22 -8"/>
+<text class="landkarte__hinweis" x="406.9" y="585.8" text-anchor="end">ca. 100 km rheinaufwärts</text>
+<path class="landkarte__fluss" d="M424.9 591.8 C426.2 595.9 429.2 607.6 432.9 616.8 C436.5 625.9 444.2 636.8 446.9 646.8 C449.5 656.8 446.9 666.8 448.9 676.8 C450.9 686.8 457.2 701.8 458.9 706.8"/>
+<a href="bacharach.html" class="landkarte__ort"><title>Bacharach</title><circle cx="454.9" cy="661.8" r="7" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="442.9" y="665.8" text-anchor="end">Bacharach</text></a>
+<text class="landkarte__region" x="440.9" y="681.8" text-anchor="end">Mittelrhein · UNESCO-Welterbe</text>
+<a href="kloster-kamp.html" class="landkarte__ort"><title>Kloster Kamp</title><circle cx="139.4" cy="68.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="129.4" y="72.0" text-anchor="end">Kloster Kamp</text></a>
+<a href="landschaftspark-duisburg-nord.html" class="landkarte__ort"><title>Landschaftspark Duisburg-Nord</title><circle cx="241.4" cy="80.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="241.4" y="56.0" text-anchor="middle">Landschaftspark</text><text class="landkarte__name" x="241.4" y="69.0" text-anchor="middle">Duisburg-Nord</text></a>
+<a href="muelheim.html" class="landkarte__ort"><title>Mülheim a. d. Ruhr</title><circle cx="279.2" cy="110.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="289.2" y="128.0" text-anchor="start">Mülheim a. d. Ruhr</text></a>
+<a href="essen.html" class="landkarte__ort"><title>Essen</title><circle cx="328.4" cy="95.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="338.4" y="99.0" text-anchor="start">Essen</text></a>
+<a href="neuss.html" class="landkarte__ort"><title>Neuss</title><circle cx="207.4" cy="248.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="197.4" y="242.0" text-anchor="end">Neuss</text></a>
+<a href="insel-hombroich.html" class="landkarte__ort"><title>Museumsinsel Hombroich</title><circle cx="196.1" cy="278.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="196.1" y="300.0" text-anchor="middle">Museumsinsel</text><text class="landkarte__name" x="196.1" y="313.0" text-anchor="middle">Hombroich</text></a>
+<a href="schloss-dyck.html" class="landkarte__ort"><title>Schloss Dyck</title><circle cx="148.8" cy="275.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="148.8" y="263.0" text-anchor="middle">Schloss Dyck</text></a>
+<a href="schloss-rheydt.html" class="landkarte__ort"><title>Schloss Rheydt</title><circle cx="122.4" cy="269.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="118.4" y="289.0" text-anchor="end">Schloss Rheydt</text></a>
+<a href="zons.html" class="landkarte__ort"><title>Zons</title><circle cx="267.9" cy="296.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="277.9" y="300.0" text-anchor="start">Zons</text></a>
+<a href="koeln-altstadt.html" class="landkarte__ort"><title>Köln</title><circle cx="309.5" cy="404.0" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="319.5" y="408.0" text-anchor="start">Köln</text></a>
+<a href="schloss-drachenburg.html" class="landkarte__ort"><title>Königswinter &amp; Drachenfels</title><circle cx="400.2" cy="489.8" r="6" fill="#B4131C" stroke="#fff" stroke-width="2"/><text class="landkarte__name" x="390.2" y="493.8" text-anchor="end">Königswinter &amp; Drachenfels</text></a>
+<g class="landkarte__mitte"><rect x="234.4" y="226.0" width="14" height="14" rx="3" fill="#10263C" stroke="#fff" stroke-width="2" transform="rotate(45 241.4 233.0)"/><text class="landkarte__stadt" x="255.4" y="238.0">Düsseldorf</text></g>
+<g class="landkarte__nord" transform="translate(450 40)"><path d="M0 -14 L6 6 L0 2 L-6 6Z"/><text x="0" y="20">N</text></g>
+</svg>
+      </figure>
 
-        <figure class="collage__bild collage__bild--gross">
-          <img src="bilder/kopfbild-ausfluege-1.jpg"
-               alt="Kölner Dom am Rhein"
-               width="800" height="1100" loading="lazy">
-        </figure>
-
-        <figure class="collage__bild">
-          <img src="bilder/kopfbild-ausfluege-2.jpg"
-               alt="Drachenfels im Siebengebirge"
-               width="800" height="620" loading="lazy">
-        </figure>
-
-        <figure class="collage__bild">
-          <img src="bilder/kopfbild-ausfluege-3.jpg"
-               alt="Industriekultur im Ruhrgebiet"
-               width="800" height="560" loading="lazy">
-        </figure>
-
+      <!-- Bilder-Mosaik: Die Kacheln wechseln versetzt etwa alle
+           5 Sekunden. Weitere Bilder: in der Liste MOSAIK_BILDER unten
+           im Script eine Zeile ergänzen (Datei, Beschriftung, Link). -->
+      <div class="kopfmosaik" id="mosaik" aria-label="Eindrücke von unseren Ausflugszielen">
+        <a class="kopfmosaik__kachel" href="koeln-altstadt.html"><img src="bilder/kopfbild-ausfluege-1.jpg" alt="" width="800" height="600"><span>Köln</span></a>
+        <a class="kopfmosaik__kachel" href="zons.html"><img src="bilder/ausflug-zons.jpg" alt="" width="800" height="600"><span>Zons</span></a>
+        <a class="kopfmosaik__kachel" href="landschaftspark-duisburg-nord.html"><img src="bilder/kopfbild-ausfluege-3.jpg" alt="" width="800" height="600"><span>Ruhrgebiet</span></a>
+        <a class="kopfmosaik__kachel" href="bacharach.html"><img src="bilder/kopfbild-bacharach.jpg" alt="" width="800" height="600"><span>Bacharach</span></a>
+        <a class="kopfmosaik__kachel" href="neuss.html"><img src="bilder/ausflug-neuss.jpg" alt="" width="800" height="600"><span>Neuss</span></a>
+        <a class="kopfmosaik__kachel" href="schloss-dyck.html"><img src="bilder/ausflug-schloss-dyck.jpg" alt="" width="800" height="600"><span>Schloss Dyck</span></a>
       </div>
 
     </div>
@@ -191,159 +260,6 @@
   ============================================================ -->
   <section class="band">
     <div class="huelle">
-
-        <section class="region" id="rheinaufwaerts" aria-labelledby="region-rheinaufwaerts">
-          <h2 class="region__titel" id="region-rheinaufwaerts">Köln und der Drachenfels</h2>
-          <p class="region__text">Nicht weit rheinaufwärts warten die Domstadt, das mittelalterliche Zons und ein Gipfel mit Aussicht: Ausflüge, die sich wunderbar als Tagesausflug ab Düsseldorf eignen.</p>
-
-          <ul class="viertel-liste">
-
-            <li class="viertel" id="tour-koeln">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="koeln-altstadt.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-koeln.jpg" alt="Kölner Dom und Altstadt"
-                       width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="koeln-altstadt.html">Köln</a></h3>
-                <p class="viertel__stichworte">Kölner Dom • Altstadt • Rheinmetropole</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Köln">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            <li class="viertel" id="tour-koenigswinter-drachenfels">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="schloss-drachenburg.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-koenigswinter-drachenfels.jpg" alt="Drachenburg bei Königswinter im Siebengebirge"
-                       width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="schloss-drachenburg.html">Drachenburg &amp; Drachenfels</a></h3>
-                <p class="viertel__stichworte">Siebengebirge • Burgruine • Königswinter</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Drachenburg &amp; Drachenfels">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            <li class="viertel" id="tour-zons">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="zons.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-zons.jpg" alt="Stadtmauer der mittelalterlichen Stadt Zons"
-                       width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="zons.html">Zons</a></h3>
-                <p class="viertel__stichworte">Stadtmauer • Mittelalter • Rheinzoll</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Zons">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            </ul>
-        </section>
-
-        <section class="region" id="mittelrhein" aria-labelledby="region-mittelrhein">
-          <h2 class="region__titel" id="region-mittelrhein">Romantischer Mittelrhein</h2>
-          <p class="region__text">Weiter rheinaufwärts beginnt das UNESCO-Welterbe Oberes Mittelrheintal: Weinberge, Burgen und Fachwerk – ein Tagesausflug ab Düsseldorf oder Neuss, auf Deutsch oder Spanisch.</p>
-
-          <ul class="viertel-liste">
-
-            <li class="viertel" id="tour-bacharach">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="bacharach.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-bacharach.jpg" alt="Fachwerkgasse in Bacharach mit Burg Stahleck im Hintergrund"
-                       width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="bacharach.html">Bacharach</a></h3>
-                <p class="viertel__stichworte">Mittelrhein-Romantik • Weinbau • Stadtmauer &amp; Türme</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Bacharach">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            </ul>
-        </section>
-
-        <section class="region" id="ruhrgebiet" aria-labelledby="region-ruhrgebiet">
-          <h2 class="region__titel" id="region-ruhrgebiet">Ruhrgebiet</h2>
-          <p class="region__text">Im Ruhrgebiet erwarten Sie Industriekultur und Stadtgeschichte – von der Zeche bis zum Wasserbahnhof.</p>
-
-          <ul class="viertel-liste">
-
-            <li class="viertel" id="tour-muelheim-a-d-ruhr">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="muelheim.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-muelheim.jpg" alt="Mülheim an der Ruhr"
-                     width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="muelheim.html">Mülheim a. d. Ruhr</a></h3>
-                <p class="viertel__stichworte">Ruhrgebiet • Wasserbahnhof • Stadtgeschichte</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Mülheim a. d. Ruhr">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            <li class="viertel" id="tour-essen">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="essen.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-essen.jpg" alt="Zeche Zollverein in Essen"
-                     width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="essen.html">Essen</a></h3>
-                <p class="viertel__stichworte">Zeche Zollverein • Industriegeschichte • Innenstadt</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Essen">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            <li class="viertel" id="tour-landschaftspark-duisburg-nord">
-              <figure class="viertel__bild">
-                <a class="viertel__bildlink" href="landschaftspark-duisburg-nord.html" tabindex="-1" aria-hidden="true">
-                  <img src="bilder/ausflug-landschaftspark-duisburg-nord.jpg" alt="Beleuchtete Hochöfen im Landschaftspark Duisburg-Nord"
-                       width="800" height="600" loading="lazy">
-                </a>
-              </figure>
-              <div class="viertel__text">
-                <h3 class="viertel__titel"><a href="landschaftspark-duisburg-nord.html">Landschaftspark Duisburg-Nord</a></h3>
-                <p class="viertel__stichworte">Hüttenwerk • Industriekultur • Lichtinstallation</p>
-
-                <a class="viertel__anfrage" href="anfrage.html" data-tour="Landschaftspark Duisburg-Nord">
-                  Tour anfragen
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
-                </a>
-              </div>
-            </li>
-
-            </ul>
-        </section>
 
         <section class="region" id="neuss-niederrhein" aria-labelledby="region-neuss-niederrhein">
           <h2 class="region__titel" id="region-neuss-niederrhein">Neuss und Niederrhein</h2>
@@ -444,6 +360,159 @@
             </ul>
         </section>
 
+        <section class="region" id="ruhrgebiet" aria-labelledby="region-ruhrgebiet">
+          <h2 class="region__titel" id="region-ruhrgebiet">Ruhrgebiet</h2>
+          <p class="region__text">Im Ruhrgebiet erwarten Sie Industriekultur und Stadtgeschichte – von der Zeche bis zum Wasserbahnhof.</p>
+
+          <ul class="viertel-liste">
+
+            <li class="viertel" id="tour-muelheim-a-d-ruhr">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="muelheim.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-muelheim.jpg" alt="Mülheim an der Ruhr"
+                     width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="muelheim.html">Mülheim a. d. Ruhr</a></h3>
+                <p class="viertel__stichworte">Ruhrgebiet • Wasserbahnhof • Stadtgeschichte</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Mülheim a. d. Ruhr">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="viertel" id="tour-essen">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="essen.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-essen.jpg" alt="Zeche Zollverein in Essen"
+                     width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="essen.html">Essen</a></h3>
+                <p class="viertel__stichworte">Zeche Zollverein • Industriegeschichte • Innenstadt</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Essen">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="viertel" id="tour-landschaftspark-duisburg-nord">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="landschaftspark-duisburg-nord.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-landschaftspark-duisburg-nord.jpg" alt="Beleuchtete Hochöfen im Landschaftspark Duisburg-Nord"
+                       width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="landschaftspark-duisburg-nord.html">Landschaftspark Duisburg-Nord</a></h3>
+                <p class="viertel__stichworte">Hüttenwerk • Industriekultur • Lichtinstallation</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Landschaftspark Duisburg-Nord">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            </ul>
+        </section>
+
+        <section class="region" id="rheinaufwaerts" aria-labelledby="region-rheinaufwaerts">
+          <h2 class="region__titel" id="region-rheinaufwaerts">Köln und der Drachenfels</h2>
+          <p class="region__text">Nicht weit rheinaufwärts warten die Domstadt, das mittelalterliche Zons und ein Gipfel mit Aussicht: Ausflüge, die sich wunderbar als Tagesausflug ab Düsseldorf eignen.</p>
+
+          <ul class="viertel-liste">
+
+            <li class="viertel" id="tour-koeln">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="koeln-altstadt.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-koeln.jpg" alt="Kölner Dom und Altstadt"
+                       width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="koeln-altstadt.html">Köln</a></h3>
+                <p class="viertel__stichworte">Kölner Dom • Altstadt • Rheinmetropole</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Köln">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="viertel" id="tour-koenigswinter-drachenfels">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="schloss-drachenburg.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-koenigswinter-drachenfels.jpg" alt="Drachenburg bei Königswinter im Siebengebirge"
+                       width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="schloss-drachenburg.html">Drachenburg &amp; Drachenfels</a></h3>
+                <p class="viertel__stichworte">Siebengebirge • Burgruine • Königswinter</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Drachenburg &amp; Drachenfels">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="viertel" id="tour-zons">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="zons.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-zons.jpg" alt="Stadtmauer der mittelalterlichen Stadt Zons"
+                       width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="zons.html">Zons</a></h3>
+                <p class="viertel__stichworte">Stadtmauer • Mittelalter • Rheinzoll</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Zons">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            </ul>
+        </section>
+
+        <section class="region" id="mittelrhein" aria-labelledby="region-mittelrhein">
+          <h2 class="region__titel" id="region-mittelrhein">Romantischer Mittelrhein</h2>
+          <p class="region__text">Weiter rheinaufwärts beginnt das UNESCO-Welterbe Oberes Mittelrheintal: Weinberge, Burgen und Fachwerk – ein Tagesausflug ab Düsseldorf oder Neuss, auf Deutsch oder Spanisch.</p>
+
+          <ul class="viertel-liste">
+
+            <li class="viertel" id="tour-bacharach">
+              <figure class="viertel__bild">
+                <a class="viertel__bildlink" href="bacharach.html" tabindex="-1" aria-hidden="true">
+                  <img src="bilder/ausflug-bacharach.jpg" alt="Fachwerkgasse in Bacharach mit Burg Stahleck im Hintergrund"
+                       width="800" height="600" loading="lazy">
+                </a>
+              </figure>
+              <div class="viertel__text">
+                <h3 class="viertel__titel"><a href="bacharach.html">Bacharach</a></h3>
+                <p class="viertel__stichworte">Mittelrhein-Romantik • Weinbau • Stadtmauer &amp; Türme</p>
+
+                <a class="viertel__anfrage" href="anfrage.html" data-tour="Bacharach">
+                  Tour anfragen
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pfeil"/></svg>
+                </a>
+              </div>
+            </li>
+
+            </ul>
+        </section>
+
     </div>
   </section>
 
@@ -512,5 +581,50 @@
 
 <script src="touren-daten.js"></script>
 <script src="script.js"></script>
+<!-- Mosaik: jede Kachel wechselt versetzt etwa alle 5 Sekunden -->
+<script>
+(function () {
+  var MOSAIK_BILDER = [["kopfbild-ausfluege-1.jpg", "Köln", "koeln-altstadt.html"], ["ausflug-zons.jpg", "Zons", "zons.html"], ["kopfbild-ausfluege-3.jpg", "Ruhrgebiet", "landschaftspark-duisburg-nord.html"], ["kopfbild-bacharach.jpg", "Bacharach", "bacharach.html"], ["ausflug-neuss.jpg", "Neuss", "neuss.html"], ["ausflug-schloss-dyck.jpg", "Schloss Dyck", "schloss-dyck.html"], ["ausflug-koenigswinter-drachenfels.jpg", "Drachenfels", "schloss-drachenburg.html"], ["ausflug-essen.jpg", "Essen", "essen.html"], ["ausflug-museumsinsel-hombroich.jpg", "Museumsinsel Hombroich", "insel-hombroich.html"], ["bacharach-fachwerk.jpg", "Bacharach", "bacharach.html"], ["ausflug-muelheim.jpg", "Mülheim a. d. Ruhr", "muelheim.html"], ["ausflug-schloss-rheydt.jpg", "Schloss Rheydt", "schloss-rheydt.html"], ["kopfbild-zons.jpg", "Zons", "zons.html"], ["ausflug-landschaftspark-duisburg-nord.jpg", "Landschaftspark", "landschaftspark-duisburg-nord.html"], ["kloster-kamp.svg", "Kloster Kamp", "kloster-kamp.html"], ["ausflug-koeln.jpg", "Köln", "koeln-altstadt.html"], ["neuss-marktplatz.jpg", "Neuss", "neuss.html"], ["bacharach-rheintal.jpg", "Bacharach", "bacharach.html"], ["kopfbild-drachenburg.jpg", "Drachenburg", "schloss-drachenburg.html"], ["kopfbild-essen.jpg", "Essen", "essen.html"], ["kopfbild-insel-hombroich.jpg", "Museumsinsel Hombroich", "insel-hombroich.html"], ["bacharach-turm.jpg", "Bacharach", "bacharach.html"], ["kopfbild-schloss-dyck.jpg", "Schloss Dyck", "schloss-dyck.html"], ["kopfbild-muelheim.jpg", "Mülheim a. d. Ruhr", "muelheim.html"]];
+  var mosaik = document.getElementById("mosaik");
+  if (!mosaik || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var kacheln = Array.prototype.slice.call(mosaik.querySelectorAll("a"));
+  var TAKT = 5000;
+  var naechstes = kacheln.length;
+
+  // Nächstes Bild aus der Liste, das gerade nicht zu sehen ist
+  function holeBild() {
+    var gezeigt = kacheln.map(function (k) { return k.querySelector("img").getAttribute("src"); });
+    for (var v = 0; v < MOSAIK_BILDER.length; v++) {
+      var b = MOSAIK_BILDER[naechstes % MOSAIK_BILDER.length];
+      naechstes++;
+      if (gezeigt.indexOf("bilder/" + b[0]) === -1) return b;
+    }
+    return MOSAIK_BILDER[naechstes++ % MOSAIK_BILDER.length];
+  }
+
+  function wechsle(k) {
+    if (document.hidden) return;
+    var b = holeBild();
+    var vorab = new Image();
+    vorab.onload = function () {
+      k.classList.add("wechselt");
+      setTimeout(function () {
+        k.querySelector("img").setAttribute("src", "bilder/" + b[0]);
+        k.querySelector("span").textContent = b[1];
+        k.href = b[2];
+        k.classList.remove("wechselt");
+      }, 700);
+    };
+    vorab.src = "bilder/" + b[0];
+  }
+
+  kacheln.forEach(function (k, i) {
+    setTimeout(function () {
+      wechsle(k);
+      setInterval(function () { wechsle(k); }, TAKT + Math.round(Math.random() * 600 - 300));
+    }, TAKT + i * (TAKT / kacheln.length));
+  });
+})();
+</script>
 </body>
 </html>
