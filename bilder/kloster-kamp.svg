@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Symbolbild Kloster Kamp: Abteikirche über dem barocken Terrassengarten.
+       Gezeichnet in den Farben der Website (kein Foto). -->
+  <defs>
+    <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4EFE7"/>
+      <stop offset="1" stop-color="#FBF8F3"/>
+    </linearGradient>
+    <g id="kegel"><path d="M0 -26 C5 -14 9 -4 9 2 C9 6 -9 6 -9 2 C-9 -4 -5 -14 0 -26Z"/></g>
+    <g id="kegel-k"><path d="M0 -18 C4 -10 6 -3 6 1 C6 4 -6 4 -6 1 C-6 -3 -4 -10 0 -18Z"/></g>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#himmel)"/>
+  <circle cx="640" cy="110" r="46" fill="#EAD9D3"/>
+
+  <!-- Hügel und Bäume im Hintergrund -->
+  <path d="M0 250 C120 205 230 215 330 200 C450 182 560 196 800 228 V320 H0Z" fill="#C9D3BC"/>
+  <g fill="#A9B895">
+    <circle cx="60" cy="236" r="26"/><circle cx="100" cy="226" r="30"/><circle cx="140" cy="236" r="24"/>
+    <circle cx="660" cy="222" r="28"/><circle cx="705" cy="214" r="32"/><circle cx="750" cy="226" r="26"/>
+  </g>
+
+  <!-- Abteikirche mit zwei Türmen, oben auf dem Kamper Berg -->
+  <g fill="#10263C">
+    <rect x="265" y="168" width="270" height="62"/>
+    <path d="M255 170 L400 128 L545 170Z"/>
+    <rect x="330" y="98" width="34" height="132"/>
+    <rect x="436" y="98" width="34" height="132"/>
+    <path d="M326 100 C334 84 340 76 347 60 C354 76 360 84 368 100Z"/>
+    <path d="M432 100 C440 84 446 76 453 60 C460 76 466 84 474 100Z"/>
+    <rect x="345" y="44" width="4" height="18"/><rect x="451" y="44" width="4" height="18"/>
+    <rect x="160" y="190" width="105" height="40"/><path d="M155 192 L212 168 L270 192Z"/>
+    <rect x="535" y="190" width="105" height="40"/><path d="M530 192 L588 168 L645 192Z"/>
+  </g>
+  <g fill="#F4EFE7" opacity=".85">
+    <rect x="390" y="190" width="20" height="40" rx="10"/>
+    <rect x="290" y="186" width="10" height="20" rx="5"/><rect x="315" y="186" width="10" height="20" rx="5"/>
+    <rect x="475" y="186" width="10" height="20" rx="5"/><rect x="500" y="186" width="10" height="20" rx="5"/>
+    <circle cx="347" cy="125" r="6"/><circle cx="453" cy="125" r="6"/>
+  </g>
+
+  <!-- Terrassen: von oben nach unten breiter werdend -->
+  <path d="M120 232 H680 L700 262 H100Z" fill="#8FA67C"/>
+  <path d="M90 262 H710 L735 298 H65Z" fill="#9DB28A"/>
+  <path d="M55 298 H745 L775 340 H25Z" fill="#8FA67C"/>
+  <path d="M15 340 H785 L800 388 H0Z" fill="#9DB28A"/>
+  <g fill="none" stroke="#F4EFE7" stroke-width="2" opacity=".8">
+    <path d="M100 262 H700M65 298 H735M25 340 H775M0 388 H800"/>
+  </g>
+
+  <!-- Eibenkegel auf den Terrassen -->
+  <g fill="#3F5B3A">
+    <use href="#kegel-k" x="150" y="258"/><use href="#kegel-k" x="210" y="258"/><use href="#kegel-k" x="270" y="258"/><use href="#kegel-k" x="330" y="258"/>
+    <use href="#kegel-k" x="470" y="258"/><use href="#kegel-k" x="530" y="258"/><use href="#kegel-k" x="590" y="258"/><use href="#kegel-k" x="650" y="258"/>
+    <use href="#kegel-k" x="115" y="294"/><use href="#kegel-k" x="185" y="294"/><use href="#kegel-k" x="255" y="294"/><use href="#kegel-k" x="325" y="294"/>
+    <use href="#kegel-k" x="475" y="294"/><use href="#kegel-k" x="545" y="294"/><use href="#kegel-k" x="615" y="294"/><use href="#kegel-k" x="685" y="294"/>
+    <use href="#kegel" x="80" y="336"/><use href="#kegel" x="160" y="336"/><use href="#kegel" x="240" y="336"/><use href="#kegel" x="320" y="336"/>
+    <use href="#kegel" x="480" y="336"/><use href="#kegel" x="560" y="336"/><use href="#kegel" x="640" y="336"/><use href="#kegel" x="720" y="336"/>
+    <use href="#kegel" x="45" y="384"/><use href="#kegel" x="135" y="384"/><use href="#kegel" x="225" y="384"/><use href="#kegel" x="315" y="384"/>
+    <use href="#kegel" x="485" y="384"/><use href="#kegel" x="575" y="384"/><use href="#kegel" x="665" y="384"/><use href="#kegel" x="755" y="384"/>
+  </g>
+
+  <!-- Mittelachse: Treppe -->
+  <path d="M370 232 H430 L470 388 H330Z" fill="#E7DCCB"/>
+  <g stroke="#CDBFA8" stroke-width="2">
+    <path d="M366 250 H434M360 275 H440M352 305 H448M344 335 H456M336 365 H464"/>
+  </g>
+
+  <!-- Barockes Parterre mit roten Blumenbeeten -->
+  <path d="M0 388 H800 V600 H0Z" fill="#B7C7A4"/>
+  <g fill="#B4131C" opacity=".9">
+    <path d="M60 420 C140 405 250 405 330 425 C300 470 140 470 60 420Z"/>
+    <path d="M740 420 C660 405 550 405 470 425 C500 470 660 470 740 420Z"/>
+  </g>
+  <g fill="none" stroke="#3F5B3A" stroke-width="5" stroke-linecap="round">
+    <path d="M40 500 C120 470 230 475 330 505"/>
+    <path d="M760 500 C680 470 570 475 470 505"/>
+    <path d="M60 560 C150 530 260 535 340 575"/>
+    <path d="M740 560 C650 530 540 535 460 575"/>
+  </g>
+  <path d="M340 388 H460 L520 600 H280Z" fill="#E7DCCB"/>
+
+  <!-- Brunnen -->
+  <ellipse cx="400" cy="485" rx="78" ry="26" fill="#F4EFE7" stroke="#CDBFA8" stroke-width="3"/>
+  <ellipse cx="400" cy="485" rx="58" ry="17" fill="#BFD6E6"/>
+  <path d="M400 482 C396 460 398 444 400 430 C402 444 404 460 400 482Z" fill="#BFD6E6" stroke="#9CBCD3" stroke-width="2"/>
+</svg>
