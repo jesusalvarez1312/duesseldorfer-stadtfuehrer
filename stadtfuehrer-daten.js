@@ -46,7 +46,7 @@ const stadtfuehrerListe = [
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2 },
   { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"], sterne: 1 },
-  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Wirtschaft", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"], sterne: 1 }
+  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Stadtentwicklung", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"], sterne: 1 }
 ];
 
 /* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser
