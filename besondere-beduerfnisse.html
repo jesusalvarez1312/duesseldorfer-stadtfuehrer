@@ -12,6 +12,21 @@
   <!-- Reihenfolge wichtig: erst die Grundgestaltung, dann die Zusätze -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="unterseiten.css">
+
+  <!-- Gestaltung der Themenblöcke (kann in unterseiten.css verschoben werden) -->
+  <style>
+    .themenblock + .themenblock { margin-top: clamp(2.5rem, 6vw, 4rem); }
+    .themenblock__kopf { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .themenblock__symbol {
+      flex: none; display: inline-flex; align-items: center; justify-content: center;
+      width: 3rem; height: 3rem; border-radius: 50%;
+      background: #B4131C; color: #fff;
+    }
+    .themenblock__symbol .icon { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .themenblock__titel { margin: 0 0 .25rem; }
+    .themenblock__text { margin: 0; max-width: 60ch; }
+  </style>
 </head>
 
 <body>
@@ -163,48 +178,26 @@
 
 
   <!-- ===== DIE GRUPPEN ==========================================
-       Aufklappbare Bereiche, gebaut mit details und summary.
-       Das ist eingebautes HTML: funktioniert ohne JavaScript,
-       lässt sich mit der Tastatur bedienen und wird von
-       Screenreadern richtig angesagt.
-
-       Alle drei sind beim Laden zu. Soll eine offen starten,
-       schreibt man in ihren details-Tag das Wort open.
+       Drei thematische Blöcke, alle Führungen sofort sichtbar –
+       kein Aufklappen. Jeder Block hat Überschrift, kurze Einleitung
+       und darunter die Touren (viertel-liste).
   ============================================================ -->
   <section class="band">
     <div class="huelle">
 
         <!-- ---- Gruppe 1: Für Schulklassen und Kinder ---- -->
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
-
-            <span class="gruppe__bild">
-              <img src="bilder/gruppe-schulklassen-kinder.jpg" alt=""
-                   width="800" height="500" loading="lazy">
-            </span>
-
-            <span class="gruppe__symbol" aria-hidden="true">
+        <section class="themenblock" aria-labelledby="gruppe-schulklassen">
+          <header class="themenblock__kopf">
+            <span class="themenblock__symbol" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kinder"/></svg>
             </span>
+            <div>
+              <h2 class="themenblock__titel" id="gruppe-schulklassen">Für Schulklassen und Kinder</h2>
+              <p class="themenblock__text">Ob Klassenausflug oder Familienwochenende: Diese Führungen machen Düsseldorf für Kinder und Jugendliche lebendig.</p>
+            </div>
+          </header>
 
-            <h2 class="gruppe__titel">
-              Für Schulklassen und Kinder
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </h2>
-
-            <span class="gruppe__untertitel">Spannende Führungen für junge Entdecker und Schulklassen.</span>
-
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
-
-          <div class="gruppe__inhalt">
-            <p class="gruppe__text">Ob Klassenausflug oder Familienwochenende: Diese Führungen machen Düsseldorf für Kinder und Jugendliche lebendig.</p>
-
-            <ul class="viertel-liste">
+          <ul class="viertel-liste">
 
             <li class="viertel" id="tour-duesseldorf-fuer-schueler">
               <figure class="viertel__bild">
@@ -239,48 +232,21 @@
             </li>
 
             </ul>
-
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </details>
+        </section>
 
         <!-- ---- Gruppe 2: Barrierefrei unterwegs ---- -->
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
-
-            <span class="gruppe__bild">
-              <img src="bilder/gruppe-barrierefrei.jpg" alt=""
-                   width="800" height="500" loading="lazy">
-            </span>
-
-            <span class="gruppe__symbol" aria-hidden="true">
+        <section class="themenblock" aria-labelledby="gruppe-barrierefrei">
+          <header class="themenblock__kopf">
+            <span class="themenblock__symbol" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-barrierefrei"/></svg>
             </span>
+            <div>
+              <h2 class="themenblock__titel" id="gruppe-barrierefrei">Barrierefrei unterwegs</h2>
+              <p class="themenblock__text">Düsseldorf entdecken – ganz gleich mit welchen Voraussetzungen. Diese Führungen sind speziell auf Rollstuhlfahrer*innen sowie blinde und sehbehinderte Menschen abgestimmt.</p>
+            </div>
+          </header>
 
-            <h2 class="gruppe__titel">
-              Barrierefrei unterwegs
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </h2>
-
-            <span class="gruppe__untertitel">Führungen, die auf besondere Bedürfnisse eingehen.</span>
-
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
-
-          <div class="gruppe__inhalt">
-            <p class="gruppe__text">Düsseldorf entdecken – ganz gleich mit welchen Voraussetzungen. Diese Führungen sind speziell auf Rollstuhlfahrer*innen sowie blinde und sehbehinderte Menschen abgestimmt.</p>
-
-            <ul class="viertel-liste">
+          <ul class="viertel-liste">
 
             <li class="viertel" id="tour-barrierefrei-altstadt-fuer-rollstuhlfahrer">
               <figure class="viertel__bild">
@@ -315,48 +281,21 @@
             </li>
 
             </ul>
-
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </details>
+        </section>
 
         <!-- ---- Gruppe 3: Führungen für Expats ---- -->
-        <details class="gruppe">
-          <summary class="gruppe__kopf">
-
-            <span class="gruppe__bild">
-              <img src="bilder/gruppe-expats.jpg" alt=""
-                   width="800" height="500" loading="lazy">
-            </span>
-
-            <span class="gruppe__symbol" aria-hidden="true">
+        <section class="themenblock" aria-labelledby="gruppe-expats">
+          <header class="themenblock__kopf">
+            <span class="themenblock__symbol" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-welt"/></svg>
             </span>
+            <div>
+              <h2 class="themenblock__titel" id="gruppe-expats">Führungen für Expats</h2>
+              <p class="themenblock__text">Neu in der Stadt? Diese Führungen richten sich speziell an internationale Gäste und Neu-Düsseldorfer*innen.</p>
+            </div>
+          </header>
 
-            <h2 class="gruppe__titel">
-              Führungen für Expats
-              <svg class="gruppe__pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </h2>
-
-            <span class="gruppe__untertitel">Willkommen in Düsseldorf – auf Englisch und Französisch.</span>
-
-            <span class="gruppe__mehr">mehr anzeigen</span>
-
-          </summary>
-
-          <div class="gruppe__inhalt">
-            <p class="gruppe__text">Neu in der Stadt? Diese Führungen richten sich speziell an internationale Gäste und Neu-Düsseldorfer*innen.</p>
-
-            <ul class="viertel-liste">
+          <ul class="viertel-liste">
 
             <li class="viertel" id="tour-dusseldorf-for-expats">
               <figure class="viertel__bild">
@@ -391,16 +330,7 @@
             </li>
 
             </ul>
-
-            <button class="gruppe__zu" type="button" hidden>
-              weniger anzeigen
-              <svg class="gruppe__zu-pfeil" aria-hidden="true" viewBox="0 0 24 24">
-                <path d="m6 15 6-6 6 6" fill="none" stroke="currentColor"
-                      stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </details>
+        </section>
 
     </div>
   </section>
