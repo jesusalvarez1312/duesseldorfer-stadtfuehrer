@@ -41,7 +41,7 @@ const stadtfuehrerListe = [
   { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Königsallee", "Rheinufer"],           sprachen: ["de", "pl"], sterne: 1 },
   { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de"], sterne: 3 },
   { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Medienhafen", "Wehrhahnlinie"],         sprachen: ["de", "en",], sterne: 1 },
-  { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Landesgeschichte", "Diversity", "Kunst & Kultur"],      sprachen: ["de", "it"], sterne: 1 },
+  { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Straßenbahn", "Diversity", "International"],      sprachen: ["de", "it"], sterne: 1 },
   { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2 },
