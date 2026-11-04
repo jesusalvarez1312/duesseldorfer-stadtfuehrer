@@ -29,7 +29,7 @@
 const standardLink = "index.html#buchung";
 
 const stadtfuehrerListe = [
-  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://www.duesseldorf-entdecken.de/", telefon: "+49 157 72166732", mail: "duesta@duesseldorf-entdecken.de" },
+  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau & Architektur"],       sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://www.duesseldorf-entdecken.de/", telefon: "+49 157 72166732", mail: "duesta@duesseldorf-entdecken.de" },
   { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://www.stadtstreicherin.de/", telefon: "+49 177 2497391", mail: "stadtstreicherin@email.de" },
   { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Medienhafen", "Säulenheilige"],  sprachen: ["de", "en"], sterne: 2, link: "https://www.reisezeit-rheinruhr.de/", telefon: "+49 173 2731579", mail: "reinders@reisezeit-rheinruhr.info" },
   { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608", telefon: "+49 160 97830429", mail: "rey-broegger@n-broegger.de" },
