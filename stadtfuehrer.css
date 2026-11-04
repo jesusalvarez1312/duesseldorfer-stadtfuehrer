@@ -5,11 +5,56 @@
    aus index.html weiter, damit beides zusammenpasst.
 =================================================================== */
 
+/* Kopf: Text links, Sternen-Legende rechts (auf dem Handy untereinander) */
 .fuehrer-kopf {
-  max-width: 46rem;
-  margin: 0 auto 2.5rem;
-  text-align: center;
+  display: grid;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+  align-items: center;
 }
+
+.fuehrer-kopf .lead { max-width: none; }
+
+@media (min-width: 1024px) {
+  .fuehrer-kopf {
+    grid-template-columns: minmax(0, 1fr) 24rem;
+    gap: 3rem;
+  }
+}
+
+/* ---- Legende der Sterne ---- */
+.sterne-legende {
+  background: var(--beige, #F4EFE7);
+  border-left: 4px solid var(--rot);
+  border-radius: 0.9rem;
+  padding: 1.2rem 1.4rem;
+  font-size: 0.92rem;
+  color: var(--text, #16191D);
+}
+
+.sterne-legende h2.sterne-legende__titel {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+  margin: 0 0 0.4rem;
+}
+
+.sterne-legende__text { margin: 0 0 0.8rem; color: var(--text-leise); }
+
+.sterne-legende__text a { color: var(--rot); font-weight: 600; }
+
+.sterne-legende__liste { margin: 0; display: grid; gap: 0.5rem; }
+
+.sterne-legende__liste div {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.sterne-legende__liste dt { margin: 0; }
+.sterne-legende__liste dd { margin: 0; line-height: 1.4; }
 
 .fuehrer-liste {
   list-style: none;
@@ -59,6 +104,7 @@
 }
 
 .fuehrer-kachel__inhalt {
+  flex: 1;
   padding: 0.55rem 1.1rem 1.2rem;
   display: flex;
   flex-direction: column;
@@ -92,6 +138,42 @@
   padding: 0.2rem 0.55rem;
 }
 
+/* Untere Zeile der Kachel: Flaggen links, Kontakt-Symbole rechts */
+.fuehrer-kachel__fuss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.fuehrer-kachel__kontakt { display: flex; gap: 0.45rem; }
+
+.kontakt-knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--rot);
+  color: var(--rot);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.kontakt-knopf:hover,
+.kontakt-knopf:focus-visible { background: var(--rot); color: #fff; }
+
+.kontakt-knopf .icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .fuehrer-kachel__flaggen {
   display: flex;
   align-items: center;
@@ -121,3 +203,5 @@
 
 /* Hervorhebung, wenn man über die Suche zu einer Person springt */
 .fuehrer-kachel--markiert { outline: 3px solid var(--rot); outline-offset: 3px; }
+
+.sterne-legende .sterne { margin-left: 0; font-size: 1rem; }

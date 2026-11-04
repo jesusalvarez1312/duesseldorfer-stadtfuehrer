@@ -20,33 +20,37 @@
                dorthin verlinkt (z. B. eigene Website); beim Überfahren
                mit der Maus erscheint "mehr Infos". Fehlt der Link,
                führt die Kachel zur Anfrage-Seite (standardLink unten).
+   telefon:    optional. Handynummer, z. B. "+49 171 1234567". Dann
+               erscheint ein Telefon-Symbol, das direkt anruft.
+   mail:       optional. E-Mail-Adresse. Dann erscheint ein @-Symbol,
+               das eine neue Mail öffnet.
 =================================================================== */
 /* Ziel für alle Kacheln ohne eigenen "link": die Anfrage auf index.html. */
 const standardLink = "index.html#buchung";
 
 const stadtfuehrerListe = [
-  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://www.duesseldorf-entdecken.de/" },
-  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://www.stadtstreicherin.de/" },
-  { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Rheinbrücken", "Säulenheilige"],  sprachen: ["de", "en"], sterne: 2, link: "https://www.reisezeit-rheinruhr.de/" },
-  { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608" },
-  { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "multimedial"], sprachen: ["de", "es"], sterne: 1, link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636" },
-  { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], sterne: 2, link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386" },
-  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Sportlich", "Kunst", "Unterhaltsames"],                  sprachen: ["de", "en"], sterne: 3, link: "https://www.steffibuss.com/ueber-uns" },
-  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"], sterne: 1 },
-  { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Kaiserswerth", "Frauen", "Medienhafen"],              sprachen: ["de", "en"], sterne: 3 },
-  { name: "Brigitta Binsfeld",           bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329" },
-  { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"], sterne: 1 },
-  { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"], sterne: 1 },
-  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"], sterne: 1 },
+  { name: "Anja Kühner",                bild: "anja-kuehner",                stichworte: ["Japanviertel", "Kulinarisches", "Städtebau"],       sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://www.duesseldorf-entdecken.de/", telefon: "+49 157 72166732", mail: "duesta@duesseldorf-entdecken.de" },
+  { name: "Antje Kahnt",                 bild: "antje-kahnt",                 stichworte: ["Kunststadt", "Frauen", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://www.stadtstreicherin.de/", telefon: "+49 177 2497391", mail: "stadtstreicherin@email.de" },
+  { name: "Georg Reinders",              bild: "georg-reinders",              stichworte: ["Wehrhahnlinie", "Medienhafen", "Säulenheilige"],  sprachen: ["de", "en"], sterne: 2, link: "https://www.reisezeit-rheinruhr.de/", telefon: "+49 173 2731579", mail: "reinders@reisezeit-rheinruhr.info" },
+  { name: "Brigitte Rey-Brögger",        bild: "brigitte-rey-broegger",       stichworte: ["Brauereien", "Düsseldorfer Originale", "Internationale Einflüsse"],         sprachen: ["de", "fr", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitte-rey-broegger-608", telefon: "+49 160 97830429", mail: "rey-broegger@n-broegger.de" },
+  { name: "Jesús Álvarez",               bild: "jesus-alvarez",               stichworte: ["Kulinarisches", "Kö-Bogen I&II", "multimedial"], sprachen: ["de", "es"], sterne: 1, link: "https://die-gaestefuehrer.de/profile/jesus-alvarez-10636", mail: "jesusalvarez@gmx.com" },
+  { name: "Peter Jäger",                 bild: "peter-jaeger",                stichworte: ["Radtouren", "Medienhafen", "Wirtschaft"],           sprachen: ["de", "en", "es", "ca"], sterne: 2, link: "https://die-gaestefuehrer.de/profile/peter-jaeger-386", telefon: "+49 171 3819746", mail: "fuehrungen@jaegerguide.eu" },
+  { name: "Steffi Buss",                 bild: "steffi-buss",                 stichworte: ["Altstadt", "Sport & Unterhaltung", "Kunst & Architektur"],                  sprachen: ["de", "en"], sterne: 3, link: "https://www.steffibuss.com/ueber-uns", telefon: "+49 160 4023159" },
+  { name: "Martina Kaiser",              bild: "martina-kaiser",              stichworte: ["Kunst & Kultur", "Brauereien", "Radtouren"],            sprachen: ["de", "en", "nl", "fr", "es"], sterne: 1, telefon: "+49 176 50125739", mail: "Martina.Kaiser@gmx.net" },
+  { name: "Brigitte Salem",              bild: "brigitte-salem",              stichworte: ["Kaiserswerth", "Frauen", "Medienhafen"],              sprachen: ["de", "en"], sterne: 3, telefon: "+49 1577 6450794", mail: "bsalem@web.de" },
+  { name: "Brigitta Binsfeld",           bild: "brigitta-binsfeld-rizkalla",  stichworte: ["Kirchen", "Musik", "Kaiserswerth"],    sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/brigitta-binsfeld-rizkalla-4329", telefon: "+49 152 53242337", mail: "brigitta.binsfeld@googlemail.com" },
+  { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"], sterne: 1, mail: "ma.rissen@web.de" },
+  { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"], sterne: 1, mail: "info@magdalenapiotrowski.de" },
+  { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"], sterne: 1, telefon: "+49 157 32387398", mail: "jschaefer.d@gmail.com" },
   { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Königsallee", "Rheinufer"],           sprachen: ["de", "pl"], sterne: 1 },
-  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Hofgarten", "Oberbilk", "Theater"],      sprachen: ["de"], sterne: 3 },
-  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Medienhafen", "Wehrhahnlinie"],         sprachen: ["de", "en",], sterne: 1 },
-  { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Straßenbahn", "Diversity", "International"],      sprachen: ["de", "it"], sterne: 1 },
-  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Natur", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
-  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779" },
+  { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Architektur", "Carlstadt", "Gerresheim"],      sprachen: ["de"], sterne: 3, telefon: "+49 173 9444119", mail: "ute-pannes@t-online.de" },
+  { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Medienhafen", "Wehrhahnlinie"],         sprachen: ["de", "en",], sterne: 1, telefon: "+49 178 4724043", mail: "ht.linn@t-online.de" },
+  { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Straßenbahn", "Diversity", "International"],      sprachen: ["de", "it"], sterne: 1, mail: "saskiaschilperoort@web.de" },
+  { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Kunst", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
+  { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779", telefon: "+49 172 9943685", mail: "dorothee.spelberg@gmx.de" },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2 },
-  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"], sterne: 1 },
-  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Stadtentwicklung", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"], sterne: 1 }
+  { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"], sterne: 1, mail: "hallo@annehahn.de" },
+  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Stadtentwicklung", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"], sterne: 1, telefon: "+49 15679 787711", mail: "tourguide@mailbox.org" }
 ];
 
 /* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser
