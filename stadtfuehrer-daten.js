@@ -42,7 +42,6 @@ const stadtfuehrerListe = [
   { name: "Maria Rißen",                 bild: "maria-rissen",                stichworte: ["Kinder", "Geschichte", "Neuss"],           sprachen: ["de", "en"], sterne: 1, mail: "ma.rissen@web.de" },
   { name: "Magdalena Piotrowski",        bild: "magdalena-piotrowski",        stichworte: ["Natur", "Radtouren", "Persönlichkeiten"],  sprachen: ["de", "pl", "en"], sterne: 1, mail: "info@magdalenapiotrowski.de" },
   { name: "Jadwiga Schäfer",             bild: "jadwiga-schaefer",            stichworte: ["Architektur", "Neue Mitte", "Golzheim & Pempelfort"],         sprachen: ["de", "pl"], sterne: 1, telefon: "+49 157 32387398", mail: "jschaefer.d@gmail.com" },
-  { name: "Lidia Jansen",                bild: "lidia-jansen",                stichworte: ["MedienHafen", "Königsallee", "Rheinufer"],           sprachen: ["de", "pl"], sterne: 1 },
   { name: "Ute Pannes",                  bild: "ute-pannes",                  stichworte: ["Architektur", "Carlstadt", "Gerresheim"],      sprachen: ["de"], sterne: 3, telefon: "+49 173 9444119", mail: "ute-pannes@t-online.de" },
   { name: "Helga Linn",                  bild: "helga-linn",                  stichworte: ["Brauereien", "Medienhafen", "Wehrhahnlinie"],         sprachen: ["de", "en",], sterne: 1, telefon: "+49 178 4724043", mail: "ht.linn@t-online.de" },
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Straßenbahn", "Diversity", "International"],      sprachen: ["de", "it"], sterne: 1, mail: "saskiaschilperoort@web.de" },
