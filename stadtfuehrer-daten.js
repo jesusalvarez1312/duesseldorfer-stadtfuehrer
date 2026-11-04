@@ -47,7 +47,7 @@ const stadtfuehrerListe = [
   { name: "Saskia Schilperoort",         bild: "saskia-schilperoort",         stichworte: ["Straßenbahn", "Diversity", "International"],      sprachen: ["de", "it"], sterne: 1, mail: "saskiaschilperoort@web.de" },
   { name: "Jörg Allenstein",             bild: "joerg-allenstein",            stichworte: ["Nachtwächter", "Kunst", "Architektur"],        sprachen: ["de", "en"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/joerg-allenstein-384" },
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779", telefon: "+49 172 9943685", mail: "dorothee.spelberg@gmx.de" },
-  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2 },
+  { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Kirchen", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2, telefon: "+49 163 8793425" },
   { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"], sterne: 1, mail: "hallo@annehahn.de" },
   { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Stadtentwicklung", "Nachtwächter", "Neuss"],  sprachen: ["de", "en"], sterne: 1, telefon: "+49 15679 787711", mail: "tourguide@mailbox.org" }
 ];
