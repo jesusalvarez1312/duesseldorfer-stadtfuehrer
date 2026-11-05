@@ -124,7 +124,7 @@ const TOUREN = [
     seite: "besondere-beduerfnisse.html#tour-duesseldorf-fuer-schueler",
     thema: "Für Schulklassen und Kinder",
     worte: "Klassenausflug • Schulführung • Interaktiv" },
-  { titel: "Düsseldorf kriminell (Altstadt und Kaiserswerth)",
+  { titel: "Düsseldorf kriminell",
     seite: "geschichte-geschichten.html#tour-duesseldorf-kriminell-altstadt-und",
     thema: "Natur, Fluss und dunkle Kapitel",
     worte: "Kriminalgeschichte • Altstadt • Kaiserswerth" },
