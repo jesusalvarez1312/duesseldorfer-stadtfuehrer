@@ -18,9 +18,9 @@
 const BANNER = {
   aktiv:    true,
   von:      "2026-10-25",
-  bis:      "2026-11-08",
-  titel:    "Willkommen auf unserer Probeseite",
-  text:     "Dies ist nur eine Probeseite für den Verein. Hier stehen später Neuigkeiten – zum Beispiel Angebote für die weihnachtliche Führung durch die Düsseldorfer Altstadt.",
+  bis:      "2026-12-23",
+  titel:    "Willkommen auf unserer neuen Homepage",
+  text:     "Bald gehen wir für alle online. Schon jetzt können Sie sich hier auf die Adventszeit einstimmen – mit unseren Führungen über die Düsseldorfer Weihnachtsmärkte.",
   linkText: "Zu den Weihnachtsmärkten",
   link:     "weihnachtsmaerkte.html"
 };
