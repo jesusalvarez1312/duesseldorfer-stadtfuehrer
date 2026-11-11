@@ -61,6 +61,8 @@
     for (var i = 0; i < knoten.length; i++) {
       var el = knoten[i];
       if (el.getAttribute("data-kuerzel")) continue;
+      // Entensprache: Enten-Emoji bleibt immer stehen (ist keine Länderflagge).
+      if (el.getAttribute("data-code") === "ente") continue;
       el.setAttribute("data-kuerzel", "1");
       el.textContent = alsBuchstaben(el.getAttribute("data-code"));
     }

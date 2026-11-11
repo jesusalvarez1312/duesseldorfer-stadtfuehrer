@@ -57,7 +57,7 @@ const stadtfuehrerListe = [
    Felder wie oben; "sprachen" darf leer bleiben (dann erscheinen
    keine Flaggen). */
 const stadtfuehrerFesteKacheln = [
-  { name: "Ente Quak", bild: "ente-quak", stichworte: ["Parks", "Wasser", "Teich"], sprachen: [] }
+  { name: "Ente Quak", bild: "ente-quak", stichworte: ["Parks", "Wasser", "Teich"], sprachen: ["ente"] }
 ];
 
 /* Anzeigedaten je Sprachkürzel. "flagge" wird nur verwendet, wenn das
@@ -75,5 +75,6 @@ const spracheInfo = {
   it: { label: "Italiano", flagge: "🇮🇹" },
   cs: { label: "Čeština",  flagge: "🇨🇿" },
   pl: { label: "Polski",   flagge: "🇵🇱" },
-  ru: { label: "Русский",  flagge: "🇷🇺" }
+  ru: { label: "Русский",  flagge: "🇷🇺" },
+  ente: { label: "Entensprache", flagge: "🦆" }
 };
