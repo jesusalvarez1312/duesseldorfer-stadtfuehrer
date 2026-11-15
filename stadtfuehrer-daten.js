@@ -49,7 +49,7 @@ const stadtfuehrerListe = [
   { name: "Dorothee Spelberg",           bild: "dorothee-spelberg",           stichworte: ["Musik", "Gärten & Parks", "Niederrhein"],    sprachen: ["de", "en", "fr", "es"], sterne: 3, link: "https://die-gaestefuehrer.de/profile/dorothee-spelberg-7779", telefon: "+49 172 9943685", mail: "dorothee.spelberg@gmx.de" },
   { name: "Daniela Pusch",               bild: "daniela-pusch",               stichworte: ["Friedhöfe", "Stadtentwicklung", "Literatur"],            sprachen: ["de", "en", "fr", "cs"], sterne: 2, telefon: "+49 163 8793425", mail: "daniela.pusch@rub.de" },
   { name: "Anne Hahn",                   bild: "anne-hahn",                   stichworte: ["Kinder", "Politik", "Kulinarisches"],   sprachen: ["de", "en"], sterne: 1, mail: "hallo@annehahn.de" },
-  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Stadtentwicklung", "Nachtwächter", "Neuss & Niederrhein"],  sprachen: ["de", "en"], sterne: 1, telefon: "+49 15679 787711", mail: "tourguide@mailbox.org" }
+  { name: "Peter Kieffer",               bild: "peter-kieffer",               stichworte: ["Stadtentwicklung", "Nachtwächter", "Neuss & Niederrhein"],  sprachen: ["de", "en"], sterne: 1, link: "https://die-gaestefuehrer.de/profile/peter-kieffer-10665", telefon: "+49 15679 787711", mail: "tourguide@mailbox.org" }
 ];
 
 /* Feste Kacheln: stehen immer am Ende der Liste, in genau dieser
