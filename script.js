@@ -457,7 +457,7 @@ document.addEventListener("keydown", (e) => {
    ------------------------------------------------------------------
    Führungen ohne eigene Detailseite stehen in einem zugeklappten
    Bereich. Kommt jemand über die Suche mit einer Adresse wie
-   stadtviertel.html#tour-volksgarten, klappen wir den Bereich auf
+   stadtviertel.html#tour-carlstadt, klappen wir den Bereich auf
    und heben die Karte kurz hervor.
 ================================================================== */
 
